@@ -29,6 +29,7 @@ include __DIR__ . '/includes/navbar.php';
   <div class="hero-slides" id="heroSlides">
     <div class="hero-slide is-active" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-1.jpg');"></div>
     <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-2.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-3.jpg');"></div>
   </div>
   <div class="hero-overlay"></div>
 
