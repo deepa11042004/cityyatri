@@ -40,8 +40,8 @@ if (!isset($resort) || !is_array($resort)) {
 
     <div class="card-footer">
       <div>
-        <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Allotment</span>
-        <strong style="color: var(--yellow-light); font-size: 0.85rem;"><?php echo e($resort['allotment']); ?></strong>
+        <span style="font-size: 0.72rem; color: var(--color-ink-soft); display: block;">Allotment</span>
+        <strong style="color: var(--color-primary-dark); font-size: 0.85rem;"><?php echo e($resort['allotment']); ?></strong>
       </div>
       <div style="display: flex; gap: 8px;">
         <a href="<?php echo url('resort-details.php?id=' . urlencode($resort['id'])); ?>" class="btn btn-outline-gold btn-sm">Details</a>

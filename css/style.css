@@ -1,6 +1,6 @@
 /* ==========================================================================
    Club Yatri - Premium Light Theme Design System
-   Brand Palette: Rich Red (#C8102E) & Golden Yellow (#FFB300)
+   Brand Palette: Rich Red (#EA2224) & Golden Yellow (#ffb300)
    Hospitality Aesthetic: Crisp White, Warm Ivory, Dark Readable Typography
    ========================================================================== */
 
@@ -8,9 +8,9 @@
 
 :root {
   /* Core Light Theme Palette */
-  --color-primary: #C8102E;
-  --color-primary-dark: #A50F25;
-  --color-accent: #FFB300;
+  --color-primary: #EA2224;
+  --color-primary-dark: #C91B1D;
+  --color-accent: #ffb300;
   --color-accent-hover: #FFA000;
   --color-accent-light: #FFF9E6;
 
@@ -29,7 +29,7 @@
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 6px 20px rgba(40, 20, 10, 0.08);
   --shadow-lg: 0 14px 40px rgba(40, 20, 10, 0.12);
-  --shadow-red: 0 6px 22px rgba(200, 16, 46, 0.28);
+  --shadow-red: 0 6px 22px rgba(234, 34, 36, 0.28);
   --shadow-yellow: 0 6px 22px rgba(255, 179, 0, 0.35);
 
   --radius-card: 16px;
@@ -45,24 +45,24 @@
   --bg-card-hover: #FFFFFF;
   --bg-glass: rgba(255, 255, 255, 0.95);
 
-  --gold-primary: #FFB300;
-  --gold-light: #FFB300;
+  --gold-primary: #ffb300;
+  --gold-light: #ffb300;
   --gold-lighter: #FFF9E6;
-  --gold-dark: #A50F25;
-  --gold-gradient: linear-gradient(135deg, #FFB300 0%, #FFA000 100%);
+  --gold-dark: #C91B1D;
+  --gold-gradient: linear-gradient(135deg, #ffb300 0%, #FFA000 100%);
   --gold-gradient-soft: rgba(255, 179, 0, 0.12);
 
-  --red-primary: #C8102E;
-  --red-bright: #C8102E;
-  --red-dark: #A50F25;
-  --red-deep: #7A0A1B;
-  --red-gradient: linear-gradient(135deg, #C8102E 0%, #A50F25 100%);
-  --red-gradient-soft: rgba(200, 16, 46, 0.08);
+  --red-primary: #EA2224;
+  --red-bright: #EA2224;
+  --red-dark: #C91B1D;
+  --red-deep: #9E1416;
+  --red-gradient: linear-gradient(135deg, #EA2224 0%, #C91B1D 100%);
+  --red-gradient-soft: rgba(234, 34, 36, 0.08);
 
-  --yellow-primary: #FFB300;
+  --yellow-primary: #ffb300;
   --yellow-bright: #FFC107;
   --yellow-light: #FFF9E6;
-  --yellow-gradient: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+  --yellow-gradient: linear-gradient(135deg, #FFC107 0%, #ffb300 100%);
 
   --teal-accent: #00876c;
   --teal-gradient: linear-gradient(135deg, #00A884 0%, #00876C 100%);
@@ -72,11 +72,11 @@
   --text-muted: #777777;
   --text-gold: #B8860B;
   --text-yellow: #B8860B;
-  --text-red: #C8102E;
+  --text-red: #EA2224;
 
   --border-gold: #E9E2D8;
-  --border-gold-hover: #FFB300;
-  --border-red: #C8102E;
+  --border-gold-hover: #ffb300;
+  --border-red: #EA2224;
   --border-subtle: #E9E2D8;
   --border-subtle-hover: #D8CEBF;
 
@@ -133,7 +133,7 @@ body::before {
   height: 100vh;
   background: 
     radial-gradient(circle at 10% 10%, rgba(255, 179, 0, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(200, 16, 46, 0.03) 0%, transparent 50%);
+    radial-gradient(circle at 90% 90%, rgba(234, 34, 36, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -294,7 +294,7 @@ a:hover {
 }
 .btn-red:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(200, 16, 46, 0.45);
+  box-shadow: 0 8px 28px rgba(234, 34, 36, 0.45);
   color: #FFFFFF !important;
 }
 
@@ -712,7 +712,7 @@ a:hover {
   padding: 44px 38px;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-lg), 0 0 25px rgba(200, 16, 46, 0.08);
+  box-shadow: var(--shadow-lg), 0 0 25px rgba(234, 34, 36, 0.08);
   margin-top: 24px;
 }
 
@@ -775,10 +775,10 @@ a:hover {
   border-top: 4px solid #8B5CF6;
 }
 .studio-chip-card.yellow {
-  border-top: 4px solid #FFB300;
+  border-top: 4px solid #ffb300;
 }
 .studio-chip-card.red {
-  border-top: 4px solid #C8102E;
+  border-top: 4px solid #EA2224;
 }
 
 .studio-name {
@@ -1218,7 +1218,7 @@ a:hover {
 .form-control:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.12);
+  box-shadow: 0 0 0 3px rgba(234, 34, 36, 0.12);
 }
 
 /* Modals */

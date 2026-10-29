@@ -1,0 +1,646 @@
+/* ==========================================================================
+   Club Yatri - Redesign Layer (loaded after style.css)
+   Modern bento / rounded-card look. Design only: no content, links or logic.
+   Brand: Primary #EA2224 (red) · Secondary #ffb300 (amber)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --color-primary: #EA2224;
+  --color-primary-dark: #C91B1D;      /* AA-safe red for small text on light tints */
+  --color-secondary: #ffb300;
+  --color-secondary-dark: #E69F00;    /* button hover */
+  --color-accent: #ffb300;
+  --color-accent-hover: #E69F00;
+
+  --tint-red: #FFF1F1;
+  --tint-amber: #FFF6E0;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #3d3d3d;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5c5c5c;
+  --color-border: #EFE6D8;
+  --color-background-soft: #FFFBF4;
+  --color-background-warm: var(--tint-amber);
+
+  --radius-card: 28px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-button: 999px;
+
+  --shadow-card: 0 10px 36px rgba(26, 26, 26, 0.07);
+  --shadow-md: 0 12px 32px rgba(26, 26, 26, 0.09);
+  --shadow-lg: 0 22px 52px rgba(26, 26, 26, 0.14);
+
+  /* One modern sans for everything (existing serif tokens are remapped) */
+  --font-serif-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --trans-lift: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body { background: #FFFFFF; color: var(--color-ink); }
+body::before { display: none; }
+
+h1, h2, h3, h4, .heading-serif, .heading-display, .section-title {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.section { padding-top: 96px; padding-bottom: 96px; }
+.section-title-wrap { margin-bottom: 56px; }
+.section-title { font-size: clamp(2rem, 4.2vw, 3rem); color: var(--color-ink); }
+.section-desc { color: var(--color-text-muted); font-size: 1.05rem; }
+
+.sub-tag {
+  background: var(--tint-amber);
+  border: 0;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.1em;
+  padding: 7px 16px;
+}
+
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Buttons - amber with dark text
+   -------------------------------------------------------------------------- */
+.btn, .btn-gold, .btn-red, .btn-yellow, .btn-outline-gold, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.85rem 1.7rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--trans-lift), box-shadow var(--trans-lift), background-color 0.2s, color 0.2s;
+}
+.btn-gold, .btn-red, .btn-yellow {
+  background: var(--color-secondary);
+  color: var(--color-ink) !important;   /* style.css forces white on .btn-red */
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.32);
+}
+.btn-gold:hover, .btn-red:hover, .btn-yellow:hover {
+  background: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+  color: var(--color-ink) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 179, 0, 0.42);
+}
+.btn-outline-gold {
+  background: transparent;
+  color: var(--color-ink) !important;
+  border: 2px solid var(--color-secondary);
+  box-shadow: none;
+}
+.btn-outline-gold:hover {
+  background: var(--color-secondary);
+  color: var(--color-ink) !important;
+  transform: translateY(-2px);
+}
+.btn-sm { padding: 0.55rem 1.15rem; font-size: 0.85rem; }
+.btn-lg { padding: 1rem 2rem; font-size: 1rem; }
+
+/* --------------------------------------------------------------------------
+   3. Header - slim dark utility strip + sticky white nav
+   -------------------------------------------------------------------------- */
+.top-utility-bar { background: var(--color-ink); border-bottom: 0; }
+.top-utility-bar, .utility-contact-link, .utility-social-link { color: #FFFFFF; }
+.utility-contact-link:hover, .utility-social-link:hover { color: var(--color-secondary); }
+.utility-login-btn {
+  background: var(--color-secondary);
+  color: var(--color-ink) !important;
+  border: 0;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+.utility-login-btn:hover { background: var(--color-secondary-dark); color: var(--color-ink) !important; }
+
+.navbar-main {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 6px 24px rgba(26, 26, 26, 0.05);
+}
+.nav-menu { gap: 6px; }
+.nav-link {
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.nav-link:hover { background: var(--tint-amber); color: var(--color-ink); }
+.nav-link.active { background: var(--tint-red); color: var(--color-primary-dark); }
+.nav-link.active::after { display: none; }
+.mobile-toggle { border-radius: var(--radius-sm); }
+.drawer-link:hover, .drawer-link.active { color: var(--color-primary-dark); }
+
+/* --------------------------------------------------------------------------
+   4. Hero - large rounded image, brand wordmark, floating booking bar
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: min(94vh, 900px);
+  margin: 16px 16px 0;
+  padding: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.30) 0%, rgba(10, 10, 10, 0.50) 50%, rgba(10, 10, 10, 0.78) 100%),
+    url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+.hero::before {
+  content: 'CLUB YATRI';
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(3.4rem, 13vw, 12rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  user-select: none;
+}
+.hero-overlay { background: none; }
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1120px;
+  padding: 150px 24px 32px;
+}
+.hero-badge {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 179, 0, 0.8);
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none;
+}
+.hero-badge span { color: var(--color-secondary); }
+.hero-tagline-highlight-box {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: var(--radius-xl);
+  padding: 20px 36px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+}
+.hero-tagline-highlight-box h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.6rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+.hero-subtitle { color: rgba(255, 255, 255, 0.92); }
+.hero .btn-yellow {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero .btn-yellow:hover { background: #FFFFFF; color: var(--color-ink) !important; border-color: #FFFFFF; }
+
+/* Floating booking bar (styles for the existing quick-search form) */
+.search-widget {
+  width: 100%;
+  max-width: 1180px;
+  margin: auto auto 0;
+  padding: 14px;
+  background: var(--tint-amber);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.28);
+  text-align: left;
+}
+.search-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+}
+.search-field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #5a4520;
+}
+.search-field select {
+  width: 100%;
+  padding: 13px 10px;
+  border: 1.5px solid #F2E3BC;
+  border-radius: var(--radius-sm);
+  background: #FFFFFF;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--color-ink);
+}
+.search-field select:focus { border-color: var(--color-secondary); }
+
+/* --------------------------------------------------------------------------
+   5. Stats bento (stat tiles + decorative images)
+   -------------------------------------------------------------------------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 18px;
+}
+.bento-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-size: cover;
+  background-position: center;
+}
+.bento-tile.wide { grid-column: span 2; }
+.bento-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px;
+  background: var(--tint-amber);
+}
+.bento-stat.red { background: var(--tint-red); }
+.bento-stat .stat-number {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+.bento-stat .stat-label { color: var(--color-ink-soft); letter-spacing: 0.06em; }
+.bento-img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.bento-img:hover { transform: scale(1.015); }
+
+/* --------------------------------------------------------------------------
+   6. Cards, grids and panels
+   -------------------------------------------------------------------------- */
+.grid-3 { gap: 28px; }
+.grid-4 { gap: 24px; }
+
+.card-luxury, .today-office-card, .trust-badge-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--trans-lift), box-shadow var(--trans-lift);
+}
+.card-luxury:hover, .today-office-card:hover, .trust-badge-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+.card-img-wrap { height: 250px; }
+.card-badge {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 0;
+  color: var(--color-primary-dark);
+}
+.card-body { padding: 24px; }
+.card-title { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.01em; }
+.resort-item-card .card-footer strong { color: var(--color-primary-dark); }
+.amenity-chip { background: var(--tint-amber); border: 0; border-radius: var(--radius-full); color: var(--color-ink-soft); }
+.btn-map-search { border-radius: var(--radius-full); }
+
+.today-office-card { background: #FFFFFF; padding: 32px; }
+.backend-tag { background: var(--tint-amber); border: 0; color: var(--color-primary-dark); border-radius: var(--radius-full); }
+
+.flagship-card-25y {
+  background: linear-gradient(135deg, var(--tint-amber) 0%, #FFFFFF 70%);
+  border: 0;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 48px;
+}
+.flagship-badge-tag { background: var(--color-primary); color: #FFFFFF; border: 0; border-radius: var(--radius-full); }
+.flagship-title { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.02em; }
+.studio-chip-card { border-radius: var(--radius-md); border: 0; box-shadow: var(--shadow-sm); }
+
+.trust-badge-card { background: var(--tint-amber); border: 0; box-shadow: none; padding: 28px; }
+.trust-badge-card:nth-child(even) { background: var(--tint-red); }
+.trust-badge-card strong { color: var(--color-ink); }
+.trust-badge-card span { color: var(--color-ink-soft); }
+
+/* Testimonials */
+#trustLegalSection .grid-3 > .card-luxury {
+  position: relative;
+  background: var(--tint-amber);
+  border: 0;
+  box-shadow: none;
+}
+#trustLegalSection .grid-3 > .card-luxury::before {
+  content: '\201C';
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  font-family: Georgia, serif;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.faq-card { border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: none; }
+.faq-card.open { border-color: var(--color-secondary); background: var(--tint-amber); }
+
+.form-control, .newsletter-input {
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+}
+.form-control:focus, .newsletter-input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(255, 179, 0, 0.2);
+  outline: none;
+}
+.modal-dialog { border-radius: var(--radius-xl); }
+
+/* --------------------------------------------------------------------------
+   7. Pill tab bar (destination filter + category tabs)
+   -------------------------------------------------------------------------- */
+.map-explorer-container { text-align: center; margin-bottom: 36px; padding: 0; background: none; border: 0; }
+.map-pins-nav, .tabs-wrap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  margin-bottom: 18px;
+  background: var(--tint-amber);
+  border: 0;
+  border-radius: var(--radius-full);
+}
+.map-pin-btn, .tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+.map-pin-btn:hover, .tab-btn:hover { background: #FFFFFF; color: var(--color-ink); }
+.map-pin-btn.active, .tab-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(234, 34, 36, 0.28);
+}
+.map-pin-btn .pin-count { background: #FFFFFF; color: var(--color-primary-dark); border-radius: var(--radius-full); }
+.map-pin-btn.active .pin-count { background: rgba(255, 255, 255, 0.25); color: #FFFFFF; }
+
+/* --------------------------------------------------------------------------
+   8. How Booking Works - image + numbered rows
+   -------------------------------------------------------------------------- */
+.process-visual {
+  max-width: 1000px;
+  height: clamp(220px, 34vw, 380px);
+  margin: 0 auto 28px;
+  border-radius: var(--radius-xl);
+  background: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  box-shadow: var(--shadow-md);
+}
+.process-steps {
+  list-style: none;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  counter-reset: none;
+}
+.process-step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.25s, transform var(--trans-lift), box-shadow var(--trans-lift);
+}
+.process-step:hover { border-color: var(--color-secondary); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.process-num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.process-step strong { display: block; font-size: 1.05rem; color: var(--color-ink); }
+.process-step p { margin: 2px 0 0; font-size: 0.92rem; color: var(--color-text-muted); }
+
+/* --------------------------------------------------------------------------
+   9. Booking rules - image banner with frosted card
+   -------------------------------------------------------------------------- */
+#bookingNoticeSection {
+  margin: 24px 16px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.7)),
+    url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+.transparency-notice-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+.notice-badge { background: var(--tint-red); border: 0; color: var(--color-primary-dark); border-radius: var(--radius-full); }
+.notice-rule-item { background: #FFFFFF; border: 0; border-radius: var(--radius-md); }
+
+/* --------------------------------------------------------------------------
+   10. Footer - large rounded tinted card
+   -------------------------------------------------------------------------- */
+.footer { background: #FFFFFF; border-top: 0; padding: 40px 16px 24px; }
+.footer > .container {
+  background: var(--tint-amber);
+  border-radius: var(--radius-xl);
+  padding: 56px 48px 28px;
+}
+.footer-heading {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+}
+.footer-link { color: var(--color-ink-soft); }
+.footer-link:hover { color: var(--color-primary-dark); }
+.footer-bottom { border-top: 1px solid rgba(26, 26, 26, 0.1); color: var(--color-ink-soft); }
+.footer .brand-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.footer .brand-logo-img { width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto; }
+.brand-name { font-family: var(--font-sans); font-weight: 800; color: var(--color-ink); }
+.brand-name span { color: var(--color-primary); }
+
+/* --------------------------------------------------------------------------
+   11. Motion - lift, zoom and fade-in on scroll (JS adds .js and .reveal)
+   -------------------------------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .card-luxury, .today-office-card, .process-step, .bento-img, .btn-gold, .btn-red, .btn-yellow { transition: none; }
+  .card-luxury:hover, .today-office-card:hover, .process-step:hover { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .search-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .search-form button { grid-column: 1 / -1; }
+  .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; grid-auto-flow: dense; }
+  .flagship-card-25y { padding: 36px; }
+  .footer > .container { padding: 44px 32px 24px; }
+}
+
+@media (max-width: 768px) {
+  .top-utility-bar .container { flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
+  .utility-left { flex-wrap: wrap; justify-content: center; }
+  .section { padding-top: 60px; padding-bottom: 60px; }
+  .hero { margin: 10px 10px 0; border-radius: 28px; min-height: 0; }
+  .hero-content { padding: 100px 18px 18px; }
+  .hero-tagline-highlight-box { padding: 16px 20px; }
+  .search-form { grid-template-columns: 1fr; }
+  .search-widget { padding: 12px; border-radius: 26px; }
+  .bento-grid { gap: 12px; grid-auto-rows: 170px; }
+  .bento-stat { padding: 18px; }
+  .map-pins-nav, .tabs-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    -webkit-overflow-scrolling: touch;
+  }
+  .map-pin-btn, .tab-btn { flex: 0 0 auto; }
+  .process-step { padding: 16px; gap: 14px; }
+  .process-num { width: 44px; height: 44px; font-size: 1.05rem; }
+  .flagship-card-25y { padding: 28px 18px; }
+  #bookingNoticeSection { margin: 0 10px; }
+  .transparency-notice-box { padding: 24px 18px; }
+  .footer { padding: 24px 10px 16px; }
+  .footer > .container { padding: 36px 22px 20px; border-radius: 28px; }
+  .nav-actions .btn-sm { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Pass tier cards (.tier-* classes had no styles before)
+   -------------------------------------------------------------------------- */
+.tier-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 26px 28px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--trans-lift), box-shadow var(--trans-lift);
+}
+.tier-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.tier-card.featured { background: linear-gradient(180deg, var(--tint-amber), #FFFFFF 60%); border: 2px solid var(--color-secondary); }
+.tier-ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.tier-name { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; color: var(--color-ink); }
+.tier-subtitle { margin: 4px 0 18px; font-size: 0.9rem; font-weight: 600; color: var(--color-primary-dark); }
+.tier-points { margin-bottom: 18px; padding: 16px 18px; background: var(--tint-red); border-radius: var(--radius-md); }
+.tier-points-val { font-size: 1.9rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--color-primary); }
+.tier-points-label { margin-top: 4px; font-size: 0.8rem; font-weight: 600; color: var(--color-ink-soft); }
+.tier-card > p { color: var(--color-text-muted) !important; }
+.tier-features { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 10px; }
+.tier-feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.45; color: var(--color-ink-soft); }
+.tier-check-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.tier-card .btn-ghost { background: #F5F3EF; color: var(--color-ink); border: 2px solid transparent; }
+.tier-card .btn-ghost:hover { background: var(--tint-amber); border-color: var(--color-secondary); color: var(--color-ink); }
+
+/* --------------------------------------------------------------------------
+   14. Legacy dark-theme leftovers: inline white text on the light layout
+   Inline `color: #fff` (set when the site was dark) is invisible on white.
+   Elements that carry their own inline background (badges, banners) keep white.
+   -------------------------------------------------------------------------- */
+:is(h1, h2, h3, h4, h5, h6, p, strong, div, span, li):not([style*="background" i]):is([style*="color: #fff" i], [style*="color:#fff" i]) {
+  color: var(--color-ink) !important;
+}

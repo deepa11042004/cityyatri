@@ -1,7 +1,7 @@
 <?php
 /**
  * Club Yatri - Flagship Homepage
- * Light Hospitality Theme: Rich Red (#C8102E) & Golden Yellow (#FFB300)
+ * Light Hospitality Theme: Rich Red (#EA2224) & Golden Yellow (#ffb300)
  * Model: Strictly Subscription-Based (Holiday Asset & Passes)
  * Legal Entity: Club Yatri Hotel and Resort Pvt Ltd
  */
@@ -54,22 +54,34 @@ include __DIR__ . '/includes/navbar.php';
       </a>
     </div>
 
-    <!-- Trust Stats Ribbon -->
-    <div class="stats-ribbon">
-      <div class="stat-item">
+    <!-- Quick Search Panel (submits to the booking request page) -->
+    <?php include __DIR__ . '/includes/booking-form.php'; ?>
+
+  </div>
+</section>
+
+<!-- 1b. Trust Stats (bento tiles; images are decorative) -->
+<section class="section" id="homeStats" style="padding-top: 56px; padding-bottom: 0;">
+  <div class="container">
+    <div class="bento-grid">
+      <div class="bento-tile bento-stat red">
         <div class="stat-number">200+</div>
         <div class="stat-label">Handpicked Resorts</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--color-accent-hover);">25 Yrs</div>
+      <div class="bento-tile bento-img wide" role="presentation" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80');"></div>
+      <div class="bento-tile bento-stat">
+        <div class="stat-number">25 Yrs</div>
         <div class="stat-label">Guaranteed Ownership</div>
       </div>
-      <div class="stat-item">
+
+      <div class="bento-tile bento-img" role="presentation" style="background-image: url('https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="bento-tile bento-stat">
         <div class="stat-number">100%</div>
         <div class="stat-label">Inflation Protection</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--color-accent-hover);">24/7</div>
+      <div class="bento-tile bento-img" role="presentation" style="background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="bento-tile bento-stat red">
+        <div class="stat-number">24/7</div>
         <div class="stat-label">Lifestyle Concierge</div>
       </div>
     </div>
@@ -100,7 +112,7 @@ include __DIR__ . '/includes/navbar.php';
         <div style="text-align: right; background: #FFFFFF; padding: 22px 28px; border-radius: var(--radius-card); border: 1.5px solid var(--color-accent); box-shadow: var(--shadow-sm);">
           <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-primary); font-weight: 700; letter-spacing: 0.08em; display: block;">Annual Allocation</span>
           <strong style="font-size: 2.2rem; color: var(--color-text); font-family: var(--font-serif-display); display: block;">35+ Nights / Yr</strong>
-          <span style="font-size: 0.85rem; color: #10B981; font-weight: 700;">Lifetime Rolling Points Banking</span>
+          <span style="font-size: 0.85rem; color: #047857; font-weight: 700;">Lifetime Rolling Points Banking</span>
         </div>
       </div>
 
@@ -114,14 +126,14 @@ include __DIR__ . '/includes/navbar.php';
         <div class="studio-grid-4">
           <!-- Green Studio -->
           <div class="studio-chip-card green">
-            <div class="studio-name" style="color: #10B981;">🟢 Green Studio</div>
+            <div class="studio-name" style="color: #047857;">🟢 Green Studio</div>
             <div class="studio-season">Off-Peak / Monsoon Season</div>
             <div class="studio-access">Full Access • Serene wellness retreats and quiet nature getaways with zero seasonal surcharges.</div>
           </div>
 
           <!-- Purple Studio -->
           <div class="studio-chip-card purple">
-            <div class="studio-name" style="color: #8B5CF6;">🟣 Purple Studio</div>
+            <div class="studio-name" style="color: #6D28D9;">🟣 Purple Studio</div>
             <div class="studio-season">Regular Season Access</div>
             <div class="studio-access">Full Access • Pleasant autumn and spring weeks across heritage palaces and coastal escapes.</div>
           </div>
@@ -135,7 +147,7 @@ include __DIR__ . '/includes/navbar.php';
 
           <!-- Red Studio -->
           <div class="studio-chip-card red">
-            <div class="studio-name" style="color: #C8102E;">🔴 Red Studio</div>
+            <div class="studio-name" style="color: #EA2224;">🔴 Red Studio</div>
             <div class="studio-season">Super Peak / Festive &amp; New Year</div>
             <div class="studio-access">Guaranteed Priority • Diwali, Christmas, New Year celebrations, and premium snow weeks.</div>
           </div>
@@ -375,6 +387,49 @@ include __DIR__ . '/includes/navbar.php';
           </div>
         </article>
       <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. How Booking Works (process steps) -->
+<section class="section" id="howBookingWorks">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Simple Reservation Process</div>
+      <h2 class="section-title heading-serif">How <span style="color: var(--color-primary);">Booking Works</span></h2>
+      <p class="section-desc">
+        Redeeming your holiday pass is a three-step request handled by your dedicated lifestyle concierge.
+      </p>
+    </div>
+
+    <div class="process-visual" role="presentation"></div>
+
+    <ol class="process-steps">
+      <li class="process-step">
+        <span class="process-num">01</span>
+        <div>
+          <strong>Choose your resort and room</strong>
+          <p>Pick a destination and accommodation category from the Club Yatri resort network.</p>
+        </div>
+      </li>
+      <li class="process-step">
+        <span class="process-num">02</span>
+        <div>
+          <strong>Select season and dates</strong>
+          <p>Choose your studio season, check-in date and length of stay.</p>
+        </div>
+      </li>
+      <li class="process-step">
+        <span class="process-num">03</span>
+        <div>
+          <strong>Submit your request</strong>
+          <p>Send the booking request online and your concierge will confirm availability.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div style="text-align: center; margin-top: 36px;">
+      <a href="<?php echo url('booking-request.php'); ?>" class="btn-red btn-lg">Start a Booking Request</a>
     </div>
   </div>
 </section>

@@ -20,6 +20,11 @@ $breadcrumbTitle = 'Booking Request';
 $prefillResort = $_GET['resort'] ?? '';
 $prefillRoom = $_GET['room'] ?? '';
 $prefillPlan = $_GET['plan'] ?? '';
+// Homepage search panel: destination id, room category and season
+if ($prefillRoom === '' && !empty($_GET['room_category'])) {
+    $prefillRoom = (string)$_GET['room_category'];
+}
+$prefillSeason = ucfirst(strtolower((string)($_GET['season'] ?? ''))) . ' Studio';
 $confirmedCode = $_GET['confirmed'] ?? '';
 
 include __DIR__ . '/includes/header.php';
@@ -80,7 +85,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
             <label>Selected Destination / Resort *</label>
             <select name="destination" class="form-control" required>
               <?php foreach ($resortsList as $resort): ?>
-                <option value="<?php echo e($resort['name']); ?>" <?php echo ($prefillResort === $resort['id']) ? 'selected' : ''; ?>>
+                <option value="<?php echo e($resort['name']); ?>" <?php echo ($prefillResort === $resort['id'] || ($prefillResort === '' && !empty($_GET['destination']) && $_GET['destination'] === ($resort['destination_id'] ?? ''))) ? 'selected' : ''; ?>>
                   <?php echo e($resort['name']); ?> (<?php echo e($resort['location']); ?>)
                 </option>
               <?php endforeach; ?>
@@ -102,10 +107,10 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <div class="form-group">
             <label>Season Category</label>
             <select name="season" class="form-control">
-              <option value="Purple Studio">Purple Studio (Regular)</option>
-              <option value="Yellow Studio">Yellow Studio (Peak/Weekend)</option>
-              <option value="Red Studio">Red Studio (Festive/Diwali)</option>
-              <option value="Green Studio">Green Studio (Off-Peak/Monsoon)</option>
+              <option value="Purple Studio"<?php echo ($prefillSeason === 'Purple Studio') ? ' selected' : ''; ?>>Purple Studio (Regular)</option>
+              <option value="Yellow Studio"<?php echo ($prefillSeason === 'Yellow Studio') ? ' selected' : ''; ?>>Yellow Studio (Peak/Weekend)</option>
+              <option value="Red Studio"<?php echo ($prefillSeason === 'Red Studio') ? ' selected' : ''; ?>>Red Studio (Festive/Diwali)</option>
+              <option value="Green Studio"<?php echo ($prefillSeason === 'Green Studio') ? ' selected' : ''; ?>>Green Studio (Off-Peak/Monsoon)</option>
             </select>
           </div>
           <div class="form-group">

@@ -24,6 +24,8 @@ require_once __DIR__ . '/helpers.php';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <script>document.documentElement.classList.add('js');</script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="<?php echo e(ASSETS_CSS_PATH); ?>">
   <?php if (file_exists(__DIR__ . '/../assets/css/custom.css')): ?>

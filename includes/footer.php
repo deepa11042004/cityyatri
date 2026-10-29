@@ -19,10 +19,10 @@ global $socialLinks;
           <p>
             The hallmark of luxury vacation ownership in India. Delivering 25 years of guaranteed 5-star holidays, bespoke lifestyle concierge, and global exchange privileges with <?php echo e(LEGAL_ENTITY_NAME); ?>.
           </p>
-          <div style="color: var(--yellow-primary); font-weight: 700; font-size: 0.92rem; margin-bottom: 8px;">
-            Toll-Free Concierge: <a href="tel:<?php echo e(CONTACT_PHONE_TEL); ?>" style="color: var(--yellow-light);"><?php echo e(CONTACT_PHONE_TOLL_FREE); ?></a>
+          <div style="color: var(--color-ink); font-weight: 700; font-size: 0.92rem; margin-bottom: 8px;">
+            Toll-Free Concierge: <a href="tel:<?php echo e(CONTACT_PHONE_TEL); ?>" style="color: var(--color-primary-dark);"><?php echo e(CONTACT_PHONE_TOLL_FREE); ?></a>
           </div>
-          <div style="color: var(--text-muted); font-size: 0.82rem; line-height: 1.5;">
+          <div style="color: var(--color-ink-soft); font-size: 0.82rem; line-height: 1.5;">
             Corporate Office: <?php echo e(CONTACT_ADDRESS); ?>
           </div>
         </div>
@@ -62,14 +62,14 @@ global $socialLinks;
             <input type="email" name="email" class="newsletter-input" placeholder="Your executive email address" required>
             <button type="submit" class="btn btn-gold btn-sm">Subscribe</button>
           </form>
-          <div style="margin-top: 14px; font-size: 0.75rem; color: var(--text-muted);">
+          <div style="margin-top: 14px; font-size: 0.75rem; color: var(--color-ink-soft);">
             We respect your privacy. Strictly zero spam.
           </div>
           <div style="margin-top: 18px; display: flex; gap: 14px;">
-            <a href="<?php echo e($socialLinks['facebook']); ?>" target="_blank" rel="noopener" style="color: var(--text-muted); font-size: 0.85rem;">Facebook</a>
-            <a href="<?php echo e($socialLinks['instagram']); ?>" target="_blank" rel="noopener" style="color: var(--text-muted); font-size: 0.85rem;">Instagram</a>
-            <a href="<?php echo e($socialLinks['linkedin']); ?>" target="_blank" rel="noopener" style="color: var(--text-muted); font-size: 0.85rem;">LinkedIn</a>
-            <a href="<?php echo e($socialLinks['youtube']); ?>" target="_blank" rel="noopener" style="color: var(--text-muted); font-size: 0.85rem;">YouTube</a>
+            <a href="<?php echo e($socialLinks['facebook']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">Facebook</a>
+            <a href="<?php echo e($socialLinks['instagram']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">Instagram</a>
+            <a href="<?php echo e($socialLinks['linkedin']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">LinkedIn</a>
+            <a href="<?php echo e($socialLinks['youtube']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">YouTube</a>
           </div>
         </div>
       </div>
@@ -79,11 +79,11 @@ global $socialLinks;
           © <?php echo date('Y'); ?> <?php echo e(LEGAL_ENTITY_NAME); ?>. All Rights Reserved.
         </div>
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="<?php echo url('privacy-policy.php'); ?>" style="color: var(--text-muted); font-size: 0.82rem;">Privacy Policy</a>
-          <a href="<?php echo url('terms-and-conditions.php'); ?>" style="color: var(--text-muted); font-size: 0.82rem;">Terms & Conditions</a>
-          <a href="<?php echo url('subscription-terms.php'); ?>" style="color: var(--text-muted); font-size: 0.82rem;">Subscription Terms</a>
-          <a href="<?php echo url('booking-policy.php'); ?>" style="color: var(--text-muted); font-size: 0.82rem;">Booking Policy</a>
-          <a href="<?php echo url('cancellation-refund-policy.php'); ?>" style="color: var(--text-muted); font-size: 0.82rem;">Cancellation & Refunds</a>
+          <a href="<?php echo url('privacy-policy.php'); ?>" style="color: var(--color-ink-soft); font-size: 0.82rem;">Privacy Policy</a>
+          <a href="<?php echo url('terms-and-conditions.php'); ?>" style="color: var(--color-ink-soft); font-size: 0.82rem;">Terms & Conditions</a>
+          <a href="<?php echo url('subscription-terms.php'); ?>" style="color: var(--color-ink-soft); font-size: 0.82rem;">Subscription Terms</a>
+          <a href="<?php echo url('booking-policy.php'); ?>" style="color: var(--color-ink-soft); font-size: 0.82rem;">Booking Policy</a>
+          <a href="<?php echo url('cancellation-refund-policy.php'); ?>" style="color: var(--color-ink-soft); font-size: 0.82rem;">Cancellation & Refunds</a>
         </div>
       </div>
     </div>

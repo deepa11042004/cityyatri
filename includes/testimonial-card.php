@@ -18,12 +18,12 @@ if (!isset($testimonial) || !is_array($testimonial)) {
     "<?php echo e($testimonial['quote']); ?>"
   </p>
   <div style="display: flex; align-items: center; gap: 14px;">
-    <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--gold-gradient-soft); border: 1.5px solid var(--border-gold); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gold-primary);">
+    <div style="width: 48px; height: 48px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid var(--border-gold); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--color-primary-dark);">
       <?php echo e($testimonial['initials']); ?>
     </div>
     <div>
-      <div style="font-weight: 700; color: #fff;"><?php echo e($testimonial['author']); ?></div>
-      <div style="font-size: 0.8rem; color: var(--gold-primary);"><?php echo e($testimonial['tier']); ?> • <?php echo e($testimonial['city']); ?></div>
+      <div style="font-weight: 700; color: var(--color-text);"><?php echo e($testimonial['author']); ?></div>
+      <div style="font-size: 0.8rem; color: #8a6100;"><?php echo e($testimonial['tier']); ?> • <?php echo e($testimonial['city']); ?></div>
     </div>
   </div>
 </div>

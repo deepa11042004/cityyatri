@@ -59,7 +59,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <div style="display: inline-block; padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; color: #fff; background: <?php echo e($season['badge_color']); ?>; margin-bottom: 14px;">
             <?php echo e($season['period']); ?>
           </div>
-          <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 12px;"><?php echo e($season['name']); ?></h3>
+          <h3 style="font-size: 1.3rem; color: var(--color-ink); margin-bottom: 12px;"><?php echo e($season['name']); ?></h3>
           <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
             <?php echo e($season['description']); ?>
           </p>
