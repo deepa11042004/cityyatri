@@ -1,0 +1,3 @@
+storage/*.log
+__MACOSX/
+.DS_Store
