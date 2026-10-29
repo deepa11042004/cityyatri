@@ -25,22 +25,24 @@ include __DIR__ . '/includes/navbar.php';
 
 <!-- 1. Hero Section (Clean Light Hospitality Appearance) -->
 <section class="hero" id="homeHero">
+  <!-- Rotating background slider (images/hero/*, resized copies of images/logo/1073.jpg and 177.jpg) -->
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide is-active" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-1.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-2.jpg');"></div>
+  </div>
   <div class="hero-overlay"></div>
+
+  <div class="hero-controls" role="group" aria-label="Background slider">
+    <button type="button" class="hero-arrow" id="heroPrev" aria-label="Previous background image">&#10094;</button>
+    <div class="hero-dots" id="heroDots"></div>
+    <button type="button" class="hero-arrow" id="heroNext" aria-label="Next background image">&#10095;</button>
+  </div>
   
   <div class="container hero-content">
-    <div class="hero-badge">
-      <span>★</span> THE ART OF CURATED VACATION OWNERSHIP
-    </div>
-
     <!-- Main Tagline in Golden-Yellow Highlight Box -->
     <div class="hero-tagline-highlight-box">
-      <h2>"Secure Your 25-Year Inflation-Free Luxury Holiday Asset"</h2>
+      <h2>Secure Your 25-Year Inflation-Free Luxury Holiday Asset</h2>
     </div>
-
-    <p class="hero-subtitle">
-      Lock in 25 years of guaranteed 5-star holidays across 200+ premier resorts in India and the world. 
-      Completely shielded from hotel inflation, with 4-color seasonal studio flexibility and inheritable family asset rights with <?php echo e(LEGAL_ENTITY_NAME); ?>.
-    </p>
 
     <!-- Quick Action Buttons -->
     <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
@@ -54,15 +56,23 @@ include __DIR__ . '/includes/navbar.php';
       </a>
     </div>
 
-    <!-- Quick Search Panel (submits to the booking request page) -->
-    <?php include __DIR__ . '/includes/booking-form.php'; ?>
-
   </div>
 </section>
 
 <!-- 1b. Trust Stats (bento tiles; images are decorative) -->
 <section class="section" id="homeStats" style="padding-top: 56px; padding-bottom: 0;">
   <div class="container">
+    <div class="home-intro">
+      <div class="hero-badge">
+        <span>★</span> THE ART OF CURATED VACATION OWNERSHIP
+      </div>
+
+      <p class="hero-subtitle">
+        Lock in 25 years of guaranteed 5-star holidays across 200+ premier resorts in India and the world. 
+        Completely shielded from hotel inflation, with 4-color seasonal studio flexibility and inheritable family asset rights with <?php echo e(LEGAL_ENTITY_NAME); ?>.
+      </p>
+    </div>
+
     <div class="bento-grid">
       <div class="bento-tile bento-stat red">
         <div class="stat-number">200+</div>

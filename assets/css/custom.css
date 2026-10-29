@@ -40,6 +40,7 @@
   --font-serif-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
+  --header-height: 76px;
   --trans-lift: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -135,9 +136,11 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 6px 24px rgba(26, 26, 26, 0.05);
+  border-bottom: 0;
+  box-shadow: none;
 }
+.brand-logo-only img { height: 56px; width: auto; }
+.navbar-main nav, .navbar-main .nav-actions { position: relative; top: 4px; }  /* sit the links lower, in the visual middle of the bar */
 .nav-menu { gap: 6px; }
 .nav-link {
   padding: 9px 16px;
@@ -158,14 +161,12 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   position: relative;
   display: flex;
   align-items: stretch;
-  min-height: min(94vh, 900px);
+  min-height: min(82vh, 760px);
   margin: 16px 16px 0;
   padding: 0;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(10, 10, 10, 0.30) 0%, rgba(10, 10, 10, 0.50) 50%, rgba(10, 10, 10, 0.78) 100%),
-    url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background: var(--color-ink);
 }
 .hero::before {
   content: 'CLUB YATRI';
@@ -184,14 +185,72 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   pointer-events: none;
   user-select: none;
 }
-.hero-overlay { background: none; }
+/* Rotating background slider */
+.hero-slides { position: absolute; inset: 0; z-index: 0; }
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.2s ease, transform 7s ease-out;
+}
+.hero-slide.is-active { opacity: 1; transform: scale(1); }
+.hero-overlay {
+  z-index: 1;
+  background: none;   /* no dark overlay: images show at full brightness */
+}
+.hero-tagline-highlight-box h2 { text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45); }
+.hero-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  background: rgba(26, 26, 26, 0.38);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero-arrow {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.2s, color 0.2s;
+}
+.hero-arrow:hover { background: var(--color-secondary); border-color: var(--color-secondary); color: var(--color-ink); }
+.hero-dots { display: flex; gap: 10px; }
+.hero-dot {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: width 0.3s, background-color 0.3s;
+}
+.hero-dot.is-active { width: 32px; background: var(--color-secondary); }
 .hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 1120px;
-  padding: 150px 24px 32px;
+  justify-content: center;
+  padding: 250px 24px 70px;
 }
 .hero-badge {
   background: rgba(255, 255, 255, 0.16);
@@ -221,7 +280,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 }
 .hero-subtitle { color: rgba(255, 255, 255, 0.92); }
 .hero .btn-yellow {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(26, 26, 26, 0.38);
   color: #FFFFFF !important;
   border: 1.5px solid rgba(255, 255, 255, 0.7);
   box-shadow: none;
@@ -229,6 +288,19 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   -webkit-backdrop-filter: blur(8px);
 }
 .hero .btn-yellow:hover { background: #FFFFFF; color: var(--color-ink) !important; border-color: #FFFFFF; }
+
+/* Intro (badge + paragraph) sitting between the hero and the stat tiles */
+.home-intro { text-align: center; max-width: 900px; margin: 0 auto 48px; }
+.home-intro .hero-badge {
+  background: var(--tint-amber);
+  border: 0;
+  color: var(--color-primary-dark);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  margin-bottom: 18px;
+}
+.home-intro .hero-badge span { color: var(--color-secondary-dark); }
+.home-intro .hero-subtitle { color: var(--color-ink-soft); margin: 0 auto; }
 
 /* Floating booking bar (styles for the existing quick-search form) */
 .search-widget {
@@ -536,6 +608,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-slide { transition: opacity 0.3s ease; transform: none; }
   .card-luxury, .today-office-card, .process-step, .bento-img, .btn-gold, .btn-red, .btn-yellow { transition: none; }
   .card-luxury:hover, .today-office-card:hover, .process-step:hover { transform: none; }
 }
@@ -552,6 +625,9 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 }
 
 @media (max-width: 768px) {
+  :root { --header-height: 68px; }
+  .brand-logo-only img { height: 48px; }
+  .navbar-main nav, .navbar-main .nav-actions { top: 0; }
   .top-utility-bar .container { flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
   .utility-left { flex-wrap: wrap; justify-content: center; }
   .section { padding-top: 60px; padding-bottom: 60px; }
