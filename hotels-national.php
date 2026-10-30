@@ -45,4 +45,10 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<?php
+$dirType = 'DOMESTIC';
+$dirHeading = 'More Hotels Across <span style="color: var(--color-primary);">India</span>';
+include __DIR__ . '/includes/hotel-directory.php';
+?>
+
 <?php include __DIR__ . '/includes/footer.php'; ?>

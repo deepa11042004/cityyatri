@@ -45,6 +45,12 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<?php
+$dirType = 'INTERNATIONAL';
+$dirHeading = 'More Hotels <span style="color: var(--color-primary);">Around the World</span>';
+include __DIR__ . '/includes/hotel-directory.php';
+?>
+
 <!-- Global Exchange Explanation -->
 <section class="section" style="background: var(--bg-secondary); padding-top: 60px; padding-bottom: 60px;">
   <div class="container" style="max-width: 860px; text-align: center;">

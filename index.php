@@ -18,6 +18,7 @@ require_once __DIR__ . '/data/resorts.php';
 require_once __DIR__ . '/data/rooms.php';
 require_once __DIR__ . '/data/testimonials.php';
 require_once __DIR__ . '/data/faqs.php';
+require_once __DIR__ . '/includes/hotels.php';
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
@@ -355,6 +356,34 @@ include __DIR__ . '/includes/navbar.php';
     </div>
   </div>
 </section>
+
+<?php $featuredHotels = hotels_featured(8); ?>
+<?php if ($featuredHotels): ?>
+<!-- 4b. Featured Network Hotels (from the hotels database) -->
+<section class="section" id="featuredHotelsSection" style="background: var(--color-background-soft);">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Our Hotel Network</div>
+      <h2 class="section-title heading-serif">Featured <span style="color: var(--color-primary);">Network Hotels</span></h2>
+      <p class="section-desc">
+        A selection from <?php echo number_format(hotels_total()); ?> hotels and resorts across India and the world.
+      </p>
+    </div>
+
+    <div class="grid-4 hotel-grid">
+      <?php foreach ($featuredHotels as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('resort-network.php#network-hotels'); ?>" class="btn-red btn-lg">
+        Browse All Network Hotels &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- 5. Room Categories Showcase (Clean Light Cards) -->
 <section class="section" id="roomCategoriesSection" style="background: var(--color-background-soft);">

@@ -9,7 +9,27 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/data/resorts.php';
 
+require_once __DIR__ . '/includes/hotels.php';
+
 $resortId = $_GET['id'] ?? 'azure-sands-goa';
+
+// Hotels imported into the database are addressed by slug; curated resorts keep their own layout.
+$hotel = (isset($_GET['id']) && !isset($resortsList[$resortId])) ? hotel_find((string)$resortId) : null;
+if ($hotel !== null) {
+    $pageTitle = $hotel['name'] . ' - ' . $hotel['location_name'];
+    $pageDescription = hotel_excerpt($hotel['description'] ?? '', 160);
+    $breadcrumbTitle = $hotel['name'];
+    $parentTitle = 'Resort Network';
+    $parentUrl = url('resort-network.php');
+
+    include __DIR__ . '/includes/header.php';
+    include __DIR__ . '/includes/navbar.php';
+    include __DIR__ . '/includes/breadcrumbs.php';
+    include __DIR__ . '/includes/hotel-detail.php';
+    include __DIR__ . '/includes/footer.php';
+    return;
+}
+
 $resort = $resortsList[$resortId] ?? $resortsList['azure-sands-goa'];
 
 $pageTitle = $resort['name'];

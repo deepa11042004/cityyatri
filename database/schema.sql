@@ -77,3 +77,35 @@ VALUES (
   14,
   '2022-01-15'
 ) ON DUPLICATE KEY UPDATE `updated_at` = CURRENT_TIMESTAMP;
+
+-- 4. Hotel network (data is loaded from database/hotels.sql)
+CREATE TABLE IF NOT EXISTS `hotels` (
+  `id` INT UNSIGNED NOT NULL PRIMARY KEY,
+  `hotel_code` VARCHAR(16) NOT NULL UNIQUE,
+  `slug` VARCHAR(190) NOT NULL UNIQUE,
+  `name` VARCHAR(255) NOT NULL,
+  `location_name` VARCHAR(128) NOT NULL,
+  `country` VARCHAR(64) NOT NULL,
+  `location_type` ENUM('DOMESTIC', 'INTERNATIONAL') NOT NULL,
+  `hotel_type` VARCHAR(32) NOT NULL DEFAULT 'HOTEL',
+  `category` ENUM('INTERNAL', 'ASSOCIATED') NOT NULL DEFAULT 'ASSOCIATED',
+  `stay_types` VARCHAR(255) DEFAULT NULL,
+  `address` TEXT DEFAULT NULL,
+  `map_link` TEXT DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
+  `image_path` VARCHAR(255) DEFAULT NULL,
+  `is_published` TINYINT(1) NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  KEY `idx_hotels_type` (`location_type`, `is_published`),
+  KEY `idx_hotels_country` (`country`),
+  KEY `idx_hotels_location` (`location_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `hotel_images` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `hotel_id` INT UNSIGNED NOT NULL,
+  `path` VARCHAR(255) NOT NULL,
+  `sort_order` SMALLINT UNSIGNED NOT NULL DEFAULT 1,
+  KEY `idx_hotel_images_hotel` (`hotel_id`, `sort_order`),
+  CONSTRAINT `fk_hotel_images_hotel` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

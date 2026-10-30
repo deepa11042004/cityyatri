@@ -2,3 +2,4 @@ storage/*.log
 __MACOSX/
 .DS_Store
 includes/db-config.php
+export/

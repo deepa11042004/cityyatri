@@ -79,4 +79,10 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<?php
+$dirType = '';
+$dirHeading = 'Explore Every <span style="color: var(--color-primary);">Network Hotel</span>';
+include __DIR__ . '/includes/hotel-directory.php';
+?>
+
 <?php include __DIR__ . '/includes/footer.php'; ?>

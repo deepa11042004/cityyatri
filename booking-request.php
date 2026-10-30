@@ -27,6 +27,9 @@ if ($prefillRoom === '' && !empty($_GET['room_category'])) {
 $prefillSeason = ucfirst(strtolower((string)($_GET['season'] ?? ''))) . ' Studio';
 $confirmedCode = $_GET['confirmed'] ?? '';
 
+require_once __DIR__ . '/includes/hotels.php';
+$networkHotels = hotels_options();
+
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
@@ -89,6 +92,15 @@ include __DIR__ . '/includes/breadcrumbs.php';
                   <?php echo e($resort['name']); ?> (<?php echo e($resort['location']); ?>)
                 </option>
               <?php endforeach; ?>
+              <?php if ($networkHotels): ?>
+                <optgroup label="Network Hotels">
+                  <?php foreach ($networkHotels as $nh): ?>
+                    <option value="<?php echo e($nh['name']); ?>" <?php echo ($prefillResort === $nh['slug']) ? 'selected' : ''; ?>>
+                      <?php echo e($nh['name']); ?> (<?php echo e($nh['location_name']); ?>, <?php echo e($nh['country']); ?>)
+                    </option>
+                  <?php endforeach; ?>
+                </optgroup>
+              <?php endif; ?>
             </select>
           </div>
           <div class="form-group">
