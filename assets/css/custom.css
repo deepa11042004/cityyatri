@@ -401,7 +401,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .backend-tag { background: var(--tint-amber); border: 0; color: var(--color-primary-dark); border-radius: var(--radius-full); }
 
 .flagship-card-25y {
-  background: linear-gradient(135deg, var(--tint-amber) 0%, #FFFFFF 70%);
+  background: url('../../images/section-bg.jpg') center / cover no-repeat;
   border: 0;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
@@ -409,7 +409,6 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 }
 .flagship-badge-tag { background: var(--color-primary); color: #FFFFFF; border: 0; border-radius: var(--radius-full); }
 .flagship-title { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.02em; }
-.studio-chip-card { border-radius: var(--radius-md); border: 0; box-shadow: var(--shadow-sm); }
 
 .trust-badge-card { background: var(--tint-amber); border: 0; box-shadow: none; padding: 28px; }
 .trust-badge-card:nth-child(even) { background: var(--tint-red); }
@@ -710,3 +709,59 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 :is(h1, h2, h3, h4, h5, h6, p, strong, div, span, li):not([style*="background" i]):is([style*="color: #fff" i], [style*="color:#fff" i]) {
   color: var(--color-ink) !important;
 }
+
+/* --------------------------------------------------------------------------
+   15. Seasonal studio cards (name / season / access) - tinted, left-aligned,
+   big uppercase title, divider, in each studio's own colour. Text unchanged.
+   -------------------------------------------------------------------------- */
+.studio-chip-card {
+  --studio: #047857;
+  --studio-tint: #ECFDF5;
+  --studio-soft: #A7F3D0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px 28px 28px;
+  background: var(--studio-tint);
+  border: 1.5px solid var(--studio-soft);
+  border-top-width: 1.5px;
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  overflow: hidden;
+  transition: transform var(--trans-lift), box-shadow var(--trans-lift), border-color 0.2s;
+}
+.studio-chip-card::before {   /* coloured accent bar, like the pill on the reference cards */
+  content: '';
+  display: block;
+  width: 44px;
+  height: 8px;
+  margin-bottom: 20px;
+  border-radius: var(--radius-full);
+  background: var(--studio);
+}
+.studio-chip-card:hover { transform: translateY(-6px); border-color: var(--studio); box-shadow: var(--shadow-lg); }
+.studio-chip-card.green  { --studio: #10B981; --studio-tint: #ECFDF5; --studio-soft: #A7F3D0; border-top: 1.5px solid var(--studio-soft); }
+.studio-chip-card.purple { --studio: #8B5CF6; --studio-tint: #F5F3FF; --studio-soft: #DDD6FE; border-top: 1.5px solid var(--studio-soft); }
+.studio-chip-card.yellow { --studio: #ffb300; --studio-tint: #FFF8E1; --studio-soft: #FFE082; border-top: 1.5px solid var(--studio-soft); }
+.studio-chip-card.red    { --studio: #EA2224; --studio-tint: #FFF1F1; --studio-soft: #FECACA; border-top: 1.5px solid var(--studio-soft); }
+
+.studio-chip-card .studio-name {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.studio-chip-card .studio-season {
+  min-height: 4.4em;   /* keeps the dividers level across the four cards */
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.12);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+}
+.studio-chip-card .studio-access { font-size: 0.92rem; line-height: 1.6; color: var(--color-text-muted); }
