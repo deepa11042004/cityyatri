@@ -44,7 +44,9 @@
   --trans-lift: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body { background: #FFFFFF; color: var(--color-ink); }
+body { background: #FFFFFF url('../../images/site-bg.jpg') top left / 640px 640px repeat fixed; color: var(--color-ink); }
+/* Let the site-wide pattern show through sections that set their own tint inline */
+.section[style*="background"] { background: transparent !important; }
 body::before { display: none; }
 
 h1, h2, h3, h4, .heading-serif, .heading-display, .section-title {
@@ -133,11 +135,21 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .utility-login-btn:hover { background: var(--color-secondary-dark); color: var(--color-ink) !important; }
 
 .navbar-main {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* transparent frame showing the site pattern; the white rounded bar is the inner container */
+  height: auto;
+  padding: 12px 16px;
+  background: #FFFFFF url('../../images/site-bg.jpg') top left / 640px 640px repeat fixed;
   border-bottom: 0;
   box-shadow: none;
+}
+.navbar-main .container {
+  max-width: none;
+  height: 78px;
+  padding: 0 24px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(40, 20, 10, 0.08);
 }
 .brand-logo-only img { height: 56px; width: auto; }
 .navbar-main nav, .navbar-main .nav-actions { position: relative; top: 4px; }  /* sit the links lower, in the visual middle of the bar */
@@ -164,6 +176,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   min-height: min(82vh, 760px);
   margin: 16px 16px 0;
   padding: 0;
+  box-shadow: 0 0 0 16px #FFFFFF; /* plain white frame: no site pattern around the hero */
   border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--color-ink);
@@ -947,4 +960,9 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .dest-desc { margin: 14px 0 4px; padding: 0 22px; }
   .dest-stage { width: 1100px; --pw: 21px; margin-top: -135px; }   /* crops the empty top of the artwork (clipped by .dest-scroll) */
   .dest-hint { margin-top: 0; padding-bottom: 24px; }
+}
+
+/* Other Subscription Passes: red-tinted geometric background */
+#backendPassesSection {
+  background: #fde4e2 url('../../images/section-bg-red.jpg') center / cover no-repeat;
 }

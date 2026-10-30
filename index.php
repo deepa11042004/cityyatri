@@ -202,7 +202,7 @@ include __DIR__ . '/includes/navbar.php';
 </section>
 
 <!-- 3. Other Subscription Plans (3-Year, 5-Year, 10-Year) -->
-<section class="section" id="backendPassesSection" style="background: var(--color-background-soft);">
+<section class="section" id="backendPassesSection">
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Tailored Vacation Plans</div>
