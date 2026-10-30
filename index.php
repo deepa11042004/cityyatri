@@ -63,12 +63,10 @@ include __DIR__ . '/includes/navbar.php';
 <!-- 1b. Trust Stats (bento tiles; images are decorative) -->
 <section class="section" id="homeStats" style="padding-top: 56px; padding-bottom: 0;">
   <div class="container">
-    <div class="home-intro">
-      <div class="hero-badge">
-        <span>★</span> THE ART OF CURATED VACATION OWNERSHIP
-      </div>
+    <div class="home-intro section-title-wrap">
+      <div class="sub-tag">THE ART OF CURATED VACATION OWNERSHIP</div>
 
-      <p class="hero-subtitle">
+      <p class="section-desc">
         Lock in 25 years of guaranteed 5-star holidays across 200+ premier resorts in India and the world. 
         Completely shielded from hotel inflation, with 4-color seasonal studio flexibility and inheritable family asset rights with <?php echo e(LEGAL_ENTITY_NAME); ?>.
       </p>
