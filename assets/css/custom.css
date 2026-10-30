@@ -962,7 +962,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .dest-hint { margin-top: 0; padding-bottom: 24px; }
 }
 
-/* Other Subscription Passes: red-tinted geometric background */
+/* Other Subscription Passes: same background as the 25-Year Pass card */
 #backendPassesSection {
-  background: #fde4e2 url('../../images/section-bg-red.jpg') center / cover no-repeat;
+  background: #fff6c8 url('../../images/section-bg.jpg') center / cover no-repeat;
 }
