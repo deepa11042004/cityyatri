@@ -39,8 +39,8 @@ jobs:
           fi
           AUTH=()
           if [ -n "$DEPLOY_BASIC_AUTH" ]; then AUTH=(-u "$DEPLOY_BASIC_AUTH"); fi
+          # The host firewall rejects body-less POSTs (406), so send a small form body.
           curl --fail-with-body --silent --show-error --max-time 120 \
-            -A "Mozilla/5.0 (GitHub Actions deploy)" \
-            -X POST -H "X-Deploy-Token: $DEPLOY_TOKEN" "${AUTH[@]}" \
+            --data "run=migrate" -H "X-Deploy-Token: $DEPLOY_TOKEN" "${AUTH[@]}" \
             "${DEPLOY_URL%/}/deploy-migrate.php"
           echo
