@@ -2,7 +2,7 @@
 Club Yatri - one-off destinations import.
 
 Reads export/destinations.csv + export/destination-images.zip and produces:
-  * assets/images/destinations/<slug>.webp      resized hero photo per destination
+  * assets/images/places/<slug>.webp      resized hero photo per destination
   * database/migrations/002_destinations.sql    CREATE TABLE + INSERTs (safe to re-run)
 
 Hotels are linked to destinations by name (hotels.location_name = destinations.name).
@@ -23,7 +23,7 @@ from import_hotels import sql_str  # noqa: E402  (shared SQL string escaping)
 ROOT = Path(__file__).resolve().parents[2]
 CSV_PATH = ROOT / 'export' / 'destinations.csv'
 ZIP_PATH = ROOT / 'export' / 'destination-images.zip'
-IMG_DIR = ROOT / 'assets' / 'images' / 'destinations'
+IMG_DIR = ROOT / 'assets' / 'images' / 'places'
 SQL_PATH = ROOT / 'database' / 'migrations' / '002_destinations.sql'
 
 MAX_EDGE = 1400
@@ -87,7 +87,7 @@ def main():
                         im.thumbnail((MAX_EDGE, MAX_EDGE), Image.LANCZOS)
                         im.save(dest, 'WEBP', quality=WEBP_QUALITY, method=4)
                 total += dest.stat().st_size
-                hero = f'assets/images/destinations/{slug}.webp'
+                hero = f'assets/images/places/{slug}.webp'
             except Exception as exc:
                 failed.append(f'{slug}: {exc}')
 
