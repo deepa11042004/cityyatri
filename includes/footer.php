@@ -147,6 +147,8 @@ global $socialLinks;
     </div>
   </div>
 
+  <?php include __DIR__ . '/activity-popup.php'; ?>
+
   <!-- JavaScript Assets -->
   <script src="<?php echo e(ASSETS_JS_PATH); ?>"></script>
   <?php if (file_exists(__DIR__ . '/../assets/js/custom.js')): ?>
