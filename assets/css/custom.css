@@ -1122,3 +1122,71 @@ nav[aria-label="Breadcrumb"] { display: none !important; }
   .destination-banner { margin: 10px 10px 0 10px; padding: 70px 0 56px 0; border-radius: 24px; }
   .destination-filter { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   Destination map with every destination as a pin (includes/destination-map.php)
+   ========================================================================== */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Many small pins instead of a few large ones; the stage widens when zoomed */
+#destMap .dest-stage {
+  width: calc(100% * var(--zoom, 1));
+  --pw: clamp(9px, 0.62cqw, 16px);
+}
+#destMap .dest-pin::after { animation: none; opacity: 0; }
+#destMap .dest-pin.is-active::after { animation: destPing 2.4s ease-out infinite; }
+#destMap .dest-pin svg { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8)); }
+#destMap .dest-pin:hover, #destMap .dest-pin:focus-visible { transform: translate(-50%, -100%) scale(1.5); }
+#destMap .dest-pin.is-active { transform: translate(-50%, -100%) scale(1.7); }
+#destMap .dest-pin-label { font-size: 0.78rem; z-index: 40; }
+
+#destMap.is-zoomed .dest-scroll {
+  overflow: auto;
+  max-height: min(78vh, 640px);
+  overscroll-behavior: contain;
+}
+#destMap.is-zoomed .dest-head, #destMap.is-zoomed .dest-desc { display: none; }
+
+.dest-zoom { position: absolute; top: 14px; right: 14px; z-index: 8; display: flex; flex-direction: column; gap: 6px; }
+.dest-zoom button {
+  width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.55); color: #FFFFFF; font: 700 1.4rem/1 var(--font-sans);
+  cursor: pointer; backdrop-filter: blur(4px); transition: background-color .2s, color .2s;
+}
+.dest-zoom button:hover:not(:disabled) { background: var(--color-secondary); color: var(--color-ink); border-color: var(--color-secondary); }
+.dest-zoom button:disabled { opacity: 0.35; cursor: default; }
+.dest-zoom button:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; }
+
+.dest-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-bottom: 14px; }
+.dest-controls .dest-reset { margin-bottom: 0; }
+.dest-jump select {
+  min-width: 250px; max-width: 100%; height: 42px; padding: 0 16px; border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.12); color: #FFFFFF;
+  font: 600 0.9rem var(--font-sans); cursor: pointer;
+}
+.dest-jump select option { color: #222222; background: #FFFFFF; }
+.dest-jump select:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
+
+.dest-result {
+  margin-top: 28px; padding: 28px; background: #FFFFFF; border: 1px solid var(--color-border);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-card); scroll-margin-top: 100px;
+}
+.dest-result-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+.dest-result-title { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin: 6px 0 6px; }
+.dest-result-title span { color: var(--color-primary); }
+.dest-result-sub { color: var(--color-text-muted); max-width: 720px; font-size: 0.95rem; line-height: 1.6; }
+.dest-result-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.dest-result-empty { color: var(--color-text-muted); text-align: center; padding: 20px 0; }
+
+@media (max-width: 900px) {
+  #destMap .dest-stage { width: calc(1100px * var(--zoom, 1)); }
+  #destMap.is-zoomed .dest-stage { margin-top: 0; }
+  .dest-zoom { top: auto; bottom: 14px; right: 14px; flex-direction: row; }
+}
+@media (max-width: 600px) {
+  .dest-jump, .dest-jump select { width: 100%; min-width: 0; }
+  .dest-result { padding: 20px 16px; }
+}

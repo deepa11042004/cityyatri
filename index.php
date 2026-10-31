@@ -296,52 +296,7 @@ include __DIR__ . '/includes/navbar.php';
 <!-- 4. Interactive Destination Explorer (Manali, Goa, Udaipur, Jaipur, Thailand, Bali, Dubai) -->
 <section class="section" id="resortMapExplorerSection">
   <div class="container">
-   <?php
-   // Destination pins: where each pin's tip sits on the globe artwork, in artwork pixels (727 x 479).
-   // Listed north to south so the southern pins draw on top where they overlap.
-   $destPins = [
-       ['id' => 'manali',   'label' => 'Manali',   'x' => 448, 'y' => 331],
-       ['id' => 'jaipur',   'label' => 'Jaipur',   'x' => 441, 'y' => 342],
-       ['id' => 'dubai',    'label' => 'Dubai',    'x' => 390, 'y' => 347],
-       ['id' => 'udaipur',  'label' => 'Udaipur',  'x' => 430, 'y' => 351],
-       ['id' => 'goa',      'label' => 'Goa',      'x' => 438, 'y' => 366],
-       ['id' => 'thailand', 'label' => 'Thailand', 'x' => 503, 'y' => 380],
-       ['id' => 'bali',     'label' => 'Bali',     'x' => 548, 'y' => 405],
-   ];
-   $artW = 727;
-   $artH = 479;
-   ?>
-   <div class="dest-dark">
-    <div class="dest-wrap">
-      <div class="dest-head">
-        <div class="sub-tag">Curated Destination Network</div>
-        <h2 class="section-title heading-serif">Touch Any Destination Pin to <span style="color: var(--color-primary);">Filter Resorts</span></h2>
-      </div>
-      <p class="section-desc dest-desc">
-        Click or tap any destination pin below to reveal Club Yatri partner properties with live Google Maps search links.
-      </p>
-
-      <!-- Globe artwork with the destination pins on it (pin positions are % of the artwork) -->
-      <div class="dest-scroll" id="destScroll">
-        <div class="dest-stage" role="group" aria-label="World map of Club Yatri destinations">
-          <img class="dest-art" src="<?php echo e(BASE_PATH); ?>/images/dest-globe.png" alt="" width="1454" height="958" loading="lazy" decoding="async">
-          <?php foreach ($destPins as $pin): ?>
-          <button type="button" class="dest-pin" aria-pressed="false" data-destination="<?php echo e($pin['id']); ?>" style="--x: <?php echo round($pin['x'] / $artW * 100, 2); ?>%; --y: <?php echo round($pin['y'] / $artH * 100, 2); ?>%;">
-            <svg viewBox="0 0 24 34" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 0C5.4 0 0 5.3 0 11.8c0 8.7 10.1 20.4 11.1 21.6.5.6 1.3.6 1.8 0C13.9 32.2 24 20.5 24 11.8 24 5.3 18.6 0 12 0Zm0 6.7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"/></svg>
-            <span class="dest-pin-label"><?php echo e($pin['label']); ?></span>
-          </button>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    </div>
-
-    <div class="dest-hint">
-      <button type="button" class="dest-reset active" id="worldMapReset" data-destination="all">🌐 Show All</button>
-      <div class="dest-hint-text">
-        👆 <em>Select any destination pin above to filter properties dynamically. Each card features direct Google Maps integration.</em>
-      </div>
-    </div>
-   </div><!-- /.dest-dark -->
+    <?php include __DIR__ . '/includes/destination-map.php'; ?>
 
     <!-- Filtered Properties Grid -->
     <div class="grid-3" id="resortExplorerGrid">
@@ -616,59 +571,11 @@ include __DIR__ . '/includes/navbar.php';
   </div>
 </section>
 
-<!-- Client Script: destination pins + resort filtering -->
+<!-- The destination map (includes/destination-map.php) shows a destination's hotels itself; hide the sample resorts while one is selected -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const pins = document.querySelectorAll('.dest-pin');
-  const resetBtn = document.getElementById('worldMapReset');
-  const resortCards = document.querySelectorAll('.resort-item-card');
-  const grid = document.getElementById('resortExplorerGrid');
-  const scroller = document.getElementById('destScroll');
-  let activeDest = 'all';
-
-  // Show only the resorts of one destination (or all of them)
-  function filterDestination(dest, scrollToGrid) {
-    activeDest = dest;
-
-    pins.forEach(p => {
-      const on = p.getAttribute('data-destination') === dest;
-      p.classList.toggle('is-active', on);
-      p.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    if (resetBtn) resetBtn.classList.toggle('active', dest === 'all');
-
-    resortCards.forEach(card => {
-      const cardDest = card.getAttribute('data-destination');
-      if (dest === 'all' || cardDest === dest) {
-        card.style.display = 'flex';
-        card.style.opacity = '0';
-        setTimeout(() => { card.style.opacity = '1'; }, 50);
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (scrollToGrid && grid) {
-      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  pins.forEach(pin => pin.addEventListener('click', function() {
-    const dest = this.getAttribute('data-destination');
-    // Clicking the active pin again returns to all resorts
-    const next = activeDest === dest ? 'all' : dest;
-    filterDestination(next, next !== 'all');
-  }));
-
-  if (resetBtn) resetBtn.addEventListener('click', function() { filterDestination('all', false); });
-
-  // On narrow screens the globe is wider than the screen and pans sideways:
-  // start centred on the pins
-  if (scroller && scroller.scrollWidth > scroller.clientWidth && pins.length) {
-    const lefts = Array.from(pins).map(p => p.offsetLeft);
-    const centre = (Math.min(...lefts) + Math.max(...lefts)) / 2;
-    scroller.scrollLeft = centre - scroller.clientWidth / 2;
-  }
+document.addEventListener('destmap:select', function (e) {
+  var grid = document.getElementById('resortExplorerGrid');
+  if (grid) { grid.style.display = e.detail.slug === 'all' ? '' : 'none'; }
 });
 </script>
 

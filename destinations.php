@@ -32,6 +32,13 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<!-- Destination map: every destination as a pin -->
+<section class="section" id="destinationMapSection" style="padding-top: 0; padding-bottom: 50px;">
+  <div class="container">
+    <?php include __DIR__ . '/includes/destination-map.php'; ?>
+  </div>
+</section>
+
 <?php include __DIR__ . '/includes/destination-directory.php'; ?>
 
 <!-- All Resorts Grid Section -->

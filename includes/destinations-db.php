@@ -115,3 +115,15 @@ function destination_safe_source(?string $url): string
     $url = trim((string)$url);
     return str_starts_with($url, 'https://commons.wikimedia.org/') ? $url : '';
 }
+
+/** Destinations that have a pin on the globe artwork (positions are in artwork pixels, 727 x 479). */
+function destination_map_pins(): array
+{
+    return hotels_query(
+        'SELECT d.slug, d.name, d.country, d.location_type, m.map_x, m.map_y
+         FROM destinations d JOIN destination_map m ON m.slug = d.slug
+         WHERE d.is_published = 1 AND m.map_x IS NOT NULL
+         ORDER BY m.map_y, d.name',
+        []
+    );
+}
