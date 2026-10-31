@@ -5,6 +5,9 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/destinations-db.php';
+
+$hotelDestination = destination_for_hotel($hotel);
 $hotelImages = hotel_images((int)$hotel['id']);
 $hotelMap = hotel_safe_map_url($hotel['map_link'] ?? '');
 $hotelStays = hotel_stay_types($hotel['stay_types'] ?? '');
@@ -58,6 +61,13 @@ $hotelParas = array_filter(array_map('trim', preg_split('/\n\s*\n/', (string)($h
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           <span><?php echo e($hotel['location_name']); ?>, <?php echo e($hotel['country']); ?></span>
         </div>
+        <?php if ($hotelDestination): ?>
+          <p style="margin: -8px 0 22px 0;">
+            <a href="<?php echo url('destination-details.php?slug=' . urlencode($hotelDestination['slug'])); ?>" style="font-weight: 600;">
+              Explore the <?php echo e($hotelDestination['name']); ?> destination guide &rarr;
+            </a>
+          </p>
+        <?php endif; ?>
 
         <?php foreach ($hotelParas as $para): ?>
           <p style="font-size: 1.02rem; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 16px;"><?php echo e($para); ?></p>

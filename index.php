@@ -19,6 +19,7 @@ require_once __DIR__ . '/data/rooms.php';
 require_once __DIR__ . '/data/testimonials.php';
 require_once __DIR__ . '/data/faqs.php';
 require_once __DIR__ . '/includes/hotels.php';
+require_once __DIR__ . '/includes/destinations-db.php';
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
@@ -356,6 +357,34 @@ include __DIR__ . '/includes/navbar.php';
     </div>
   </div>
 </section>
+
+<?php $popularDestinations = destinations_popular(8); ?>
+<?php if ($popularDestinations): ?>
+<!-- 4a. Popular Destinations (from the destinations database) -->
+<section class="section" id="popularDestinationsSection">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Destination Guide</div>
+      <h2 class="section-title heading-serif">Popular <span style="color: var(--color-primary);">Destinations</span></h2>
+      <p class="section-desc">
+        Discover where our network is strongest, from <?php echo number_format(destinations_total()); ?> destinations across India and the world.
+      </p>
+    </div>
+
+    <div class="grid-4 hotel-grid">
+      <?php foreach ($popularDestinations as $dest): ?>
+        <?php include __DIR__ . '/includes/destination-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('destinations.php#destination-directory'); ?>" class="btn-yellow btn-lg">
+        Explore All Destinations &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?php $featuredHotels = hotels_featured(8); ?>
 <?php if ($featuredHotels): ?>
