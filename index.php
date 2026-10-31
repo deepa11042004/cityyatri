@@ -20,6 +20,7 @@ require_once __DIR__ . '/data/testimonials.php';
 require_once __DIR__ . '/data/faqs.php';
 require_once __DIR__ . '/includes/hotels.php';
 require_once __DIR__ . '/includes/destinations-db.php';
+require_once __DIR__ . '/includes/itineraries-db.php';
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
@@ -363,6 +364,34 @@ include __DIR__ . '/includes/navbar.php';
     <div style="text-align: center; margin-top: 40px;">
       <a href="<?php echo url('resort-network.php#network-hotels'); ?>" class="btn-red btn-lg">
         Browse All Network Hotels &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php $homeItineraries = array_slice(itineraries_list(), 0, 6); ?>
+<?php if ($homeItineraries): ?>
+<!-- 4c. Curated Itineraries (from the itineraries database) -->
+<section class="section" id="itinerariesSection">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Curated Journeys</div>
+      <h2 class="section-title heading-serif">Handcrafted <span style="color: var(--color-primary);">Itineraries</span></h2>
+      <p class="section-desc">
+        Day-by-day holidays across India and the world, planned end to end by your Club Yatri concierge.
+      </p>
+    </div>
+
+    <div class="grid-3 hotel-grid">
+      <?php foreach ($homeItineraries as $it): ?>
+        <?php include __DIR__ . '/includes/itinerary-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('itinerary.php#itinerary-list'); ?>" class="btn-red btn-lg">
+        View All <?php echo number_format(itineraries_count()); ?> Itineraries &rarr;
       </a>
     </div>
   </div>

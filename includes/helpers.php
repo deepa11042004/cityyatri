@@ -31,6 +31,12 @@ function url(string $path = ''): string
 function isActive(string $page): string
 {
     $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
+    // Detail pages keep their section highlighted in the menu
+    static $parents = [
+        'destination-details.php' => 'destinations.php',
+        'itinerary-details.php' => 'itinerary.php',
+    ];
+    $currentPage = $parents[$currentPage] ?? $currentPage;
     return ($currentPage === $page || ($page === 'index.php' && $currentPage === '')) ? 'active' : '';
 }
 

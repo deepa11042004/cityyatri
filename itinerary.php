@@ -10,6 +10,11 @@ $pageDescription = 'Handcrafted luxury multi-day journeys across royal palaces, 
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/itineraries-db.php';
+
+$itType = itinerary_type_filter();
+$itList = itineraries_list($itType);
+$itTotal = itineraries_count();
 
 $breadcrumbTitle = 'Itineraries';
 
@@ -30,12 +35,35 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<?php if ($itTotal > 0): ?>
+<section class="section" id="itinerary-list" style="padding-top: 10px; padding-bottom: 70px;">
+  <div class="container">
+    <div class="tabs-wrap itinerary-tabs" role="navigation" aria-label="Filter itineraries">
+      <a class="tab-btn<?php echo $itType === '' ? ' active' : ''; ?>" href="<?php echo e(url('itinerary.php#itinerary-list')); ?>">All Itineraries</a>
+      <a class="tab-btn<?php echo $itType === 'DOMESTIC' ? ' active' : ''; ?>" href="<?php echo e(url('itinerary.php?type=DOMESTIC#itinerary-list')); ?>">Domestic (India)</a>
+      <a class="tab-btn<?php echo $itType === 'INTERNATIONAL' ? ' active' : ''; ?>" href="<?php echo e(url('itinerary.php?type=INTERNATIONAL#itinerary-list')); ?>">International</a>
+    </div>
+
+    <?php if ($itList): ?>
+      <div class="grid-3 hotel-grid" style="margin-top: 28px;">
+        <?php foreach ($itList as $it): ?>
+          <?php include __DIR__ . '/includes/itinerary-card.php'; ?>
+        <?php endforeach; ?>
+      </div>
+    <?php else: ?>
+      <p style="text-align: center; color: var(--color-text-muted); margin-top: 28px;">No itineraries in this category yet.</p>
+    <?php endif; ?>
+  </div>
+</section>
+<?php endif; ?>
+
 <section class="section" style="padding-top: 20px; padding-bottom: 80px;">
   <div class="container">
     <div class="grid-2">
-      
+
       <!-- Itinerary 1 -->
       <div class="card-luxury" style="padding: 36px;">
+        <div class="itinerary-legacy-img"><img src="<?php echo e(url('assets/images/itineraries/udaipur-royal-splendour/1.webp')); ?>" alt="Lake Pichola and the City Palace, Udaipur" loading="lazy" width="1600" height="1067"></div>
         <div class="card-badge" style="position: static; display: inline-block; margin-bottom: 16px;">Heritage Circuit • 7 Days / 6 Nights</div>
         <h2 class="card-title" style="font-size: 1.8rem;">The Grand Rajputana Royal Odyssey</h2>
         <p class="card-desc">
@@ -70,6 +98,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
       <!-- Itinerary 2 -->
       <div class="card-luxury" style="padding: 36px;">
+        <div class="itinerary-legacy-img"><img src="<?php echo e(url('assets/images/itineraries/maldives-turquoise-atolls/1.webp')); ?>" alt="Overwater villas in a turquoise Maldivian lagoon" loading="lazy" width="1600" height="1067"></div>
         <div class="card-badge" style="position: static; display: inline-block; margin-bottom: 16px;">Island Sanctuary • 5 Days / 4 Nights</div>
         <h2 class="card-title" style="font-size: 1.8rem;">Maldivian Overwater & Manta Odyssey</h2>
         <p class="card-desc">

@@ -98,6 +98,7 @@ $isLoggedIn = !empty($_SESSION['member_authenticated']);
         <li><a href="<?php echo url('passes-subscriptions.php'); ?>" class="nav-link <?php echo isActive('passes-subscriptions.php'); ?>">Passes &amp; Subscriptions</a></li>
         <li><a href="<?php echo url('resort-network.php'); ?>" class="nav-link <?php echo isActive('resort-network.php'); ?>">Resort Network</a></li>
         <li><a href="<?php echo url('destinations.php'); ?>" class="nav-link <?php echo isActive('destinations.php'); ?>">Destinations</a></li>
+        <li><a href="<?php echo url('itinerary.php'); ?>" class="nav-link <?php echo isActive('itinerary.php'); ?>">Itineraries</a></li>
         <li><a href="<?php echo url('rooms.php'); ?>" class="nav-link <?php echo isActive('rooms.php'); ?>">Rooms &amp; Suites</a></li>
         <li><a href="<?php echo url('contact.php'); ?>" class="nav-link <?php echo isActive('contact.php'); ?>">Contact Us</a></li>
       </ul>
@@ -136,6 +137,7 @@ $isLoggedIn = !empty($_SESSION['member_authenticated']);
       <li><a href="<?php echo url('passes-subscriptions.php'); ?>" class="drawer-link <?php echo isActive('passes-subscriptions.php'); ?>">Passes &amp; Subscriptions</a></li>
       <li><a href="<?php echo url('resort-network.php'); ?>" class="drawer-link <?php echo isActive('resort-network.php'); ?>">Resort Network</a></li>
       <li><a href="<?php echo url('destinations.php'); ?>" class="drawer-link <?php echo isActive('destinations.php'); ?>">Destinations</a></li>
+      <li><a href="<?php echo url('itinerary.php'); ?>" class="drawer-link <?php echo isActive('itinerary.php'); ?>">Itineraries</a></li>
       <li><a href="<?php echo url('rooms.php'); ?>" class="drawer-link <?php echo isActive('rooms.php'); ?>">Rooms &amp; Suites</a></li>
       <li><a href="<?php echo url('contact.php'); ?>" class="drawer-link <?php echo isActive('contact.php'); ?>">Contact Us</a></li>
       <li><a href="<?php echo url('login.php'); ?>" class="drawer-link <?php echo isActive('login.php'); ?>">Subscriber Login</a></li>
