@@ -1366,3 +1366,30 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
   .itinerary-legacy-img { margin: -36px -36px 20px; height: 200px; }
 }
 @media (prefers-reduced-motion: reduce) { .itinerary-legacy-img img { transition: none; } }
+
+/* ==========================================================================
+   Subscription pass cards (homepage: 3 / 5 / 10 / 25-Year)
+   ========================================================================== */
+.pass-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
+.pass-card { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 28px 24px; min-width: 0; }
+.pass-card.is-featured { border: 2px solid var(--color-accent); }
+.pass-card .backend-tag { display: inline-block; max-width: 100%; margin-bottom: 14px; font-size: 0.7rem; letter-spacing: 0.06em; line-height: 1.35; }
+.pass-title { font-size: 1.28rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; color: var(--color-text); margin-bottom: 10px; }
+.pass-intro { font-size: 0.92rem; line-height: 1.6; color: var(--color-text-muted); margin-bottom: 18px; }
+.pass-block { padding: 14px 0; border-top: 1px solid var(--color-border); }
+.pass-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); line-height: 1.5; }
+.pass-label strong { color: var(--color-text); letter-spacing: 0; font-size: 0.95rem; }
+.pass-value { font-size: 1.2rem; font-weight: 800; color: var(--color-text); margin: 2px 0; }
+.pass-note { font-size: 0.8rem; line-height: 1.5; color: var(--color-text-muted); margin-top: 3px; }
+.pass-policy { list-style: none; display: grid; gap: 6px; margin: 8px 0 2px; font-size: 0.86rem; line-height: 1.5; color: var(--color-text-muted); }
+.pass-policy li { position: relative; padding-left: 14px; }
+.pass-policy li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+.pass-policy strong { color: var(--color-text); font-weight: 700; }
+.pass-perks { list-style: none; display: grid; gap: 8px; margin-top: 6px; padding-top: 16px; border-top: 1px solid var(--color-border); font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+.pass-perks li { position: relative; padding-left: 26px; line-height: 1.45; }
+.pass-perks li::before {
+  content: ''; position: absolute; left: 0; top: 2px; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px no-repeat;
+}
+@media (max-width: 1280px) { .pass-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .pass-grid { grid-template-columns: 1fr; } }

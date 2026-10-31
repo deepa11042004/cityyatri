@@ -204,7 +204,79 @@ include __DIR__ . '/includes/navbar.php';
   </div>
 </section>
 
-<!-- 3. Other Subscription Plans (3-Year, 5-Year, 10-Year) -->
+<!-- 3. Subscription Passes (3-Year, 5-Year, 10-Year, 25-Year) -->
+<?php
+$subscriptionPasses = [
+    [
+        'plan' => 'royal-bharat', 'years' => 3,
+        'tag' => 'FLAGSHIP LUXURY ASSET ★',
+        'title' => '3-Year Pass (Yatri Privilege Crown Asset)',
+        'intro' => 'Lock in 3 years of guaranteed 3, 4 & 5-star holiday security across 200+ premier resorts in India.',
+        'allocation' => '6 Nights / 7 Days / Year',
+        'allocation_note' => '(Standard All-Season Access — Blackout Dates Apply)',
+        'fee' => '₹14,999 / Year',
+        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => 'BOOKING POLICY',
+        'policy' => ['Advance Booking: 30 to 45 Days Prior Notice Required'],
+        'policy_note' => '(Subject to Resort Availability & Excluding Blackout Dates)',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access'],
+        'featured' => false,
+    ],
+    [
+        'plan' => 'asian-signature', 'years' => 5,
+        'tag' => 'INTERNATIONAL & DOMESTIC ASSET ★',
+        'title' => '5-Year Pass (Yatri Privilege Crown Asset)',
+        'intro' => 'Lock in 5 years of guaranteed 3, 4 & 5-star holiday security across premier resorts in India, Asian Countries & Middle East.',
+        'allocation' => '6 Nights / 7 Days / Year',
+        'allocation_note' => '(Standard All-Season Access — Blackout Dates Apply)',
+        'fee' => '₹14,999 / Year',
+        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => 'RESORT & BOOKING POLICY',
+        'policy' => [
+            'Destination Access: India, Asian Countries & Middle East',
+            'Resort Category: Mid-List & Premium 3, 4 & 5-Star Properties',
+            'Advance Booking: 30 to 45 Days Prior Notice Required',
+        ],
+        'policy_note' => '(Subject to Resort Availability & Excluding Blackout Dates)',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access'],
+        'featured' => true,
+    ],
+    [
+        'plan' => 'imperial-world', 'years' => 10,
+        'tag' => '★ ULTIMATE GLOBAL VIP ASSET ★',
+        'title' => '10-Year Pass (Yatri Privilege Crown Asset)',
+        'intro' => 'Lock in 10 years of guaranteed 3, 4 & 5-star holiday security across 500+ premier resorts in India, Asian Countries, Middle East, Europe & Americas.',
+        'allocation' => '6 Nights / 7 Days / Year',
+        'allocation_note' => '(VIP All-Season Access — Zero Blackout Dates & Unlimited Points Banking)',
+        'fee' => '₹14,999 / Year',
+        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => 'RESORT & BOOKING POLICY',
+        'policy' => [
+            'Destination Access: Worldwide (India, Asia, Middle East, Europe & Americas)',
+            'Resort Category: Premium & Luxury 3, 4 & 5-Star Properties',
+            'VIP Booking Access: Priority Confirmation & Flexible Notice Period',
+        ],
+        'policy_note' => '(Subject to Resort Availability)',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Dedicated VIP Concierge & Priority Booking Access'],
+        'featured' => false,
+    ],
+    [
+        'plan' => 'privilege-crown', 'years' => 25,
+        'tag' => 'FLAGSHIP LUXURY ASSET ★',
+        'title' => '25-Year Pass (Yatri Privilege Crown Asset)',
+        'intro' => 'Lock in 25 years of guaranteed 3, 4 & 5-star holiday security across 200+ premier resorts in India & worldwide.',
+        'allocation' => '6 Nights / 7 Days / Year',
+        'allocation_note' => '(Lifetime Points Banking Included)',
+        'fee' => '₹14,999 / Year',
+        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => '',
+        'policy' => [],
+        'policy_note' => '',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access'],
+        'featured' => false,
+    ],
+];
+?>
 <section class="section" id="backendPassesSection">
   <div class="container">
     <div class="section-title-wrap">
@@ -215,81 +287,51 @@ include __DIR__ . '/includes/navbar.php';
       </p>
     </div>
 
-    <div class="grid-3">
-      <!-- 3-Year: Yatri Royal Bharat Pass -->
-      <div class="today-office-card">
-        <div>
-          <span class="backend-tag">Domestic Voyager</span>
-          <h3 style="font-family: var(--font-serif-display); font-size: 1.35rem; color: var(--color-text); margin-bottom: 8px;">
-            3-Year: Yatri Royal Bharat Pass
-          </h3>
-          <p style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 16px;">
-            Deluxe Room | Domestic Network | Off-Peak Access
-          </p>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
-            <li>✓ <strong>7 Nights / Year</strong> guaranteed 5-star inventory</li>
-            <li>✓ Access across 85+ Indian resort destinations</li>
-            <li>✓ Eligible for Green &amp; Purple seasonal studios</li>
-            <li>✓ 2-Year rolling points accumulation</li>
-            <li>✓ Standard Dedicated Subscriber Desk</li>
-          </ul>
-        </div>
-        <div>
-          <a href="<?php echo url('booking-request.php?plan=royal-bharat'); ?>" class="btn-outline-gold" style="width: 100%; text-align: center;">
-            Enquire 3-Year Pass
-          </a>
-        </div>
-      </div>
+    <div class="pass-grid">
+      <?php foreach ($subscriptionPasses as $p): ?>
+        <article class="today-office-card pass-card<?php echo $p['featured'] ? ' is-featured' : ''; ?>">
+          <div>
+            <span class="backend-tag"><?php echo e($p['tag']); ?></span>
+            <h3 class="pass-title"><?php echo e($p['title']); ?></h3>
+            <p class="pass-intro"><?php echo e($p['intro']); ?></p>
 
-      <!-- 5-Year: Yatri Asian Signature Pass -->
-      <div class="today-office-card" style="border-color: var(--color-accent); border-width: 2px;">
-        <div>
-          <span class="backend-tag" style="background: var(--color-background-warm); color: var(--color-primary); border-color: var(--color-accent);">Family Favorite ★</span>
-          <h3 style="font-family: var(--font-serif-display); font-size: 1.35rem; color: var(--color-text); margin-bottom: 8px;">
-            5-Year: Yatri Asian Signature Pass
-          </h3>
-          <p style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 16px;">
-            Super Deluxe Room | Domestic + Asian Hubs
-          </p>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
-            <li>✓ <strong>14 Nights / Year</strong> luxury suite eligibility</li>
-            <li>✓ 140+ Resorts across India, Thailand &amp; Bali</li>
-            <li>✓ Eligible for Green, Purple &amp; Yellow studios</li>
-            <li>✓ 3-Year points banking &amp; 120-day booking window</li>
-            <li>✓ Dedicated Relationship Manager</li>
-          </ul>
-        </div>
-        <div>
-          <a href="<?php echo url('booking-request.php?plan=asian-signature'); ?>" class="btn-red" style="width: 100%; text-align: center;">
-            Enquire 5-Year Pass
-          </a>
-        </div>
-      </div>
+            <div class="pass-block">
+              <div class="pass-label">ANNUAL ALLOCATION</div>
+              <div class="pass-value"><?php echo e($p['allocation']); ?></div>
+              <div class="pass-note"><?php echo e($p['allocation_note']); ?></div>
+            </div>
 
-      <!-- 10-Year: Yatri Imperial World Pass -->
-      <div class="today-office-card">
-        <div>
-          <span class="backend-tag">Decadal Ownership</span>
-          <h3 style="font-family: var(--font-serif-display); font-size: 1.35rem; color: var(--color-text); margin-bottom: 8px;">
-            10-Year: Yatri Imperial World Pass
-          </h3>
-          <p style="color: var(--color-primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 16px;">
-            Luxury Suite / 1-BHK | Worldwide Network
-          </p>
-          <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
-            <li>✓ <strong>21 Nights / Year</strong> grand master suite stays</li>
-            <li>✓ 200+ Resorts worldwide (Dubai, Maldives, Europe)</li>
-            <li>✓ Unrestricted access to all 4 seasonal studios</li>
-            <li>✓ 4-Year rolling points accumulation</li>
-            <li>✓ 24/7 Senior Lifestyle Butler</li>
-          </ul>
-        </div>
-        <div>
-          <a href="<?php echo url('booking-request.php?plan=imperial-world'); ?>" class="btn-outline-gold" style="width: 100%; text-align: center;">
-            Enquire 10-Year Pass
-          </a>
-        </div>
-      </div>
+            <div class="pass-block">
+              <div class="pass-label">Annual Subscription &amp; Concierge Fee: <strong><?php echo e($p['fee']); ?></strong></div>
+              <div class="pass-note"><?php echo e($p['fee_note']); ?></div>
+            </div>
+
+            <?php if ($p['policy']): ?>
+              <div class="pass-block">
+                <div class="pass-label"><?php echo e($p['policy_title']); ?></div>
+                <ul class="pass-policy">
+                  <?php foreach ($p['policy'] as $line): ?>
+                    <?php [$k, $v] = array_pad(explode(':', $line, 2), 2, ''); ?>
+                    <li><strong><?php echo e($k); ?>:</strong><?php echo e($v); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <?php if ($p['policy_note'] !== ''): ?><div class="pass-note"><?php echo e($p['policy_note']); ?></div><?php endif; ?>
+              </div>
+            <?php endif; ?>
+
+            <ul class="pass-perks">
+              <?php foreach ($p['perks'] as $perk): ?>
+                <li><?php echo e($perk); ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+          <div>
+            <a href="<?php echo url('booking-request.php?plan=' . urlencode($p['plan'])); ?>" class="<?php echo $p['featured'] ? 'btn-red' : 'btn-outline-gold'; ?>" style="width: 100%; text-align: center;">
+              Enquire <?php echo (int)$p['years']; ?>-Year Pass
+            </a>
+          </div>
+        </article>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
