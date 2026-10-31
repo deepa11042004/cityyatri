@@ -548,6 +548,8 @@ include __DIR__ . '/includes/navbar.php';
       </div>
     </div>
 
+    <?php include __DIR__ . '/includes/video-testimonials.php'; ?>
+
     <!-- Top FAQs -->
     <div style="margin-top: 52px;">
       <h3 class="heading-serif" style="text-align: center; color: var(--color-text); font-size: 1.8rem; margin-bottom: 28px;">
