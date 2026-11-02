@@ -27,6 +27,7 @@ include __DIR__ . '/includes/navbar.php';
 ?>
 
 <!-- 1. Hero Section (Clean Light Hospitality Appearance) -->
+<div class="hero-frame">
 <section class="hero" id="homeHero">
   <!-- Rotating background slider (images/hero/*, resized copies of images/logo/1073.jpg and 177.jpg) -->
   <div class="hero-slides" id="heroSlides">
@@ -62,9 +63,10 @@ include __DIR__ . '/includes/navbar.php';
 
   </div>
 </section>
+</div>
 
 <!-- 1b. Trust Stats (bento tiles; images are decorative) -->
-<section class="section" id="homeStats" style="padding-top: 56px; padding-bottom: 0;">
+<section class="section" id="homeStats" style="padding-top: 56px; padding-bottom: 56px;">
   <div class="container">
     <div class="home-intro section-title-wrap">
       <div class="sub-tag">THE ART OF CURATED VACATION OWNERSHIP</div>

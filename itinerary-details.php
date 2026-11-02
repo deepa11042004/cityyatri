@@ -49,7 +49,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
-<section class="section" style="padding-top: 40px; padding-bottom: 20px;">
+<section class="section" style="padding-top: 40px; padding-bottom: 40px;">
   <div class="container">
     <ul class="itinerary-facts" aria-label="Itinerary at a glance">
       <li><span>Duration</span><strong><?php echo e(itinerary_duration($it)); ?></strong></li>

@@ -22,7 +22,7 @@
   --color-text: #1a1a1a;
   --color-text-muted: #5c5c5c;
   --color-border: #EFE6D8;
-  --color-background-soft: #FFFBF4;
+  --color-background-soft: #FFFFFF;
   --color-background-warm: var(--tint-amber);
 
   --radius-card: 28px;
@@ -44,8 +44,8 @@
   --trans-lift: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body { background: #FFFFFF url('../../images/site-bg.jpg') top left / 640px 640px repeat fixed; color: var(--color-ink); }
-/* Let the site-wide pattern show through sections that set their own tint inline */
+body { background: #FFFFFF; color: var(--color-ink); }
+/* Sections that set their own tint inline show the plain page colour */
 .section[style*="background"] { background: transparent !important; }
 body::before { display: none; }
 
@@ -122,7 +122,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 /* --------------------------------------------------------------------------
    3. Header - slim dark utility strip + sticky white nav
    -------------------------------------------------------------------------- */
-.top-utility-bar { background: var(--color-ink); border-bottom: 0; }
+.top-utility-bar { background: #000000; border-bottom: 0; }
 .top-utility-bar, .utility-contact-link, .utility-social-link { color: #FFFFFF; }
 .utility-contact-link:hover, .utility-social-link:hover { color: var(--color-secondary); }
 .utility-login-btn {
@@ -135,10 +135,10 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .utility-login-btn:hover { background: var(--color-secondary-dark); color: var(--color-ink) !important; }
 
 .navbar-main {
-  /* transparent frame showing the site pattern; the white rounded bar is the inner container */
+  /* transparent frame; the white rounded bar is the inner container */
   height: auto;
   padding: 12px 16px;
-  background: #FFFFFF url('../../images/site-bg.jpg') top left / 640px 640px repeat fixed;
+  background: transparent;
   border-bottom: 0;
   box-shadow: none;
 }
@@ -146,11 +146,20 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   max-width: none;
   height: 78px;
   padding: 0 24px;
-  background: #FFFFFF;
-  border: 1px solid var(--color-border);
+  /* glass: translucent logo-red with a blur of whatever is behind it */
+  background: rgba(234, 34, 36, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 0;
   border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(40, 20, 10, 0.08);
+  box-shadow: 0 8px 32px rgba(120, 10, 12, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
+/* white text and logo ring on the red glass */
+.navbar-main .nav-link { color: #FFFFFF; text-shadow: 0 1px 2px rgba(90, 0, 0, 0.35); }
+.navbar-main .nav-link:hover { background: rgba(255, 255, 255, 0.22); color: #FFFFFF; }
+.navbar-main .nav-link.active { background: #FFFFFF; color: #C91B1D; text-shadow: none; }
+.navbar-main .brand-logo-only img { border-radius: 50%; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85); }
+.navbar-main .mobile-toggle { color: #FFFFFF; border-color: rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.12); }
 .brand-logo-only img { height: 56px; width: auto; }
 .navbar-main nav, .navbar-main .nav-actions { position: relative; top: 4px; }  /* sit the links lower, in the visual middle of the bar */
 .nav-menu { gap: 6px; }
@@ -169,14 +178,15 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 /* --------------------------------------------------------------------------
    4. Hero - large rounded image, brand wordmark, floating booking bar
    -------------------------------------------------------------------------- */
+/* Logo-red band around the hero image box, continuing the red header (homepage) */
+.hero-frame { background: #FFFFFF; padding: 0 16px 16px; }
 .hero {
   position: relative;
   display: flex;
   align-items: stretch;
   min-height: min(82vh, 760px);
-  margin: 16px 16px 0;
+  margin: 0;
   padding: 0;
-  box-shadow: 0 0 0 16px #FFFFFF; /* plain white frame: no site pattern around the hero */
   border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--color-ink);
@@ -399,7 +409,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 }
 .card-img-wrap { height: 250px; }
 .card-badge {
-  background: rgba(255, 255, 255, 0.92);
+  background: #FFFFFF;
   backdrop-filter: blur(6px);
   border: 0;
   color: var(--color-primary-dark);
@@ -566,7 +576,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #FFFFFF;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -581,7 +591,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
    -------------------------------------------------------------------------- */
 .footer { background: #FFFFFF; border-top: 0; padding: 40px 16px 24px; }
 .footer > .container {
-  background: var(--tint-amber);
+  background: #F08080;
   border-radius: var(--radius-xl);
   padding: 56px 48px 28px;
 }
@@ -637,7 +647,8 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   .top-utility-bar .container { flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
   .utility-left { flex-wrap: wrap; justify-content: center; }
   .section { padding-top: 60px; padding-bottom: 60px; }
-  .hero { margin: 10px 10px 0; border-radius: 28px; min-height: 0; }
+  .hero { border-radius: 28px; min-height: 0; }
+  .hero-frame { padding: 0 10px 10px; }
   .hero-content { padding: 100px 18px 18px; }
   .hero-tagline-highlight-box { padding: 16px 20px; }
   .search-form { grid-template-columns: 1fr; }
@@ -1006,7 +1017,7 @@ nav[aria-label="Breadcrumb"] { display: none !important; }
 }
 .hotel-filter-field input, .hotel-filter-field select {
   width: 100%; height: 46px; padding: 0 14px; border: 1.5px solid var(--color-border);
-  border-radius: 14px; background: #FAFAFA; font: inherit; font-size: 0.92rem; color: var(--color-text);
+  border-radius: 14px; background: #FFFFFF; font: inherit; font-size: 0.92rem; color: var(--color-text);
 }
 .hotel-filter-field input:focus, .hotel-filter-field select:focus { outline: 3px solid rgba(255, 179, 0, 0.55); outline-offset: 1px; }
 .hotel-filter-actions { display: flex; gap: 10px; }
@@ -1405,7 +1416,7 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
 .pass-intro { max-width: 820px; font-size: 1.04rem; line-height: 1.6; margin-bottom: 22px; }
 
 .pass-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: stretch; }
-.pass-tile { background: rgba(255, 255, 255, 0.94); border-radius: 22px; padding: 22px 22px 24px; box-shadow: 0 6px 22px rgba(60, 20, 10, 0.1); min-width: 0; }
+.pass-tile { background: #FFFFFF; border-radius: 22px; padding: 22px 22px 24px; box-shadow: 0 6px 22px rgba(60, 20, 10, 0.1); min-width: 0; }
 .pass-label { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); line-height: 1.5; }
 .pass-value { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.01em; margin: 6px 0 4px; }
 .pass-note { font-size: 0.84rem; line-height: 1.55; color: rgba(34, 34, 34, 0.72); margin-top: 4px; }
@@ -1459,3 +1470,14 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
 @media (prefers-reduced-motion: reduce) {
   .pass-card { will-change: auto; }
 }
+
+/* Footer on coral (#F08080): darker text so red and grey copy stays readable */
+.footer .footer-heading, .footer .brand-name span, .footer a[href^="tel"] { color: #5A0000; }
+.footer .footer-brand p, .footer .footer-newsletter p, .footer .footer-link, .footer-bottom { color: #1a1a1a; }
+.footer .footer-link:hover { color: #FFFFFF; }
+.footer-bottom { border-top-color: rgba(90, 0, 0, 0.25); }
+.footer .footer-brand div, .footer .footer-brand div a, .footer .footer-newsletter a, .footer .footer-newsletter small, .footer .footer-newsletter div { color: #1a1a1a !important; }
+.footer .footer-brand a[href^="tel"] { color: #5A0000 !important; }
+
+/* Thin light-grey divider after every section */
+.section { border-bottom: 1px solid #E6E6E6; }
