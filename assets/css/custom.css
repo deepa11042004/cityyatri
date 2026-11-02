@@ -1403,10 +1403,10 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
   will-change: transform;
   color: var(--color-text);
 }
-.pass-card.tone-1 { background: linear-gradient(120deg, #FFE08A 0%, #FFC94D 50%, #ffb300 130%); }
-.pass-card.tone-2 { background: linear-gradient(120deg, #FFD3A3 0%, #FFAE6B 55%, #FF8A3D 130%); }
+.pass-card.tone-1 { background: linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%); }   /* #00FF87 to #60EFFF */
+.pass-card.tone-2 { background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%); }   /* #0061FF to #60EFFF */
 .pass-card.tone-3 { background: linear-gradient(120deg, #FFC3B8 0%, #FF9484 55%, #FF6B5E 130%); }
-.pass-card.tone-4 { background: linear-gradient(120deg, #FFB0AD 0%, #F5757A 55%, #EA2224 140%); }
+.pass-card.tone-4 { background: linear-gradient(90deg, hsla(167, 68%, 73%, 1) 0%, hsla(178, 59%, 48%, 1) 100%); }   /* #8DE9D5 to #32C4C0 */
 .pass-card.is-featured { border: 2px solid #FFFFFF; }
 
 .pass-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; height: calc(var(--peek) - 20px); min-height: 38px; }
@@ -1481,3 +1481,6 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
 
 /* Thin light-grey divider after every section */
 .section { border-bottom: 1px solid #E6E6E6; }
+
+/* Card 2 (blue gradient): light title and intro for contrast on the blue end */
+.pass-card.tone-2 .pass-title, .pass-card.tone-2 .pass-intro { color: #FFFFFF; text-shadow: 0 1px 6px rgba(0, 40, 120, 0.35); }
