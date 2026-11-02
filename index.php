@@ -284,11 +284,8 @@ $subscriptionPasses = [
 <section class="section" id="backendPassesSection">
   <div class="container">
     <div class="section-title-wrap">
-      <div class="sub-tag">Tailored Vacation Plans</div>
+      <div class="sub-tag">Today's Special Drop</div>
       <h2 class="section-title heading-serif">Today's <span style="color: var(--color-primary);">Privilege Pass – Once It's Gone, It's Gone!</span></h2>
-      <p class="section-desc">
-        Curated vacation pass tiers calibrated to your annual holiday frequency and destination preferences.
-      </p>
       <p class="pass-pitch-title">Today's Decision, Tomorrow's Best Memories – Join Now!</p>
       <p class="pass-pitch">Lock in your subscription today to unlock inflation-free 3- to 5-star stays, dedicated concierge care, and our absolute finest travel experiences for years to come.</p>
     </div>
