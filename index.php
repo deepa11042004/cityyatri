@@ -104,6 +104,110 @@ include __DIR__ . '/includes/navbar.php';
   </div>
 </section>
 
+<?php $featuredHotels = hotels_featured(8); ?>
+<?php if ($featuredHotels): ?>
+<!-- 4b. Featured Network Hotels (from the hotels database) -->
+<section class="section" id="featuredHotelsSection" style="background: var(--color-background-soft);">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Our Hotel Network</div>
+      <h2 class="section-title heading-serif">Featured <span style="color: var(--color-primary);">Network Hotels</span></h2>
+      <p class="section-desc">
+        A selection from <?php echo number_format(hotels_total()); ?> hotels and resorts across India and the world.
+      </p>
+    </div>
+
+    <div class="grid-4 hotel-grid">
+      <?php foreach ($featuredHotels as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('resort-network.php#network-hotels'); ?>" class="btn-red btn-lg">
+        Browse All Network Hotels &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php $popularDestinations = destinations_popular(8); ?>
+<?php if ($popularDestinations): ?>
+<!-- 4a. Popular Destinations (from the destinations database) -->
+<section class="section" id="popularDestinationsSection">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Destination Guide</div>
+      <h2 class="section-title heading-serif">Popular <span style="color: var(--color-primary);">Destinations</span></h2>
+      <p class="section-desc">
+        Discover where our network is strongest, from <?php echo number_format(destinations_total()); ?> destinations across India and the world.
+      </p>
+    </div>
+
+    <div class="grid-4 hotel-grid">
+      <?php foreach ($popularDestinations as $dest): ?>
+        <?php include __DIR__ . '/includes/destination-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('destinations.php#destination-directory'); ?>" class="btn-yellow btn-lg">
+        Explore All Destinations &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<!-- 4. Interactive Destination Explorer (Manali, Goa, Udaipur, Jaipur, Thailand, Bali, Dubai) -->
+<section class="section" id="resortMapExplorerSection">
+  <div class="container">
+    <?php include __DIR__ . '/includes/destination-map.php'; ?>
+
+    <!-- Filtered Properties Grid -->
+    <div class="grid-3" id="resortExplorerGrid">
+      <?php foreach ($resortsList as $resort): ?>
+        <?php include __DIR__ . '/includes/resort-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('resort-network.php'); ?>" class="btn-yellow">
+        Explore Complete Resort Network &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<?php $homeItineraries = array_slice(itineraries_list(), 0, 6); ?>
+<?php if ($homeItineraries): ?>
+<!-- 4c. Curated Itineraries (from the itineraries database) -->
+<section class="section" id="itinerariesSection">
+  <div class="container">
+    <div class="section-title-wrap">
+      <div class="sub-tag">Curated Journeys</div>
+      <h2 class="section-title heading-serif">Handcrafted <span style="color: var(--color-primary);">Itineraries</span></h2>
+      <p class="section-desc">
+        Day-by-day holidays across India and the world, planned end to end by your Club Yatri concierge.
+      </p>
+    </div>
+
+    <div class="grid-3 hotel-grid">
+      <?php foreach ($homeItineraries as $it): ?>
+        <?php include __DIR__ . '/includes/itinerary-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="<?php echo url('itinerary.php#itinerary-list'); ?>" class="btn-red btn-lg">
+        View All <?php echo number_format(itineraries_count()); ?> Itineraries &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <!-- 2. Flagship 25-Year Pass Showcase (Center-Stage Luxury Card) -->
 <section class="section" id="flagshipPassSection">
   <div class="container">
@@ -132,44 +236,6 @@ include __DIR__ . '/includes/navbar.php';
         </div>
       </div>
 
-      <!-- 4-Color Studio Logic Display -->
-      <div style="margin: 32px 0 20px 0;">
-        <h4 style="font-family: var(--font-serif-display); font-size: 1.25rem; color: var(--color-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-          Four Seasonal Access Categories
-        </h4>
-
-        <div class="studio-grid-4">
-          <!-- Green Studio -->
-          <div class="studio-chip-card green">
-            <div class="studio-name" style="color: #047857;">🟢 Green Studio</div>
-            <div class="studio-season">Off-Peak / Monsoon Season</div>
-            <div class="studio-access">Full Access • Serene wellness retreats and quiet nature getaways with zero seasonal surcharges.</div>
-          </div>
-
-          <!-- Purple Studio -->
-          <div class="studio-chip-card purple">
-            <div class="studio-name" style="color: #6D28D9;">🟣 Purple Studio</div>
-            <div class="studio-season">Regular Season Access</div>
-            <div class="studio-access">Full Access • Pleasant autumn and spring weeks across heritage palaces and coastal escapes.</div>
-          </div>
-
-          <!-- Yellow Studio -->
-          <div class="studio-chip-card yellow">
-            <div class="studio-name" style="color: #B8860B;">🟡 Yellow Studio</div>
-            <div class="studio-season">Peak / Weekend Season</div>
-            <div class="studio-access">Priority Access • Extended holiday weekends and prime summer family vacations.</div>
-          </div>
-
-          <!-- Red Studio -->
-          <div class="studio-chip-card red">
-            <div class="studio-name" style="color: #EA2224;">🔴 Red Studio</div>
-            <div class="studio-season">Super Peak / Festive &amp; New Year</div>
-            <div class="studio-access">Guaranteed Priority • Diwali, Christmas, New Year celebrations, and premium snow weeks.</div>
-          </div>
-        </div>
-      </div>
-
       <!-- Access Level Highlights -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 32px; padding: 20px; background: #FFFFFF; border-radius: var(--radius-sm); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
         <div style="display: flex; gap: 12px; align-items: center;">
@@ -193,6 +259,74 @@ include __DIR__ . '/includes/navbar.php';
             <span style="color: var(--color-text-muted); font-size: 0.82rem;">Presidential suites, private pool villas &amp; havelis</span>
           </div>
         </div>
+      </div>
+
+      <!-- Exclusive Pass Collection (4 season passes) + core terms -->
+      <?php
+      $passCollection = [
+          ['tone' => 'green', 'name' => 'Yatri Green Pass', 'season' => 'Off-Peak / Monsoon Season', 'price' => '₹6,66,450',
+           'access' => 'Valid exclusively for off-peak and monsoon season travel with zero seasonal surcharges.',
+           'blackout' => 'Christmas Week & New Year Week Excluded.',
+           'experience' => 'Full Access • Serene wellness retreats and quiet nature getaways with zero seasonal surcharges.'],
+          ['tone' => 'blue', 'name' => 'Yatri Blue Pass', 'season' => 'Mid Season', 'price' => '₹8,33,100',
+           'access' => 'Valid for mid-season travel, ensuring smooth reservations away from peak crowds.',
+           'blackout' => 'None.',
+           'experience' => 'Full Access • Pleasant autumn and spring weeks across heritage palaces and coastal escapes.'],
+          ['tone' => 'yellow', 'name' => 'Yatri Yellow Pass', 'season' => 'Peak Season', 'price' => '₹13,33,050',
+           'access' => 'Valid for peak-season travel, offering priority privileges and guaranteed holiday access during high-demand periods.',
+           'blackout' => 'None.',
+           'experience' => 'Priority Access • Extended holiday weekends and prime summer family vacations.'],
+          ['tone' => 'red', 'name' => 'Yatri Red Pass', 'season' => 'Super Peak Season', 'price' => '₹14,99,850',
+           'access' => 'Valid for super peak season travel, delivering ultimate year-round flexibility and elite holiday placements.',
+           'blackout' => 'None (Guaranteed priority access).',
+           'experience' => 'Guaranteed Priority • Diwali, Christmas, New Year celebrations, and premium snow weeks.'],
+      ];
+      $passTerms = [
+          ['Exclusive Network Access', 'Stays, reservations, and pass privileges are strictly restricted and applicable only to properties owned, managed, or directly tied-up within the Club Yatri network, governed by authorized management control.'],
+          ['Validity & Usage', 'Valid for 25 Years with a total cumulative allocation of 150 Nights (6 Nights / 7 Days per year; unused nights lapse annually).'],
+          ['Inflation-Free Stays', 'Covers accommodation costs exclusively (taxes, food, beverages, and incidentals are excluded).'],
+          ['Inheritance Policy', 'Fully transferrable as a family asset once per lifetime upon official notification.'],
+          ['Advanced Priority Booking', 'Exclusive 60-day advance booking window ahead of the general public.'],
+          ['Points Banking', 'Lifetime points banking enabled, allowing structured carryover for a limited validity period.'],
+          ['Annual Compliance', 'Timely payment of the Annual Subscription & Concierge Fee (ACF) is mandatory to maintain active pass benefits and booking rights.'],
+      ];
+      ?>
+      <div class="pass-collection">
+        <h4 class="pass-collection-title">Club Yatri — Exclusive Pass Collection</h4>
+
+        <div class="pass-collection-grid">
+          <?php foreach ($passCollection as $i => $pc): ?>
+            <article class="pc-card pc-<?php echo e($pc['tone']); ?>">
+              <div class="pc-num"><?php echo $i + 1; ?></div>
+              <h5 class="pc-name"><?php echo e($pc['name']); ?></h5>
+              <div class="pc-season"><?php echo e($pc['season']); ?></div>
+              <div class="pc-price-label">Investment Price</div>
+              <div class="pc-price"><?php echo e($pc['price']); ?></div>
+              <dl class="pc-list">
+                <div><dt>Season Access</dt><dd><?php echo e($pc['access']); ?></dd></div>
+                <div><dt>Access &amp; Experience</dt><dd><?php echo e($pc['experience']); ?></dd></div>
+                <div><dt>Blackout Dates</dt><dd><?php echo e($pc['blackout']); ?></dd></div>
+                <div><dt>Annual Allocation</dt><dd>6 Nights / 7 Days per year.</dd></div>
+                <div><dt>Annual Subscription &amp; Concierge Fee (ACF)</dt><dd>₹14,999 / Year (Mandatory).</dd></div>
+              </dl>
+            </article>
+          <?php endforeach; ?>
+        </div>
+
+        <div class="pass-terms">
+          <h4 class="pass-terms-title">Core Terms &amp; Conditions <span>(Applicable to All Passes)</span></h4>
+          <ul>
+            <?php foreach ($passTerms as $term): ?>
+              <li><strong><?php echo e($term[0]); ?>:</strong> <?php echo e($term[1]); ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+
+        <ul class="pass-checks">
+          <li>100% Inflation-Free Stays</li>
+          <li>Fully Inheritable Family Asset</li>
+          <li>Exclusive Network Privileges</li>
+        </ul>
       </div>
 
       <!-- CTAs -->
@@ -390,116 +524,16 @@ $subscriptionPasses = [
 })();
 </script>
 
-<!-- 4. Interactive Destination Explorer (Manali, Goa, Udaipur, Jaipur, Thailand, Bali, Dubai) -->
-<section class="section" id="resortMapExplorerSection">
-  <div class="container">
-    <?php include __DIR__ . '/includes/destination-map.php'; ?>
 
-    <!-- Filtered Properties Grid -->
-    <div class="grid-3" id="resortExplorerGrid">
-      <?php foreach ($resortsList as $resort): ?>
-        <?php include __DIR__ . '/includes/resort-card.php'; ?>
-      <?php endforeach; ?>
-    </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="<?php echo url('resort-network.php'); ?>" class="btn-yellow">
-        Explore Complete Resort Network &rarr;
-      </a>
-    </div>
-  </div>
-</section>
 
-<?php $popularDestinations = destinations_popular(8); ?>
-<?php if ($popularDestinations): ?>
-<!-- 4a. Popular Destinations (from the destinations database) -->
-<section class="section" id="popularDestinationsSection">
-  <div class="container">
-    <div class="section-title-wrap">
-      <div class="sub-tag">Destination Guide</div>
-      <h2 class="section-title heading-serif">Popular <span style="color: var(--color-primary);">Destinations</span></h2>
-      <p class="section-desc">
-        Discover where our network is strongest, from <?php echo number_format(destinations_total()); ?> destinations across India and the world.
-      </p>
-    </div>
-
-    <div class="grid-4 hotel-grid">
-      <?php foreach ($popularDestinations as $dest): ?>
-        <?php include __DIR__ . '/includes/destination-card.php'; ?>
-      <?php endforeach; ?>
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="<?php echo url('destinations.php#destination-directory'); ?>" class="btn-yellow btn-lg">
-        Explore All Destinations &rarr;
-      </a>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php $featuredHotels = hotels_featured(8); ?>
-<?php if ($featuredHotels): ?>
-<!-- 4b. Featured Network Hotels (from the hotels database) -->
-<section class="section" id="featuredHotelsSection" style="background: var(--color-background-soft);">
-  <div class="container">
-    <div class="section-title-wrap">
-      <div class="sub-tag">Our Hotel Network</div>
-      <h2 class="section-title heading-serif">Featured <span style="color: var(--color-primary);">Network Hotels</span></h2>
-      <p class="section-desc">
-        A selection from <?php echo number_format(hotels_total()); ?> hotels and resorts across India and the world.
-      </p>
-    </div>
-
-    <div class="grid-4 hotel-grid">
-      <?php foreach ($featuredHotels as $hotel): ?>
-        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
-      <?php endforeach; ?>
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="<?php echo url('resort-network.php#network-hotels'); ?>" class="btn-red btn-lg">
-        Browse All Network Hotels &rarr;
-      </a>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php $homeItineraries = array_slice(itineraries_list(), 0, 6); ?>
-<?php if ($homeItineraries): ?>
-<!-- 4c. Curated Itineraries (from the itineraries database) -->
-<section class="section" id="itinerariesSection">
-  <div class="container">
-    <div class="section-title-wrap">
-      <div class="sub-tag">Curated Journeys</div>
-      <h2 class="section-title heading-serif">Handcrafted <span style="color: var(--color-primary);">Itineraries</span></h2>
-      <p class="section-desc">
-        Day-by-day holidays across India and the world, planned end to end by your Club Yatri concierge.
-      </p>
-    </div>
-
-    <div class="grid-3 hotel-grid">
-      <?php foreach ($homeItineraries as $it): ?>
-        <?php include __DIR__ . '/includes/itinerary-card.php'; ?>
-      <?php endforeach; ?>
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="<?php echo url('itinerary.php#itinerary-list'); ?>" class="btn-red btn-lg">
-        View All <?php echo number_format(itineraries_count()); ?> Itineraries &rarr;
-      </a>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
 
 <!-- 5. Room Categories Showcase (Clean Light Cards) -->
 <section class="section" id="roomCategoriesSection" style="background: var(--color-background-soft);">
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Luxury Accommodation Suites</div>
-      <h2 class="section-title heading-serif">Four Signature <span style="color: var(--color-primary);">Room Categories</span></h2>
+      <h2 class="section-title heading-serif">Six Signature <span style="color: var(--color-primary);">Room Categories</span></h2>
       <p class="section-desc">
         Calibrated for private indulgence, from romantic couples' suites to opulent presidential pool villas.
       </p>
