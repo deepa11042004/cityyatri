@@ -40,11 +40,24 @@ include __DIR__ . '/includes/breadcrumbs.php';
         <h2 class="heading-serif" style="font-size: 2.2rem; margin-bottom: 20px;">
           Institutional Transparency in Luxury Hospitality
         </h2>
-        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px;">
-          For decades, Indian vacationers experienced timeshare models fraught with hidden blackout dates, declining resort maintenance, and rigid calendar weeks. <?php echo e(LEGAL_ENTITY_NAME); ?> was founded by senior hospitality directors and asset trustees with a singular mission: to bring institutional transparency, liquidity, and true luxury to vacation ownership.
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px;">
+          "Some stories are not written on paper, but in the books of beautiful moments spent with your loved ones."
         </p>
-        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 28px;">
-          By establishing direct equity ownership across prime boutique estates and partnering with global timeshare exchanges, we ensure that every member receives guaranteed five-star inventory, dedicated butler care, and complete protection against hotel inflation.
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px;">
+          "When you step out, weary of the world's hustle and bustle, holding your family's hand in search of peace, your desire isn't just for a hotel room—it is a search for a place where every restriction melts away and only carefree smiles walk alongside you. We don't just build a place to stay; we curate a sanctuary where every little and big happiness of your loved ones is looked after with utmost devotion."
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px;">
+          "Because time is slipping away fast like sand, and all that remains behind are priceless memories—the bubbling laughter of children, quiet evenings with your spouse where silence speaks volumes, and the peerless peace found in nature's lap. Every single resort, every corner, and every effort at Club Yatri is dedicated to keeping these special moments of your family alive and eternal."
+        </p>
+        <h3 class="heading-serif" style="font-size: 1.4rem; margin: 26px 0 12px;">Why was Club Yatri founded?</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px;">
+          "For years, we witnessed how families on vacations were forced to navigate hidden rules, rigid restrictions, and constant compromises. To erase that stress and burden forever, and to give vacations back their true meaning of freedom and love, we gave birth to 'Club Yatri'. Our singular and unwavering promise is to bring you and your family the world's finest destinations with absolute transparency, dignity, and trust."
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px;">
+          "Because when it comes to your own people, nothing in this world matters more than peace, love, and dreams."
+        </p>
+        <p style="color: var(--color-primary); font-weight: 700; margin-bottom: 28px;">
+          — Club Yatri, your very own companion.
         </p>
         <div style="display: flex; gap: 32px; flex-wrap: wrap;">
           <div>
