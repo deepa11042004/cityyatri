@@ -49,7 +49,9 @@ $hotelFacts = hotel_extended_facts($hotel);
             <li><span>Airport Proximity</span><strong><?php echo e($hotelFacts['airport_proximity']); ?></strong></li>
             <li><span>Railway &amp; Transit Access</span><strong><?php echo e($hotelFacts['transit_access']); ?></strong></li>
             <li><span>Property Type</span><strong><?php echo e(hotel_type_label($hotel['hotel_type'])); ?></strong></li>
-            <li><span>Category</span><strong><?php echo e(hotel_category_label($hotel['category'])); ?></strong></li>
+            <?php if (($hotel['category'] ?? '') !== 'INTERNAL'): ?>
+              <li><span>Category</span><strong><?php echo e(hotel_category_label($hotel['category'])); ?></strong></li>
+            <?php endif; ?>
             <?php if ($hotelStays): ?>
               <li><span>Stay Styles</span><strong><?php echo e(implode(', ', $hotelStays)); ?></strong></li>
             <?php endif; ?>

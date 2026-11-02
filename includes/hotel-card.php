@@ -19,7 +19,7 @@ $hotelUrl = url('resort-details.php?id=' . urlencode($hotel['slug']));
     <?php else: ?>
       <div class="hotel-noimg"><span><?php echo e(mb_substr($hotel['name'], 0, 1)); ?></span></div>
     <?php endif; ?>
-    <span class="card-badge"><?php echo e(hotel_category_label($hotel['category'])); ?></span>
+    <?php if (($hotel['category'] ?? '') !== 'INTERNAL'): ?><span class="card-badge"><?php echo e(hotel_category_label($hotel['category'])); ?></span><?php endif; ?>
   </a>
   <div class="card-body">
     <div class="card-location">
