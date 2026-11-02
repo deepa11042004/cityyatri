@@ -230,38 +230,40 @@ $subscriptionPasses = [
         'plan' => 'asian-signature', 'years' => 5,
         'tag' => 'INTERNATIONAL & DOMESTIC ASSET ★',
         'title' => '5-Year Pass (Yatri Privilege Crown Asset)',
-        'intro' => 'Lock in 5 years of guaranteed 3, 4 & 5-star holiday security across premier resorts in India, Asian Countries & Middle East.',
+        'intro' => 'Secure 5 years of uncompromised 3, to 5-star holiday security across premier hotels, resorts, cottages, villas, and treehouses in India, Asian Countries & Middle East.',
         'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(Standard All-Season Access — Blackout Dates Apply)',
+        'allocation_note' => '(Standard All-Season Access - Blackout Dates Apply)',
         'fee' => '₹14,999 / Year',
-        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => 'RESORT & BOOKING POLICY',
+        'fee_note' => '(Payable before booking; covers 24/7 dedicated travel manager, property upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => 'BOOKING POLICY',
         'policy' => [
             'Destination Access: India, Asian Countries & Middle East',
-            'Resort Category: Mid-List & Premium 3, 4 & 5-Star Properties',
-            'Advance Booking: 30 to 45 Days Prior Notice Required',
+            'Resort Category: Mid-List & Premium 3, To 5-Star Properties',
+            'Advance Booking: 25 to 45 Days Prior Notice Required',
+            'Annual Subscription & Concierge Fee payable before booking.',
         ],
-        'policy_note' => '(Subject to Resort Availability & Excluding Blackout Dates)',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access'],
-        'featured' => true,
+        'policy_note' => '(Subject to Property Availability & Excluding Blackout Dates) Prices are exclusive of applicable GST.',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access', 'Diverse Stays: Access across luxury hotels, premium resorts, private cottages, villas, and scenic treehouses.'],
+        'featured' => false,
     ],
     [
         'plan' => 'imperial-world', 'years' => 10,
         'tag' => '★ ULTIMATE GLOBAL VIP ASSET ★',
-        'title' => '10-Year Pass (Yatri Privilege Crown Asset)',
-        'intro' => 'Lock in 10 years of guaranteed 3, 4 & 5-star holiday security across 500+ premier resorts in India, Asian Countries, Middle East, Europe & Americas.',
+        'title' => '10-Year Pass (Ultimate Global VIP Asset)',
+        'intro' => 'Secure 10 years of uncompromised luxury holiday security across premier hotels, resorts, cottages, villas, and treehouses in India, Asian Countries & Middle East.',
         'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(VIP All-Season Access — Zero Blackout Dates & Unlimited Points Banking)',
+        'allocation_note' => '(Standard All-Season Access - Blackout Dates Apply)',
         'fee' => '₹14,999 / Year',
-        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => 'RESORT & BOOKING POLICY',
+        'fee_note' => '(Payable before booking; covers 24/7 dedicated travel manager, VIP property upkeep, and guaranteed 6N/7D booking access)',
+        'policy_title' => 'BOOKING POLICY',
         'policy' => [
-            'Destination Access: Worldwide (India, Asia, Middle East, Europe & Americas)',
-            'Resort Category: Premium & Luxury 3, 4 & 5-Star Properties',
-            'VIP Booking Access: Priority Confirmation & Flexible Notice Period',
+            'Destination Access: India, Asian Countries & Middle East',
+            'Resort Category: Premium 4 & 5-Star Luxury Properties',
+            'Advance Booking: 25 to 45 Days Prior Notice Required',
+            'Annual Subscription & Concierge Fee payable before booking.',
         ],
-        'policy_note' => '(Subject to Resort Availability)',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Dedicated VIP Concierge & Priority Booking Access'],
+        'policy_note' => '(Subject to Property Availability & Excluding Blackout Dates) Prices are exclusive of applicable GST.',
+        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access', 'Diverse Stays: Access across luxury hotels, resorts, private cottages, villas, and treehouses in India, Asian Countries & Middle East.'],
         'featured' => false,
     ],
     [
@@ -330,6 +332,7 @@ $subscriptionPasses = [
             <?php endif; ?>
 
             <div class="pass-tile pass-tile-perks">
+              <div class="pass-label">KEY FEATURES</div>
               <ul class="pass-perks">
                 <?php foreach ($p['perks'] as $perk): ?>
                   <li><?php echo e($perk); ?></li>
