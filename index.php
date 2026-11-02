@@ -29,11 +29,13 @@ include __DIR__ . '/includes/navbar.php';
 <!-- 1. Hero Section (Clean Light Hospitality Appearance) -->
 <div class="hero-frame">
 <section class="hero" id="homeHero">
-  <!-- Rotating background slider (images/hero/*, resized copies of images/logo/1073.jpg and 177.jpg) -->
+  <!-- Rotating background slider (images/hero/*) -->
   <div class="hero-slides" id="heroSlides">
-    <div class="hero-slide is-active" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-1.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-2.jpg');"></div>
+    <div class="hero-slide is-active" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-2.jpg');"></div>
     <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-3.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-4.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-5.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('<?php echo e(BASE_PATH); ?>/images/hero/hero-6.jpg');"></div>
   </div>
   <div class="hero-overlay"></div>
 
@@ -283,10 +285,12 @@ $subscriptionPasses = [
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Tailored Vacation Plans</div>
-      <h2 class="section-title heading-serif">Other <span style="color: var(--color-primary);">Subscription Passes</span></h2>
+      <h2 class="section-title heading-serif">Today's <span style="color: var(--color-primary);">Privilege Pass – Once It's Gone, It's Gone!</span></h2>
       <p class="section-desc">
         Curated vacation pass tiers calibrated to your annual holiday frequency and destination preferences.
       </p>
+      <p class="pass-pitch-title">Today's Decision, Tomorrow's Best Memories – Join Now!</p>
+      <p class="pass-pitch">Lock in your subscription today to unlock inflation-free 3- to 5-star stays, dedicated concierge care, and our absolute finest travel experiences for years to come.</p>
     </div>
 
     <div class="pass-stack" id="passStack">
@@ -660,7 +664,7 @@ $subscriptionPasses = [
     <!-- Verified Testimonials -->
     <div style="margin-top: 52px;">
       <h3 class="heading-serif" style="text-align: center; color: var(--color-text); font-size: 1.8rem; margin-bottom: 28px;">
-        What Verified <span style="color: var(--color-primary);">Subscribers</span> Say
+        Current Experience by <span style="color: var(--color-primary);">Club Yatri Member</span>
       </h3>
       <div class="grid-3">
         <?php foreach (array_slice($testimonialsList, 0, 3) as $testimonial): ?>
