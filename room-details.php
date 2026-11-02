@@ -35,23 +35,23 @@ include __DIR__ . '/includes/breadcrumbs.php';
         </div>
 
         <div class="card-luxury" style="padding: 28px;">
-          <h3 class="heading-serif" style="font-size: 1.35rem; color: #fff; margin-bottom: 16px;">Key Suite Attributes</h3>
+          <h3 class="heading-serif" style="font-size: 1.35rem; color: var(--color-text); margin-bottom: 16px;">Key Suite Attributes</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--text-secondary);">
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Guest Capacity:</span>
-              <strong style="color: #fff;"><?php echo e($room['capacity']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($room['capacity']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Living Dimensions:</span>
-              <strong style="color: #fff;"><?php echo e($room['area']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($room['area']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Bedding Configuration:</span>
-              <strong style="color: #fff;"><?php echo e($room['bed_type']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($room['bed_type']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Points Requirement:</span>
-              <strong style="color: var(--gold-light);"><?php echo format_inr($room['points_night']); ?> Pts / Night</strong>
+              <strong style="color: var(--color-accent); font-weight: 800;"><?php echo format_inr($room['points_night']); ?> Pts / Night</strong>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <?php echo e($room['description']); ?>
         </p>
 
-        <h3 class="heading-serif" style="font-size: 1.4rem; color: #fff; margin-bottom: 16px;">Included In-Room Privileges</h3>
+        <h3 class="heading-serif" style="font-size: 1.4rem; color: var(--color-text); margin-bottom: 16px;">Included In-Room Privileges</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px;">
           <?php foreach ($room['amenities'] as $amenity): ?>
             <div style="display: flex; align-items: center; gap: 10px; font-size: 0.92rem; color: var(--text-secondary);">
@@ -75,12 +75,12 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <?php endforeach; ?>
         </div>
 
-        <div style="background: rgba(22, 38, 60, 0.7); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: 32px;">
-          <h4 style="font-size: 1.2rem; color: #fff; margin-bottom: 8px;">Reserve This Accommodation</h4>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+        <div class="hotel-reserve-box" style="margin-top: 0; padding: 32px;">
+          <h4 style="font-size: 1.25rem; color: var(--color-text); margin-bottom: 8px; font-weight: 800;">Reserve This Accommodation</h4>
+          <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;">
             Available across all national resorts with eligible Yatri holiday passes.
           </p>
-          <a href="<?php echo url('booking-request.php?room=' . urlencode($room['id'])); ?>" class="btn btn-gold btn-lg" style="width: 100%;">
+          <a href="<?php echo url('booking-request.php?room=' . urlencode($room['id'])); ?>" class="btn btn-gold btn-lg" style="width: 100%; justify-content: center;">
             Reserve Suite with Your Holiday Pass
           </a>
         </div>

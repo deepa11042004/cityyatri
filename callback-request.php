@@ -26,7 +26,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
     <div style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg), var(--shadow-gold);">
       <div style="text-align: center; margin-bottom: 32px;">
         <div class="sub-tag" style="margin-bottom: 12px;">Executive Relations</div>
-        <h1 class="heading-serif" style="font-size: 2.2rem; color: #fff; margin-bottom: 10px;">Schedule VIP Consultation</h1>
+        <h1 class="heading-serif" style="font-size: 2.2rem; color: var(--color-text); margin-bottom: 10px;">Schedule VIP Consultation</h1>
         <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
           Our Senior Hospitality Director will call you at your preferred time to provide personal guidance on vacation passes, points valuation, and seasonal room entitlements.
         </p>

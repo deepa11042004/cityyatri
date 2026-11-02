@@ -60,7 +60,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
     <div class="grid-2" style="gap: 40px;">
       <div class="card-luxury" style="padding: 36px;">
         <div class="sub-tag" style="margin-bottom: 14px;">National Direct Network</div>
-        <h3 class="heading-serif" style="font-size: 1.6rem; color: #fff; margin-bottom: 16px;">Direct Equity & Long-Term Leases</h3>
+        <h3 class="heading-serif" style="font-size: 1.6rem; color: var(--color-text); margin-bottom: 16px;">Direct Equity & Long-Term Leases</h3>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
           Club Yatri owns and long-term leases dedicated blocks of luxury villas and suites across key leisure markets in India. This guarantees that whether booking a summer trip to Manali or a winter celebration in Goa, inventory is preserved exclusively for our members without retail displacement.
         </p>
@@ -69,7 +69,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
       <div class="card-luxury" style="padding: 36px;">
         <div class="sub-tag" style="margin-bottom: 14px;">Worldwide Exchange Desk</div>
-        <h3 class="heading-serif" style="font-size: 1.6rem; color: #fff; margin-bottom: 16px;">Global Affiliation Protocols</h3>
+        <h3 class="heading-serif" style="font-size: 1.6rem; color: var(--color-text); margin-bottom: 16px;">Global Affiliation Protocols</h3>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
           Through recognized international exchange alliances, our members can deposit their annual points to holiday in Thailand, Bali, Dubai, the Maldives, Switzerland, and the United Kingdom. Our concierge handles the exchange paperwork from start to finish.
         </p>

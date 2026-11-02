@@ -55,15 +55,15 @@ include __DIR__ . '/includes/breadcrumbs.php';
         </div>
 
         <div class="card-luxury" style="padding: 28px;">
-          <h3 class="heading-serif" style="font-size: 1.3rem; color: #fff; margin-bottom: 16px;">Property Highlights</h3>
+          <h3 class="heading-serif" style="font-size: 1.3rem; color: var(--color-text); margin-bottom: 16px;">Property Highlights</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--text-secondary);">
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Geographic Location:</span>
-              <strong style="color: #fff; text-align: right;"><?php echo e($resort['location']); ?></strong>
+              <strong style="color: var(--color-text); text-align: right;"><?php echo e($resort['location']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Resort Classification:</span>
-              <strong style="color: var(--gold-light); text-align: right;"><?php echo e($resort['category']); ?></strong>
+              <strong style="color: var(--color-primary); text-align: right;"><?php echo e($resort['category']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Hospitality Rating:</span>
@@ -71,18 +71,18 @@ include __DIR__ . '/includes/breadcrumbs.php';
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Key Resort Amenities:</span>
-              <strong style="color: #fff; text-align: right;"><?php echo e(implode(', ', $resort['amenities'])); ?></strong>
+              <strong style="color: var(--color-text); text-align: right;"><?php echo e(implode(', ', $resort['amenities'])); ?></strong>
             </li>
             <?php if (!empty($resort['airport_proximity'])): ?>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Airport Proximity:</span>
-              <strong style="color: #fff; text-align: right;"><?php echo e($resort['airport_proximity']); ?></strong>
+              <strong style="color: var(--color-text); text-align: right;"><?php echo e($resort['airport_proximity']); ?></strong>
             </li>
             <?php endif; ?>
             <?php if (!empty($resort['transit_access'])): ?>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span style="flex-shrink: 0; min-width: 140px;">Railway &amp; Transit Access:</span>
-              <strong style="color: #fff; text-align: right;"><?php echo e($resort['transit_access']); ?></strong>
+              <strong style="color: var(--color-text); text-align: right;"><?php echo e($resort['transit_access']); ?></strong>
             </li>
             <?php endif; ?>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
@@ -91,7 +91,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
             </li>
             <li style="display: flex; justify-content: space-between; padding-top: 4px;">
               <span style="flex-shrink: 0; min-width: 140px;">Eligible Ownership Nights:</span>
-              <strong style="color: #fff; text-align: right;"><?php echo e($resort['allotment']); ?></strong>
+              <strong style="color: var(--color-text); text-align: right;"><?php echo e($resort['allotment']); ?></strong>
             </li>
           </ul>
         </div>
@@ -110,19 +110,19 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <?php echo e($resort['details']); ?>
         </p>
 
-        <h3 class="heading-serif" style="font-size: 1.4rem; color: #fff; margin-bottom: 16px;">Resort Amenities & Features</h3>
+        <h3 class="heading-serif" style="font-size: 1.4rem; color: var(--color-text); margin-bottom: 16px;">Resort Amenities & Features</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px;">
           <?php foreach ($resort['amenities'] as $amenity): ?>
             <span class="amenity-chip" style="font-size: 0.88rem; padding: 6px 16px;"><?php echo e($amenity); ?></span>
           <?php endforeach; ?>
         </div>
 
-        <div style="background: rgba(22, 38, 60, 0.7); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 32px;">
-          <h4 style="font-size: 1.3rem; color: #fff; margin-bottom: 8px;">Reserve Stay at <?php echo e($resort['name']); ?></h4>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 20px;">
+        <div class="hotel-reserve-box" style="margin-top: 0; padding: 32px;">
+          <h4 style="font-size: 1.3rem; color: var(--color-text); margin-bottom: 8px; font-weight: 800;">Reserve Stay at <?php echo e($resort['name']); ?></h4>
+          <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 20px;">
             Redeem your annual pass points with instant confirmation.
           </p>
-          <a href="<?php echo url('booking-request.php?resort=' . urlencode($resort['id'])); ?>" class="btn btn-gold btn-lg" style="width: 100%;">
+          <a href="<?php echo url('booking-request.php?resort=' . urlencode($resort['id'])); ?>" class="btn btn-gold btn-lg" style="width: 100%; justify-content: center;">
             Reserve Vacation Week with Your Pass
           </a>
         </div>

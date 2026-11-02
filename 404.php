@@ -28,7 +28,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
     </div>
 
     <div class="sub-tag" style="margin-bottom: 16px;">Destination Uncharted</div>
-    <h1 class="heading-serif" style="font-size: 2.2rem; color: #fff; margin-bottom: 16px;">
+    <h1 class="heading-serif" style="font-size: 2.2rem; color: var(--color-text); margin-bottom: 16px;">
       The Requested Sanctuary Does Not Exist
     </h1>
     <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem; margin-bottom: 36px;">

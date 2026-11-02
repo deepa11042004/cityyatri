@@ -110,7 +110,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 <section class="section" style="padding-top: 60px; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; text-align: center;">
     <div class="sub-tag">Corporate Stewardship</div>
-    <h3 class="heading-serif" style="font-size: 2rem; color: #fff; margin-bottom: 16px;">Registered & Regulated Standards</h3>
+    <h3 class="heading-serif" style="font-size: 2rem; color: var(--color-text); margin-bottom: 16px;">Registered & Regulated Standards</h3>
     <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">
       <?php echo e(LEGAL_ENTITY_NAME); ?> operates in compliance with relevant consumer hospitality guidelines and timeshare exchange statutory frameworks in India. All subscriber agreements are backed by physical resort deed rights and clear allocation protocols.
     </p>

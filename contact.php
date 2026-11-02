@@ -42,7 +42,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
               📞
             </div>
             <div>
-              <h3 style="font-size: 1.2rem; color: #fff;">Direct Concierge Hotlines</h3>
+              <h3 style="font-size: 1.2rem; color: var(--color-text);">Direct Concierge Hotlines</h3>
               <div style="color: var(--gold-light); font-weight: 700;"><?php echo e(CONTACT_PHONE_TOLL_FREE); ?> (Toll-Free India)</div>
             </div>
           </div>
@@ -57,7 +57,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
               ✉️
             </div>
             <div>
-              <h3 style="font-size: 1.2rem; color: #fff;">Confidential Electronic Correspondence</h3>
+              <h3 style="font-size: 1.2rem; color: var(--color-text);">Confidential Electronic Correspondence</h3>
               <div style="color: var(--gold-light); font-weight: 700;"><?php echo e(CONTACT_EMAIL); ?></div>
             </div>
           </div>
@@ -72,7 +72,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
               🏛️
             </div>
             <div>
-              <h3 style="font-size: 1.2rem; color: #fff;">Executive Corporate Offices</h3>
+              <h3 style="font-size: 1.2rem; color: var(--color-text);">Executive Corporate Offices</h3>
               <div style="color: var(--text-primary); font-size: 0.95rem;"><?php echo e(CONTACT_ADDRESS); ?></div>
             </div>
           </div>
@@ -85,7 +85,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <!-- Interactive Form -->
       <div style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 40px; box-shadow: var(--shadow-lg);">
         <div class="sub-tag" style="margin-bottom: 12px;">Direct Inquiry</div>
-        <h2 class="heading-serif" style="font-size: 1.8rem; margin-bottom: 24px; color: #fff;">Schedule a Private Consultation</h2>
+        <h2 class="heading-serif" style="font-size: 1.8rem; margin-bottom: 24px; color: var(--color-text);">Schedule a Private Consultation</h2>
         
         <form action="<?php echo url('actions/submit-callback.php'); ?>" method="POST">
           <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">

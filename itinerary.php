@@ -73,17 +73,17 @@ include __DIR__ . '/includes/breadcrumbs.php';
         <div style="position: relative; padding-left: 36px; margin-top: 24px; border-left: 2px solid var(--border-gold);">
           <div style="margin-bottom: 20px;">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 1 - 2: Jaipur (The Pink City)</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Private Amber Fort Twilight Tour & Royal Dining</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Private Amber Fort Twilight Tour & Royal Dining</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">VIP champagne greeting, vintage car transfer to heritage suites, and private evening viewing of the City Palace courtyards.</p>
           </div>
           <div style="margin-bottom: 20px;">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 3 - 4: Jodhpur (The Blue City)</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Mehrangarh Private Rampart Walk & Rao Jodha Trails</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Mehrangarh Private Rampart Walk & Rao Jodha Trails</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Exclusive rooftop dining with Umaid Bhawan Palace in the background, accompanied by live sitar maestros.</p>
           </div>
           <div>
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 5 - 7: Udaipur (City of Lakes)</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Lake Pichola Royal Boat Cruise & Udaivilas Stays</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Lake Pichola Royal Boat Cruise & Udaivilas Stays</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Private solar boat cruise to Jagmandir Island, customized spa rituals, and celebratory farewell dinner on the palace terrace.</p>
           </div>
         </div>
@@ -108,17 +108,17 @@ include __DIR__ . '/includes/breadcrumbs.php';
         <div style="position: relative; padding-left: 36px; margin-top: 24px; border-left: 2px solid var(--border-gold);">
           <div style="margin-bottom: 20px;">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 1: Seaplane Arrival & Sunset Dhoni</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Panoramic Seaplane Flight & Sunset Champagne</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Panoramic Seaplane Flight & Sunset Champagne</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Fly over azure coral rings directly to your overwater villa jetty. Welcome massage and sundowner cruise.</p>
           </div>
           <div style="margin-bottom: 20px;">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 2 - 3: Hanifaru Bay Biosphere</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Snorkeling with Whale Sharks & Private Sandbank Picnic</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Snorkeling with Whale Sharks & Private Sandbank Picnic</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Guided marine biologist expedition to feed and observe manta rays, followed by an isolated sandbank luxury lunch.</p>
           </div>
           <div>
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold-primary); letter-spacing: 0.1em;">Day 4 - 5: Wellness & Stargazing</div>
-            <div style="font-size: 1.05rem; color: #fff; font-weight: 600;">Glass-Floor Spa Pavilion & Undersea Cellar Feast</div>
+            <div style="font-size: 1.05rem; color: var(--color-text); font-weight: 600;">Glass-Floor Spa Pavilion & Undersea Cellar Feast</div>
             <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Deep ocean sound therapy and a 6-course degustation dinner six meters beneath the Indian Ocean.</p>
           </div>
         </div>

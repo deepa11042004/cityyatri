@@ -42,7 +42,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-primary); font-weight: 700; letter-spacing: 0.08em; display: block; margin-bottom: 8px;">
             <?php echo e($amenity['category']); ?>
           </span>
-          <h3 style="font-size: 1.25rem; color: #fff; margin-bottom: 12px;">
+          <h3 style="font-size: 1.25rem; color: var(--color-text); margin-bottom: 12px;">
             <?php echo e($amenity['title']); ?>
           </h3>
           <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">

@@ -21,6 +21,6 @@ if (!isset($item) || !is_array($item)) {
     <div class="card-location" style="margin-bottom: 4px;">
       <span><?php echo e($item['location']); ?></span>
     </div>
-    <h4 style="font-size: 1.1rem; color: #fff; margin: 0;"><?php echo e($item['caption']); ?></h4>
+    <h4 style="font-size: 1.1rem; color: var(--color-text); margin: 0;"><?php echo e($item['caption']); ?></h4>
   </div>
 </div>

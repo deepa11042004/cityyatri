@@ -41,7 +41,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
     <?php if ($confirmedCode): ?>
       <div style="background: rgba(0, 201, 167, 0.12); border: 1.5px solid var(--teal-accent); border-radius: var(--radius-xl); padding: 36px; text-align: center; margin-bottom: 40px;">
         <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
-        <h2 class="heading-serif" style="color: #fff; font-size: 1.8rem; margin-bottom: 8px;">Reservation Logged Successfully</h2>
+        <h2 class="heading-serif" style="color: var(--color-text); font-size: 1.8rem; margin-bottom: 8px;">Reservation Logged Successfully</h2>
         <div style="font-size: 1.1rem; color: var(--gold-light); font-weight: 700; margin-bottom: 14px;">
           Tracking Code: <?php echo e($confirmedCode); ?>
         </div>
@@ -53,7 +53,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
     <div style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg);">
       <div class="sub-tag" style="margin-bottom: 10px;">Priority Member Allocation</div>
-      <h1 class="heading-serif" style="font-size: 2.2rem; color: #fff; margin-bottom: 12px;">Vacation Reservation Desk</h1>
+      <h1 class="heading-serif" style="font-size: 2.2rem; color: var(--color-text); margin-bottom: 12px;">Vacation Reservation Desk</h1>
       <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 0.95rem; line-height: 1.6;">
         Submit your preferred dates, destination, and room category. Whether you are an existing pass holder or checking allocation availability, our hospitality desk processes requests within 60 minutes.
       </p>

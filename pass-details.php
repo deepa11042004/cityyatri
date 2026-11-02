@@ -37,11 +37,11 @@ include __DIR__ . '/includes/breadcrumbs.php';
         </p>
 
         <div class="card-luxury" style="padding: 28px; margin-bottom: 24px;">
-          <h3 class="heading-serif" style="font-size: 1.3rem; color: #fff; margin-bottom: 16px;">Key Pass Specifications</h3>
+          <h3 class="heading-serif" style="font-size: 1.3rem; color: var(--color-text); margin-bottom: 16px;">Key Pass Specifications</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--text-secondary);">
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Vacation Tenure:</span>
-              <strong style="color: #fff;"><?php echo e($plan['tenure']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($plan['tenure']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Annual Vacation Nights:</span>
@@ -49,15 +49,15 @@ include __DIR__ . '/includes/breadcrumbs.php';
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Annual Points Credit:</span>
-              <strong style="color: #fff;"><?php echo number_format($plan['points_annual']); ?> Points</strong>
+              <strong style="color: var(--color-text);"><?php echo number_format($plan['points_annual']); ?> Points</strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Points Banking Window:</span>
-              <strong style="color: #fff;">Up to <?php echo e((string)$plan['banking_years']); ?> Years</strong>
+              <strong style="color: var(--color-text);">Up to <?php echo e((string)$plan['banking_years']); ?> Years</strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Resort Access Network:</span>
-              <strong style="color: #fff;"><?php echo e($plan['resorts_access']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($plan['resorts_access']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
               <span>Dining & Spa Privileges:</span>
@@ -65,7 +65,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
             </li>
             <li style="display: flex; justify-content: space-between; padding-top: 4px;">
               <span>Dedicated Concierge:</span>
-              <strong style="color: #fff;"><?php echo e($plan['concierge']); ?></strong>
+              <strong style="color: var(--color-text);"><?php echo e($plan['concierge']); ?></strong>
             </li>
           </ul>
         </div>
@@ -75,7 +75,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <div>
         <div class="card-luxury" style="padding: 36px; border: 1.5px solid var(--border-gold);">
           <div class="sub-tag" style="margin-bottom: 12px;">Priority Enrollment</div>
-          <h3 class="heading-serif" style="font-size: 1.6rem; color: #fff; margin-bottom: 8px;">Request Allocation Dossier</h3>
+          <h3 class="heading-serif" style="font-size: 1.6rem; color: var(--color-text); margin-bottom: 8px;">Request Allocation Dossier</h3>
           <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px;">
             A confidential prospectus and seasonal availability calendar for the <?php echo e($plan['short_title']); ?> will be dispatched immediately.
           </p>

@@ -42,9 +42,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <?php endforeach; ?>
     </div>
 
-    <div style="background: rgba(22, 38, 60, 0.6); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 40px; max-width: 860px; margin: 60px auto 0 auto; text-align: center;">
-      <h3 class="heading-serif" style="font-size: 1.6rem; color: #fff; margin-bottom: 12px;">Have Further Inquiries?</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;">
+    <div class="hotel-reserve-box" style="margin: 60px auto 0 auto; max-width: 860px; text-align: center; padding: 40px;">
+      <h3 class="heading-serif" style="font-size: 1.6rem; color: var(--color-text); margin-bottom: 12px; font-weight: 800;">Have Further Inquiries?</h3>
+      <p style="color: var(--color-text-muted); margin-bottom: 24px; font-size: 0.95rem;">
         Our Senior Lifestyle Advisors are available 24/7 to answer custom portfolio questions.
       </p>
       <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
