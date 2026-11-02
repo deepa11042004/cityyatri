@@ -53,6 +53,30 @@ function hotel_stay_types(?string $raw): array
 }
 
 /**
+ * Returns full property facts (geographic setting, classification, star rating, amenities, airport and transit).
+ */
+function hotel_extended_facts(array $hotel): array
+{
+    static $cache = null;
+    if ($cache === null) {
+        $cacheFile = dirname(__DIR__) . '/data/hotels-extended.php';
+        $cache = is_file($cacheFile) ? require $cacheFile : [];
+    }
+
+    $slug = (string)($hotel['slug'] ?? '');
+    $cached = $cache[$slug] ?? [];
+
+    return [
+        'geographic_location' => !empty($hotel['geographic_location']) ? $hotel['geographic_location'] : ($cached['geographic_location'] ?? (($hotel['location_name'] ?? '') . ', ' . ($hotel['country'] ?? ''))),
+        'resort_classification' => !empty($hotel['resort_classification']) ? $hotel['resort_classification'] : ($cached['resort_classification'] ?? 'Contemporary Luxury Hotel'),
+        'hospitality_rating' => !empty($hotel['hospitality_rating']) ? $hotel['hospitality_rating'] : ($cached['hospitality_rating'] ?? '★★★★☆ (4-Star Premium)'),
+        'amenities' => !empty($hotel['amenities']) ? $hotel['amenities'] : ($cached['amenities'] ?? 'Swimming Pool, Fine Dining Restaurant, Wellness Spa, 24/7 Concierge'),
+        'airport_proximity' => !empty($hotel['airport_proximity']) ? $hotel['airport_proximity'] : ($cached['airport_proximity'] ?? 'Convenient proximity to regional international airport'),
+        'transit_access' => !empty($hotel['transit_access']) ? $hotel['transit_access'] : ($cached['transit_access'] ?? 'Convenient access to nearest railway station & transit hub'),
+    ];
+}
+
+/**
  * Normalised filters from the query string.
  * $forcedType ('DOMESTIC' | 'INTERNATIONAL' | '') locks the region for region pages.
  */

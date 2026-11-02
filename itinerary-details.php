@@ -55,7 +55,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <li><span>Duration</span><strong><?php echo e(itinerary_duration($it)); ?></strong></li>
       <li><span>Journey Style</span><strong><?php echo e($it['category']); ?></strong></li>
       <li><span>Best Time</span><strong><?php echo e($it['best_time']); ?></strong></li>
-      <li><span>Region</span><strong><?php echo $it['location_type'] === 'DOMESTIC' ? 'India' : 'International'; ?></strong></li>
+      <li><span>Region</span><strong><?php echo e(itinerary_region_label($it)); ?></strong></li>
     </ul>
   </div>
 </section>

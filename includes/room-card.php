@@ -22,7 +22,13 @@ if (!isset($room) || !is_array($room)) {
       <span><?php echo e($room['area']); ?> • <?php echo e($room['bed_type']); ?></span>
     </div>
     <h3 class="card-title"><?php echo e($room['title']); ?></h3>
-    <p class="card-desc"><?php echo e($room['description']); ?></p>
+    <?php if (!empty($room['vibe'])): ?>
+      <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 12px;">
+        <strong style="color: var(--color-primary); font-weight: 700;">Vibe:</strong> <?php echo e($room['vibe']); ?>
+      </p>
+    <?php else: ?>
+      <p class="card-desc"><?php echo e($room['description']); ?></p>
+    <?php endif; ?>
 
     <div class="card-amenities">
       <?php foreach (array_slice($room['amenities'], 0, 4) as $amenity): ?>

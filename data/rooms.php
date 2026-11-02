@@ -6,76 +6,118 @@
 declare(strict_types=1);
 
 $roomCategories = [
-    'deluxe' => [
-        'id' => 'deluxe',
-        'title' => 'Deluxe Room',
+    'deluxe-rooms-suites' => [
+        'id' => 'deluxe-rooms-suites',
+        'title' => 'Deluxe Rooms & Suites',
         'capacity' => '2 Adults + 1 Child',
-        'area' => '420 - 500 sq.ft.',
-        'bed_type' => 'King Bed or Twin Beds',
+        'vibe' => 'Cozy, elegant, and perfect for standard comfort and relaxing getaways.',
+        'area' => '450 - 580 sq.ft.',
+        'bed_type' => 'Plush King Bed / Twin Options',
         'points_night' => 1000,
         'image' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-        'description' => 'Elegantly appointed sanctuary featuring modern aesthetic furnishings, handcrafted teakwood accents, luxury marble en-suite bathroom, and garden or courtyard views.',
+        'description' => 'Cozy, elegant, and perfect for standard comfort and relaxing getaways. Features modern aesthetic furnishings, handcrafted accents, luxury marble en-suite bathroom, and garden or courtyard views.',
         'amenities' => [
             'High-Speed Wi-Fi',
             '4K Smart Television',
-            'Premium Coffee Bar',
             'Italian Marble Bathroom',
             'Rain Shower & Bathrobe',
-            'Private Balcony'
+            'Private Balcony',
+            '24/7 Room Service'
         ]
     ],
-    'super-deluxe' => [
-        'id' => 'super-deluxe',
-        'title' => 'Super Deluxe / Executive Room',
+    'private-villas' => [
+        'id' => 'private-villas',
+        'title' => 'Private Villas',
         'capacity' => '2 Adults + 2 Children',
-        'area' => '580 - 680 sq.ft.',
-        'bed_type' => 'Grand King Bed + Daybed',
-        'points_night' => 1400,
+        'vibe' => 'Ultra-luxe spaces featuring private pools, expansive living areas, and top-tier hospitality.',
+        'area' => '1,600 - 2,800 sq.ft.',
+        'bed_type' => 'Master King En-Suites + Living Lounge',
+        'points_night' => 2800,
         'image' => 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
-        'description' => 'Spacious executive accommodation designed for elevated family luxury. Features panoramic valley or coastal sea views, dedicated lounge seating, and bespoke turndown service.',
+        'description' => 'Ultra-luxe spaces featuring private pools, expansive living areas, and top-tier hospitality. Enjoy complete seclusion, personal sun deck, and dedicated concierge care.',
         'amenities' => [
-            'Panoramic Sea / Mountain Views',
-            'Walk-in Wardrobe',
-            'Executive Work Desk',
-            'Deep Soaking Bathtub',
-            '24/7 In-Room Dining',
-            'Pillow Menu'
+            'Private Temperature Pool',
+            'Dedicated Lifestyle Butler',
+            'Expansive Sun Deck',
+            'Outdoor Rain Shower & Tub',
+            'Personal Dining Terrace',
+            'VIP Chauffeur Transfers'
         ]
     ],
-    'luxury-suite' => [
-        'id' => 'luxury-suite',
-        'title' => 'Luxury Suite / 1-BHK',
-        'capacity' => '4 Guests',
-        'area' => '850 - 1,100 sq.ft.',
-        'bed_type' => 'Master King Suite + Sofa Bed',
-        'points_night' => 2000,
-        'image' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
-        'description' => 'Expansive one-bedroom suite featuring a separate grand living room, dining salon, private sundeck, and powder room. Blends royal heritage detailing with contemporary opulence.',
+    'scenic-treehouses-cottages' => [
+        'id' => 'scenic-treehouses-cottages',
+        'title' => 'Scenic Treehouses & Cottages',
+        'capacity' => '2 Adults (Extra bed available for children)',
+        'vibe' => 'Unique, eco-friendly stays nestled in nature for a one-of-a-kind holiday experience.',
+        'area' => '550 - 750 sq.ft.',
+        'bed_type' => 'Canopy King Bed + Daybed',
+        'points_night' => 1600,
+        'image' => 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
+        'description' => 'Unique, eco-friendly stays nestled in nature for a one-of-a-kind holiday experience. Elevated among lush canopies and scenic valleys with wrap-around timber decks.',
         'amenities' => [
-            'Separate Master Bedroom & Living Hall',
-            'Private Dining Area',
-            'Panoramic Sun Terrace',
-            'Dual Vanity En-Suite',
-            'Butler Call System',
-            'Espresso Machine & Wine Fridge'
+            'Panoramic Canopy Vistas',
+            'Timber Woodburning Fireplace',
+            'Wrap-around Forest Deck',
+            'Organic Herbal Toiletries',
+            'Bird Watching Kit & Telescope',
+            'Nature Trail Concierge'
         ]
     ],
-    'privilege-crown-villa' => [
-        'id' => 'privilege-crown-villa',
-        'title' => 'Privilege Crown Villa / Presidential Suite',
-        'capacity' => '6 - 8 Guests',
-        'area' => '1,800 - 3,200 sq.ft.',
-        'bed_type' => '2-3 Master King En-Suites',
-        'points_night' => 3200,
-        'image' => 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
-        'description' => 'The absolute pinnacle of luxury vacation living. Private temperature-controlled plunge pool, dedicated private butler, private chef dining terrace, and sweeping private vistas.',
+    'luxury-houseboats' => [
+        'id' => 'luxury-houseboats',
+        'title' => 'Luxury Houseboats',
+        'capacity' => '2 Adults + 1 Child',
+        'vibe' => 'Serene water-bound suites offering traditional charm combined with modern amenities.',
+        'area' => '650 - 900 sq.ft.',
+        'bed_type' => 'Carved Teak King Suite',
+        'points_night' => 1800,
+        'image' => 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80',
+        'description' => 'Serene water-bound suites offering traditional charm combined with modern amenities. Drift through tranquil lagoons and pristine lakes with dedicated onboard chef service.',
         'amenities' => [
-            'Private Temperature-Controlled Pool',
-            'Dedicated 24/7 Private Butler',
-            'Personal Chef & Kitchen Bar',
-            'Private Jacuzzi on Terrace',
-            'Private Garden / Beach Access',
-            'Chauffeur VIP Transfers'
+            'Private Sun Observation Deck',
+            'Dedicated Private Onboard Chef',
+            'Traditional Handcrafted Woodwork',
+            'Climate-Controlled Glass Suite',
+            'Fresh Catch Dining Salon',
+            'Sunset Shikara / Boat Tour'
+        ]
+    ],
+    'geodesic-dome-stays' => [
+        'id' => 'geodesic-dome-stays',
+        'title' => 'Geodesic Dome Stays',
+        'capacity' => '2 Adults',
+        'vibe' => 'Transparent or semi-transparent futuristic domes designed for spectacular stargazing and panoramic nature views.',
+        'area' => '480 - 620 sq.ft.',
+        'bed_type' => 'Stargazer King Bed',
+        'points_night' => 1500,
+        'image' => 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80',
+        'description' => 'Transparent or semi-transparent futuristic domes designed for spectacular stargazing and panoramic nature views. Cozy up with 180° sky-domes and heated alpine comforts.',
+        'amenities' => [
+            '180° Stargazing Sky-Window',
+            'Climate Controlled Heating & AC',
+            'Private Jacuzzi Deck',
+            'Stargazing Telescope',
+            'Artisan Fire-pit Lounge',
+            'Breakfast in Dome'
+        ]
+    ],
+    'glamping-tents-cabins' => [
+        'id' => 'glamping-tents-cabins',
+        'title' => 'Glamping Tents & A-Frame Cabins',
+        'capacity' => '2 Adults + 1 Child',
+        'vibe' => 'Stylish, Instagram-friendly triangle cabins and luxury tents blending outdoor adventure with high-end comforts.',
+        'area' => '520 - 700 sq.ft.',
+        'bed_type' => 'Boho Loft King Bed + Daybed',
+        'points_night' => 1400,
+        'image' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
+        'description' => 'Stylish, Instagram-friendly triangle cabins and luxury tents blending outdoor adventure with high-end comforts. Features wooden A-frame architecture, private plunge tubs, and open-air decks.',
+        'amenities' => [
+            'A-Frame Architectural Loft',
+            'Private Open-Air Deck',
+            'En-Suite Designer Bathroom',
+            'Evening Campfire & Barbecue',
+            'Boho Chic Interior Decor',
+            'High-Speed Wi-Fi'
         ]
     ]
 ];

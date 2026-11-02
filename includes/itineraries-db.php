@@ -73,3 +73,70 @@ function itinerary_duration(array $it): string
     $n = (int)$it['duration_nights'];
     return $d . ($d === 1 ? ' Day' : ' Days') . ' / ' . $n . ($n === 1 ? ' Night' : ' Nights');
 }
+
+/**
+ * Returns formatted region with continent and location part (e.g., "International: Southeast Asia").
+ */
+function itinerary_region_label(array $it): string
+{
+    if (!empty($it['region'])) {
+        return (string)$it['region'];
+    }
+
+    $slug = (string)($it['slug'] ?? '');
+    $destSlug = (string)($it['destination_slug'] ?? '');
+    $loc = strtolower((string)($it['location_label'] ?? ''));
+
+    // Southeast Asia
+    if (in_array($destSlug, ['phuket', 'krabi', 'bali', 'singapore', 'bangkok', 'pattaya', 'thailand', 'indonesia', 'malaysia'], true)
+        || str_contains($slug, 'phuket') || str_contains($slug, 'krabi') || str_contains($slug, 'bali') || str_contains($slug, 'singapore')
+        || str_contains($loc, 'thailand') || str_contains($loc, 'indonesia') || str_contains($loc, 'singapore') || str_contains($loc, 'malaysia')) {
+        return 'International: Southeast Asia';
+    }
+
+    // Middle East
+    if ($destSlug === 'dubai' || str_contains($slug, 'dubai') || str_contains($loc, 'dubai') || str_contains($loc, 'emirates') || str_contains($loc, 'uae')) {
+        return 'International: Middle East';
+    }
+
+    // South Asia / Indian Ocean
+    if ($destSlug === 'maldives' || str_contains($slug, 'maldives') || str_contains($loc, 'maldives') || str_contains($loc, 'sri lanka')) {
+        return 'International: South Asia (Indian Ocean)';
+    }
+
+    // Europe
+    if (in_array($destSlug, ['london', 'paris', 'rome', 'switzerland', 'spain', 'turkey', 'istanbul', 'georgia'], true)
+        || str_contains($loc, 'united kingdom') || str_contains($loc, 'france') || str_contains($loc, 'italy') || str_contains($loc, 'switzerland')) {
+        return 'International: Europe';
+    }
+
+    // Americas
+    if (in_array($destSlug, ['las-vegas', 'united-states-of-america'], true) || str_contains($loc, 'united states') || str_contains($loc, 'nevada')) {
+        return 'International: North America';
+    }
+
+    if (($it['location_type'] ?? '') === 'INTERNATIONAL') {
+        return 'International: Overseas';
+    }
+
+    // Domestic regions (India)
+    if (str_contains($loc, 'kashmir') || str_contains($loc, 'srinagar') || str_contains($loc, 'gulmarg') || str_contains($loc, 'himachal')
+        || str_contains($loc, 'manali') || str_contains($loc, 'shimla') || str_contains($loc, 'uttarakhand') || str_contains($loc, 'rishikesh')) {
+        return 'India: Northern Himalayas';
+    }
+
+    if (str_contains($loc, 'rajasthan') || str_contains($loc, 'udaipur') || str_contains($loc, 'jaipur') || str_contains($loc, 'jodhpur') || str_contains($loc, 'jaisalmer')) {
+        return 'India: Western Rajasthan';
+    }
+
+    if (str_contains($loc, 'goa') || str_contains($loc, 'maharashtra') || str_contains($loc, 'mumbai') || str_contains($loc, 'pune')) {
+        return 'India: Western Coast';
+    }
+
+    if (str_contains($loc, 'kerala') || str_contains($loc, 'munnar') || str_contains($loc, 'alleppey') || str_contains($loc, 'kochi')
+        || str_contains($loc, 'karnataka') || str_contains($loc, 'bangalore') || str_contains($loc, 'tamil nadu')) {
+        return 'India: Southern Coast & Backwaters';
+    }
+
+    return 'India: National Network';
+}

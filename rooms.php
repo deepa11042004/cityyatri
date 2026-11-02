@@ -5,8 +5,8 @@
 
 declare(strict_types=1);
 
-$pageTitle = 'Luxury Rooms & Suites Portfolio';
-$pageDescription = 'Discover Deluxe Rooms, Super Deluxe Executive Suites, Luxury 1-BHK Havelis, and Privilege Crown Pool Villas with Club Yatri.';
+$pageTitle = 'Stays That Feel Like Home, Only Better | Club Yatri';
+$pageDescription = 'From cozy, comfortable rooms for a relaxing getaway to stunning private villas built for pure luxury, every stay is handpicked to give you breathtaking views, modern comforts, and memories you will cherish forever.';
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
@@ -23,10 +23,10 @@ include __DIR__ . '/includes/breadcrumbs.php';
   <div class="container">
     <div class="sub-tag">Accommodations Standards</div>
     <h1 class="heading-serif" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 16px;">
-      Signature Accommodations & <span class="gold-text">Villas</span>
+      Stays That Feel Like <span class="gold-text" style="color: var(--color-primary);">Home, Only Better</span>
     </h1>
-    <p style="color: var(--text-secondary); max-width: 720px; margin: 0 auto; font-size: 1.1rem;">
-      Every suite and private villa in the Club Yatri network is calibrated to rigorous 5-star hospitality benchmarks, boasting panoramic vistas, marble en-suites, and tailored in-room services.
+    <p style="color: var(--text-secondary); max-width: 820px; margin: 0 auto; font-size: 1.12rem; line-height: 1.75;">
+      From cozy, comfortable rooms for a relaxing getaway to stunning private villas built for pure luxury, every stay is handpicked to give you breathtaking views, modern comforts, and memories you will cherish forever.
     </p>
   </div>
 </section>

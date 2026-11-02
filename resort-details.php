@@ -58,24 +58,40 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <h3 class="heading-serif" style="font-size: 1.3rem; color: #fff; margin-bottom: 16px;">Property Highlights</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: var(--text-secondary);">
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
-              <span>Geographic Location:</span>
-              <strong style="color: #fff;"><?php echo e($resort['location']); ?></strong>
+              <span style="flex-shrink: 0; min-width: 140px;">Geographic Location:</span>
+              <strong style="color: #fff; text-align: right;"><?php echo e($resort['location']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
-              <span>Resort Classification:</span>
-              <strong style="color: var(--gold-light);"><?php echo e($resort['category']); ?></strong>
+              <span style="flex-shrink: 0; min-width: 140px;">Resort Classification:</span>
+              <strong style="color: var(--gold-light); text-align: right;"><?php echo e($resort['category']); ?></strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
-              <span>Points per Night:</span>
-              <strong style="color: var(--teal-accent);"><?php echo format_inr($resort['points_night']); ?> Pts</strong>
+              <span style="flex-shrink: 0; min-width: 140px;">Hospitality Rating:</span>
+              <strong style="color: var(--gold-primary); text-align: right;"><?php echo render_stars((int)$resort['rating']); ?> (5-Star Luxury)</strong>
             </li>
             <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
-              <span>Eligible Ownership Nights:</span>
-              <strong style="color: #fff;"><?php echo e($resort['allotment']); ?></strong>
+              <span style="flex-shrink: 0; min-width: 140px;">Key Resort Amenities:</span>
+              <strong style="color: #fff; text-align: right;"><?php echo e(implode(', ', $resort['amenities'])); ?></strong>
+            </li>
+            <?php if (!empty($resort['airport_proximity'])): ?>
+            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+              <span style="flex-shrink: 0; min-width: 140px;">Airport Proximity:</span>
+              <strong style="color: #fff; text-align: right;"><?php echo e($resort['airport_proximity']); ?></strong>
+            </li>
+            <?php endif; ?>
+            <?php if (!empty($resort['transit_access'])): ?>
+            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+              <span style="flex-shrink: 0; min-width: 140px;">Railway &amp; Transit Access:</span>
+              <strong style="color: #fff; text-align: right;"><?php echo e($resort['transit_access']); ?></strong>
+            </li>
+            <?php endif; ?>
+            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+              <span style="flex-shrink: 0; min-width: 140px;">Points per Night:</span>
+              <strong style="color: var(--teal-accent); text-align: right;"><?php echo format_inr($resort['points_night']); ?> Pts</strong>
             </li>
             <li style="display: flex; justify-content: space-between; padding-top: 4px;">
-              <span>Hospitality Rating:</span>
-              <strong style="color: var(--gold-primary);"><?php echo render_stars((int)$resort['rating']); ?> (5-Star Luxury)</strong>
+              <span style="flex-shrink: 0; min-width: 140px;">Eligible Ownership Nights:</span>
+              <strong style="color: #fff; text-align: right;"><?php echo e($resort['allotment']); ?></strong>
             </li>
           </ul>
         </div>

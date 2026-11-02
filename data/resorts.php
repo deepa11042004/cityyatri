@@ -19,6 +19,8 @@ $resortsList = [
         'summary' => 'Direct private beach cabanas, Portuguese heritage architecture, infinity plunge pool suites, and fresh seafood sommelier dining.',
         'allotment' => '7 to 21 Nights / Year',
         'amenities' => ['Private Beach', 'Ayurveda Spa', 'Butler Service', 'Yacht Charter', 'Fine Dining'],
+        'airport_proximity' => 'Approx. 28 km (40 mins) from Dabolim Airport (GOI) / 60 km from Mopa (GOX)',
+        'transit_access' => 'Approx. 12 km (20 mins) from Madgaon (Margao) Railway Junction',
         'details' => 'Set on the peaceful shores of Varca Beach in South Goa, The Azure Sands features 45 luxury pool villas, an authentic Ayurvedic spa clinic, and direct white-sand beach access reserved exclusively for Club Yatri vacation owners.'
     ],
     'udaivilas-haveli' => [
@@ -34,6 +36,8 @@ $resortsList = [
         'summary' => 'A restored 18th-century Rajput palace offering sunset lake vistas, hand-carved stone arches, and candlelit royal banquets.',
         'allotment' => '7 to 14 Nights / Year',
         'amenities' => ['Lakefront Suites', 'Heritage Courtyards', 'Royal Dining', 'Helipad Access', 'Sunset Cruise'],
+        'airport_proximity' => 'Approx. 24 km (35 mins) from Maharana Pratap Airport (UDR)',
+        'transit_access' => 'Approx. 4 km (12 mins) from Udaipur City Railway Station',
         'details' => 'Overlooking the waters of Lake Pichola and the City Palace, this heritage retreat combines royal Rajput hospitality with world-class wellness, private solar boat transfers, and royal banqueting.'
     ],
     'cedar-mist-manali' => [
@@ -49,6 +53,8 @@ $resortsList = [
         'summary' => 'Pine-scented mountain air and glacier panoramas. Timber chalets with wood-burning fireplaces and heated outdoor glass pool.',
         'allotment' => '7 to 21 Nights / Year',
         'amenities' => ['Fireplace Suites', 'Heated Glass Pool', 'Trekking Butler', 'Snow Lounge', 'Alpine Spa'],
+        'airport_proximity' => 'Approx. 50 km (1.5 hrs) from Kullu-Manali Airport (Bhuntar / KUU)',
+        'transit_access' => 'Approx. 140 km from Joginder Nagar Station / Private Volvo Bus Terminal Manali',
         'details' => 'Nestled in an untouched pine forest in the Solang Valley, Cedar Mist offers cozy, Scandinavian-inspired timber chalets with personal fireplaces, floor-to-ceiling snow views, and guided Himalayan trekking.'
     ],
     'amber-heritage-jaipur' => [
@@ -64,6 +70,8 @@ $resortsList = [
         'summary' => 'Aristocratic Jaipur luxury with peacock gardens, private polo field access, frescoed suites, and royal afternoon high teas.',
         'allotment' => '7 to 14 Nights / Year',
         'amenities' => ['Polo Club Access', 'Heritage Suites', 'Royal High Tea', 'Vintage Car Transfers'],
+        'airport_proximity' => 'Approx. 22 km (35 mins) from Jaipur International Airport (JAI)',
+        'transit_access' => 'Approx. 12 km (25 mins) from Jaipur Junction Railway Station',
         'details' => 'Set against the Aravali hills near Amer Fort, this aristocratic retreat features authentic royal suites, private polo exhibitions, and bespoke royal dining.'
     ],
     'phuket-coral-haven' => [
@@ -79,6 +87,8 @@ $resortsList = [
         'summary' => 'Perched high on the granite headlands of Kamala, overlooking the sapphire Andaman Sea with private infinity plunge pools.',
         'allotment' => 'Global Exchange',
         'amenities' => ['Cliffside Infinity Pool', 'Thai Herb Spa', 'Private Yacht Berth', 'Private Chef'],
+        'airport_proximity' => 'Approx. 28 km (35 mins) from Phuket International Airport (HKT)',
+        'transit_access' => 'Route 402 Coastal Highway Corridor & Kamala Pier Access',
         'details' => 'Directly overlooking the Andaman Sea along Phuket’s famed Millionaires’ Mile, offering Thai teakwood design, personal infinity pools, and private catamaran day cruises to the Phi Phi Islands.'
     ],
     'ayung-rainforest-bali' => [
@@ -94,6 +104,8 @@ $resortsList = [
         'summary' => 'Cantilevered plunge pools over jungle canopies, sacred Balinese cleansing rituals, and private river waterfall dining.',
         'allotment' => 'Global Exchange',
         'amenities' => ['Jungle Plunge Pool', 'Balinese Healers', 'Organic Cuisine', 'Waterfall Deck'],
+        'airport_proximity' => 'Approx. 38 km (1 hr) from I Gusti Ngurah Rai International Airport (DPS)',
+        'transit_access' => 'Sunset Road & Ubud Highway Corridor with Resort Helipad Access',
         'details' => 'An award-winning wellness hideaway in the sacred Ubud Valley, featuring private plunge pool villas hanging dramatically over the Ayung River gorge.'
     ],
     'dubai-palm-mirage' => [
@@ -109,6 +121,8 @@ $resortsList = [
         'summary' => 'Floor-to-ceiling Arabian Gulf and Dubai Marina skyline views, private infinity terrace, and luxury chauffeur transfers.',
         'allotment' => 'Global Exchange',
         'amenities' => ['Sky Infinity Pool', 'Michelin Chefs', 'Chauffeur Service', 'Private Marina'],
+        'airport_proximity' => 'Approx. 32 km (25 mins) from Dubai International Airport (DXB)',
+        'transit_access' => 'Direct connection via The Palm Monorail & Sheikh Zayed Road (E11)',
         'details' => 'Ultra-modern private residences situated on the crescent of Palm Jumeirah with panoramic city skyline views, private beach clubs, and 24/7 dedicated lifestyle concierges.'
     ]
 ];

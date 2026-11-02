@@ -13,6 +13,7 @@ $hotelMap = hotel_safe_map_url($hotel['map_link'] ?? '');
 $hotelStays = hotel_stay_types($hotel['stay_types'] ?? '');
 $hotelRelated = hotels_related($hotel);
 $hotelParas = array_filter(array_map('trim', preg_split('/\n\s*\n/', (string)($hotel['description'] ?? ''))));
+$hotelFacts = hotel_extended_facts($hotel);
 ?>
 <section class="section" style="padding-top: 50px; padding-bottom: 70px;">
   <div class="container">
@@ -41,6 +42,12 @@ $hotelParas = array_filter(array_map('trim', preg_split('/\n\s*\n/', (string)($h
           <h3 class="heading-serif" style="font-size: 1.25rem; margin-bottom: 14px;">Property Details</h3>
           <ul class="hotel-facts">
             <li><span>Destination</span><strong><?php echo e($hotel['location_name']); ?>, <?php echo e($hotel['country']); ?></strong></li>
+            <li><span>Geographic Location</span><strong><?php echo e($hotelFacts['geographic_location']); ?></strong></li>
+            <li><span>Resort Classification</span><strong style="color: var(--color-primary);"><?php echo e($hotelFacts['resort_classification']); ?></strong></li>
+            <li><span>Hospitality Rating</span><strong style="color: var(--color-primary); font-size: 1.02rem;"><?php echo e($hotelFacts['hospitality_rating']); ?></strong></li>
+            <li><span>Key Resort Amenities</span><strong><?php echo e($hotelFacts['amenities']); ?></strong></li>
+            <li><span>Airport Proximity</span><strong><?php echo e($hotelFacts['airport_proximity']); ?></strong></li>
+            <li><span>Railway &amp; Transit Access</span><strong><?php echo e($hotelFacts['transit_access']); ?></strong></li>
             <li><span>Property Type</span><strong><?php echo e(hotel_type_label($hotel['hotel_type'])); ?></strong></li>
             <li><span>Category</span><strong><?php echo e(hotel_category_label($hotel['category'])); ?></strong></li>
             <?php if ($hotelStays): ?>
