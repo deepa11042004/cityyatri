@@ -24,12 +24,12 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
 <section class="section" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
   <div class="container">
-    <div class="sub-tag">Asset-Backed Network</div>
+    <div class="sub-tag">Your Travel Partner</div>
     <h1 class="heading-serif" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 16px;">
-      The Club Yatri <span class="gold-text">Resort Network</span>
+      Explore, Select &amp; Book <span class="gold-text">Your Favorite Stay</span>
     </h1>
     <p style="color: var(--text-secondary); max-width: 740px; margin: 0 auto; font-size: 1.1rem;">
-      Combining equity-backed flagship retreats in prime Indian leisure corridors with strategic global exchange privileges across 100+ countries.
+      Discover top-rated resorts, cozy cottages, and luxury villas across prime locations, open for easy and instant reservations.
     </p>
   </div>
 </section>

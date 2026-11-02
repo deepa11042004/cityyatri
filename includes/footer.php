@@ -74,6 +74,11 @@ global $socialLinks;
         </div>
       </div>
 
+      <div class="footer-disclaimer" role="note">
+        <strong>Disclaimer:</strong>
+        The hotels, resorts, villas, treehouses, houseboats, domes, and tents displayed on Club Yatri are curated from our directly managed properties, partner resorts, and verified network stays. All property images, logos, and descriptions are used for representation and informational purposes to help users explore and book their ideal stay. Club Yatri acts as a booking and hospitality network platform, and respective property rules, pricing, and policies apply at the time of check-in.
+      </div>
+
       <div class="footer-bottom">
         <div>
           © <?php echo date('Y'); ?> <?php echo e(LEGAL_ENTITY_NAME); ?>. All Rights Reserved.
