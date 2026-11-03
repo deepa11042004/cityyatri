@@ -37,8 +37,11 @@
   --shadow-lg: 0 22px 52px rgba(26, 26, 26, 0.14);
 
   /* One modern sans for everything (existing serif tokens are remapped) */
-  --font-serif-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ui: 'Google Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-para: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--font-ui);
+  --font-serif-display: var(--font-ui);
+  --font-serif-body: var(--font-ui);
 
   --header-height: 76px;
   --trans-lift: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1538,3 +1541,33 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
 
 @media (max-width: 1200px) { .pass-collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .pass-collection-grid { grid-template-columns: 1fr; } .pass-terms { padding: 18px 16px; } }
+
+
+/* Typography: Google Sans for all text, Plus Jakarta Sans for paragraphs only */
+body, button, input, select, textarea, .btn, label { font-family: var(--font-ui); }
+h1, h2, h3, h4, h5, h6, .heading-serif, .heading-display, .section-title { font-family: var(--font-ui); }
+p { font-family: var(--font-para); }
+
+/* Pass cards as banner images with the enquiry button underneath */
+.pass-stack { --stack-top: 104px; --peek: 36px; --stack-w: min(1200px, calc(100vw - 48px), calc((100vh - 230px) * 1.79)); }
+.pass-card.pass-card-img { padding: 0; overflow: hidden; border-radius: 28px; }
+.pass-banner { display: block; width: 100%; height: auto; }
+.pass-banner-bar { display: flex; justify-content: center; padding: 12px 16px 14px; background: #FFFFFF; }
+.pass-banner-bar .pass-cta { width: auto; min-width: 260px; }
+@media (max-width: 900px), (max-height: 420px) {
+  .pass-card.pass-card-img { padding: 0; border-radius: 20px; }
+  .pass-banner-bar .pass-cta { width: 100%; min-width: 0; }
+}
+
+
+/* Pass banner cards: slightly larger, square corners */
+.pass-stack { --stack-w: min(1320px, calc(100vw - 32px), calc((100vh - 200px) * 1.9)); }
+.pass-card.pass-card-img { border-radius: 0; }
+@media (max-width: 900px), (max-height: 420px) { .pass-card.pass-card-img { border-radius: 0; } }
+
+/* Click a pass banner to view it full screen */
+.pass-zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.pass-lightbox { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 0, 0.88); cursor: zoom-out; }
+.pass-lightbox[hidden] { display: none; }
+.pass-lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6); cursor: default; }
+.pass-lightbox-close { position: absolute; top: 14px; right: 20px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #FFFFFF; color: #111; font-size: 28px; line-height: 1; cursor: pointer; }

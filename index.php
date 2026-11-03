@@ -431,51 +431,14 @@ $subscriptionPasses = [
       <?php foreach ($subscriptionPasses as $i => $p): ?>
         <?php if ($i > 0): ?><div class="pass-gap" aria-hidden="true"></div><?php endif; ?>
         <div class="pass-anchor" aria-hidden="true"></div>
-        <article class="pass-card tone-<?php echo $i + 1; ?><?php echo $p['featured'] ? ' is-featured' : ''; ?>" style="--i: <?php echo $i; ?>;">
-          <div class="pass-head">
-            <span class="pass-count"><?php echo $i + 1; ?>/<?php echo $passTotal; ?></span>
-            <span class="pass-tag"><?php echo e($p['tag']); ?></span>
-          </div>
-          <h3 class="pass-title"><?php echo e($p['title']); ?></h3>
-          <p class="pass-intro"><?php echo e($p['intro']); ?></p>
-
-          <div class="pass-tiles">
-            <div class="pass-tile">
-              <div class="pass-label">ANNUAL ALLOCATION</div>
-              <div class="pass-value"><?php echo e($p['allocation']); ?></div>
-              <div class="pass-note"><?php echo e($p['allocation_note']); ?></div>
-            </div>
-
-            <div class="pass-tile">
-              <div class="pass-label">Annual Subscription &amp; Concierge Fee</div>
-              <div class="pass-value"><?php echo e($p['fee']); ?></div>
-              <div class="pass-note"><?php echo e($p['fee_note']); ?></div>
-            </div>
-
-            <?php if ($p['policy']): ?>
-              <div class="pass-tile">
-                <div class="pass-label"><?php echo e($p['policy_title']); ?></div>
-                <ul class="pass-policy">
-                  <?php foreach ($p['policy'] as $line): ?>
-                    <?php [$k, $v] = array_pad(explode(':', $line, 2), 2, ''); ?>
-                    <li><strong><?php echo e($k); ?>:</strong><?php echo e($v); ?></li>
-                  <?php endforeach; ?>
-                </ul>
-                <?php if ($p['policy_note'] !== ''): ?><div class="pass-note"><?php echo e($p['policy_note']); ?></div><?php endif; ?>
-              </div>
-            <?php endif; ?>
-
-            <div class="pass-tile pass-tile-perks">
-              <div class="pass-label">KEY FEATURES</div>
-              <ul class="pass-perks">
-                <?php foreach ($p['perks'] as $perk): ?>
-                  <li><?php echo e($perk); ?></li>
-                <?php endforeach; ?>
-              </ul>
-              <a href="<?php echo url('booking-request.php?plan=' . urlencode($p['plan'])); ?>" class="<?php echo $p['featured'] ? 'btn-red' : 'btn-yellow'; ?> pass-cta">
-                Enquire <?php echo (int)$p['years']; ?>-Year Pass
-              </a>
-            </div>
+        <article class="pass-card pass-card-img tone-<?php echo $i + 1; ?>" style="--i: <?php echo $i; ?>;">
+          <button type="button" class="pass-zoom" aria-label="View <?php echo e($p['title']); ?> full screen">
+            <img class="pass-banner" src="<?php echo e(url('images/passes/pass-' . (int)$p['years'] . '-year.jpg')); ?>" alt="<?php echo e($p['title']); ?>" width="2000" height="1116"<?php echo $i > 0 ? ' loading="lazy"' : ''; ?>>
+          </button>
+          <div class="pass-banner-bar">
+            <a href="<?php echo url('booking-request.php?plan=' . urlencode($p['plan'])); ?>" class="btn-yellow pass-cta">
+              Enquire <?php echo (int)$p['years']; ?>-Year Pass
+            </a>
           </div>
         </article>
       <?php endforeach; ?>
@@ -483,6 +446,29 @@ $subscriptionPasses = [
     </div>
   </div>
 </section>
+
+<div class="pass-lightbox" id="passLightbox" role="dialog" aria-modal="true" aria-label="Pass image" hidden>
+  <button type="button" class="pass-lightbox-close" aria-label="Close">&times;</button>
+  <img id="passLightboxImg" src="" alt="">
+</div>
+<script>
+(function () {
+  var box = document.getElementById('passLightbox');
+  var big = document.getElementById('passLightboxImg');
+  if (!box) { return; }
+  function close() { box.hidden = true; big.src = ''; document.body.style.overflow = ''; }
+  document.querySelectorAll('.pass-zoom').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var img = btn.querySelector('img');
+      big.src = img.currentSrc || img.src; big.alt = img.alt;
+      box.hidden = false; document.body.style.overflow = 'hidden';
+      box.querySelector('.pass-lightbox-close').focus();
+    });
+  });
+  box.addEventListener('click', function (e) { if (e.target !== big) { close(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) { close(); } });
+})();
+</script>
 
 <script>
 /* Stacked pass cards (scroll-linked): every card shrinks a little as it pins to the top, and cards further
