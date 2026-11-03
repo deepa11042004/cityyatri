@@ -296,19 +296,10 @@ include __DIR__ . '/includes/navbar.php';
 
         <div class="pass-collection-grid">
           <?php foreach ($passCollection as $i => $pc): ?>
-            <article class="pc-card pc-<?php echo e($pc['tone']); ?>">
-              <div class="pc-num"><?php echo $i + 1; ?></div>
-              <h5 class="pc-name"><?php echo e($pc['name']); ?></h5>
-              <div class="pc-season"><?php echo e($pc['season']); ?></div>
-              <div class="pc-price-label">Investment Price</div>
-              <div class="pc-price"><?php echo e($pc['price']); ?></div>
-              <dl class="pc-list">
-                <div><dt>Season Access</dt><dd><?php echo e($pc['access']); ?></dd></div>
-                <div><dt>Access &amp; Experience</dt><dd><?php echo e($pc['experience']); ?></dd></div>
-                <div><dt>Blackout Dates</dt><dd><?php echo e($pc['blackout']); ?></dd></div>
-                <div><dt>Annual Allocation</dt><dd>6 Nights / 7 Days per year.</dd></div>
-                <div><dt>Annual Subscription &amp; Concierge Fee (ACF)</dt><dd>₹14,999 / Year (Mandatory).</dd></div>
-              </dl>
+            <article class="pc-card pc-img pc-<?php echo e($pc['tone']); ?>">
+              <button type="button" class="pass-zoom" aria-label="View <?php echo e($pc['name']); ?> full screen">
+                <img src="<?php echo e(url('images/passes/pc-' . $pc['tone'] . '.jpg')); ?>" alt="<?php echo e($pc['name']); ?> - <?php echo e($pc['season']); ?>" loading="lazy">
+              </button>
             </article>
           <?php endforeach; ?>
         </div>

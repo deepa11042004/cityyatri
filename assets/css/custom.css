@@ -1571,3 +1571,9 @@ p { font-family: var(--font-para); }
 .pass-lightbox[hidden] { display: none; }
 .pass-lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6); cursor: default; }
 .pass-lightbox-close { position: absolute; top: 14px; right: 20px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #FFFFFF; color: #111; font-size: 28px; line-height: 1; cursor: pointer; }
+
+/* Pass collection cards as images */
+.pc-card.pc-img { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: var(--shadow-card); overflow: hidden; }
+.pc-card.pc-img .pass-zoom img { display: block; width: 100%; height: auto; }
+
+.pass-collection-grid:has(.pc-img) { align-items: start; }
