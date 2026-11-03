@@ -427,7 +427,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .backend-tag { background: var(--tint-amber); border: 0; color: var(--color-primary-dark); border-radius: var(--radius-full); }
 
 .flagship-card-25y {
-  background: url('../../images/section-bg.jpg') center / cover no-repeat;
+  background: url('../../images/section-bg-grey.jpg') center / cover no-repeat;
   border: 0;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
@@ -978,7 +978,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 
 /* Other Subscription Passes: same background as the 25-Year Pass card */
 #backendPassesSection {
-  background: #fff6c8 url('../../images/section-bg.jpg') center / cover no-repeat;
+  background: #F2F3F5 url('../../images/section-bg-grey.jpg') center / cover no-repeat;
 }
 
 /* Breadcrumb ribbon (Home / Page) removed site-wide */
