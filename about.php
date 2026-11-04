@@ -87,34 +87,88 @@ include __DIR__ . '/includes/breadcrumbs.php';
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Our Guarantees</div>
-      <h2 class="section-title heading-serif">The Four Pillars of <span class="gold-text">Club Yatri</span></h2>
+      <h2 class="section-title heading-serif">The 4 Pillars of <span class="gold-text">Club Yatri</span></h2>
+      <p class="section-desc">Designed for your family's safety, comfort, and unforgettable memories.</p>
     </div>
 
     <div class="grid-4">
       <div class="card-luxury" style="padding: 32px 24px;">
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">Zero Blackout Guarantee</h3>
+        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 1 · Family Safety &amp; Care</div>
+        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Kid-Friendly &amp; Safe Spaces</h3>
+        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">24/7 Medical &amp; Security Support</p>
         <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          We maintain guaranteed allocation pools during Diwali, Christmas, New Year, and summer holidays without blackout restrictions for our Sovereign and Crest tiers.
+          Dedicated kids' play zones, safe swimming pools, child-proof room setups, and a 24/7 doctor-on-call for immediate assistance during emergencies.
         </p>
       </div>
       <div class="card-luxury" style="padding: 32px 24px;">
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">Uncompromising 5-Star QA</h3>
+        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 2 · Ultimate Comfort &amp; Dining</div>
+        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Tailored Family Dining &amp; Suites</h3>
+        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Home-Style Food &amp; 24/7 Service</p>
         <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Every property in the Club Yatri portfolio undergoes biannual 120-point inspections covering hygiene, culinary quality, and linen standards.
+          Customized low-spice meals for children and elders, pure vegetarian/Jain options, spacious family suites, and round-the-clock in-room dining.
         </p>
       </div>
       <div class="card-luxury" style="padding: 32px 24px;">
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">Perpetual Family Inheritance</h3>
+        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 3 · Hassle-Free Experience</div>
+        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Seamless Travel &amp; Concierge</h3>
+        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Door-to-Door Pickup &amp; Instant Check-in</p>
         <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Your vacation deed is an asset. Name children or relatives as legal successors with zero notary transfer friction or transfer penalties.
+          Door-to-door luxury transfers, zero-waiting room check-in upon arrival, and a dedicated personal relationship manager for your entire trip.
         </p>
       </div>
       <div class="card-luxury" style="padding: 32px 24px;">
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">Dedicated Senior Butler</h3>
+        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 4 · Unforgettable Memories &amp; Savings</div>
+        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Family Activities &amp; Zero Hidden Fees</h3>
+        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Flexible Dates &amp; Transparent Pricing</p>
         <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          You never call a generic call center. A certified Lifestyle Concierge manages your vacation preferences, flight connections, and in-villa requests.
+          Evening family bonfires, indoor gaming, complimentary family photo sessions, and absolute freedom to reschedule dates without heavy penalties.
         </p>
       </div>
+    </div>
+
+    <!-- Member vs Non-Member -->
+    <div class="pillar-block">
+      <h3 class="pillar-block-title">Member vs Non-Member Comparison</h3>
+      <div class="pillar-table-wrap">
+        <table class="pillar-table">
+          <thead><tr><th>Features &amp; Privileges</th><th>Subscribed Members</th><th>Non-Subscribers</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Booking Access &amp; Rates</th><td>Priority allocation pool, guaranteed price hike protection, and transparent subscriber tariffs.</td><td>Standard guest booking terms with seasonal dynamic surge pricing.</td></tr>
+            <tr><th scope="row">Rollover Night</th><td>Unused nights never expire! Accumulate and combine together in the final year for a long holiday.</td><td>Standard single-season booking; no carry-forward or accumulation facility.</td></tr>
+            <tr><th scope="row">Check-in &amp; Desk</th><td>Fast-track VIP check-in desk, dedicated luggage unloading support, and arrival lounge access.</td><td>Standard reception queue and general check-in process.</td></tr>
+            <tr><th scope="row">Room &amp; Safety</th><td>Preferred room/suite views, child-safe room essentials check, and custom pillow/bed choices.</td><td>Standard room inventory allocation based on immediate availability.</td></tr>
+            <tr><th scope="row">Dining &amp; Occasions</th><td>Peak-hour priority table seating, custom spice/temperature coordination, and cake-cutting setup.</td><td>Standard dining arrangements based on live restaurant availability.</td></tr>
+            <tr><th scope="row">Local &amp; Departure Care</th><td>Dedicated itinerary, trusted transport, smooth check-out, and car windshield cleaning support.</td><td>Standard property information and standard departure formalities.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Priority privileges -->
+    <div class="pillar-block">
+      <h3 class="pillar-block-title">For Subscribed Members (Priority Privileges)</h3>
+      <ul class="pillar-list">
+        <li><strong>Rollover Night &amp; Priority Pool:</strong> Unused subscription nights never expire and combine in the final year for a long holiday. Priority allocation pool access during peak seasons, Diwali, and New Year.</li>
+        <li><strong>Price Hike Protection &amp; VIP Check-in:</strong> Protection from steep seasonal surge pricing with transparent subscriber tariffs. Express check-in desk, luggage unloading assistance, and welcome lounge access.</li>
+        <li><strong>Room Safety &amp; Peak Dining:</strong> First choice on preferred room views/suites with child-safe room checks. Priority table seating during peak dinner hours and custom meal spice coordination.</li>
+      </ul>
+    </div>
+
+    <!-- Complete package -->
+    <div class="pillar-block">
+      <h3 class="pillar-block-title">Club Yatri: The Complete Subscriber Privilege Package</h3>
+      <ul class="pillar-list pillar-list-pkg">
+        <li><strong>1. Stay &amp; Rollover Protection</strong><span>Subscribed room accommodations backed by our exclusive Rollover Night rule. Unused nights never expire; they accumulate year after year and combine together in your subscription's final year for one unforgettable long holiday. <em>(Subject to advance booking and room availability)</em></span></li>
+        <li><strong>2. Travel Ticketing Assistance</strong><span>Dedicated assistance and coordination support for booking your family's train, bus, or flight tickets through trusted travel partners and platforms.</span></li>
+        <li><strong>3. Verified Taxi &amp; Local Guide Coordination</strong><span>Reliable local taxi arrangements for pick-up/drop and sightseeing, along with experienced local guide coordination to ensure a safe and informative family tour.</span></li>
+        <li><strong>4. Curated Sightseeing Itinerary</strong><span>Tailor-made local sightseeing itineraries, scenic viewpoints guidance, and family-related planning designed to make your holiday peaceful and hassle-free.</span></li>
+        <li><strong>5. Resort Activities &amp; Family Entertainment</strong><span>Access to curated indoor board games, family recreation zones, evening bonfire setups (where applicable), and priority slot bookings for trusted partner adventure activities nearby.</span></li>
+        <li><strong>6. Arrival, Front Desk &amp; Luggage Support</strong><span>Fast-track express check-in desk upon arrival, welcome lounge access for elders and kids, and dedicated parking-bay luggage unloading assistance.</span></li>
+        <li><strong>7. Room Comfort &amp; Child Safety Care</strong><span>Preferred room views, child-safe room essentials checks (such as sharp-corner guards), and custom pillow/bed comfort choices prior to arrival.</span></li>
+        <li><strong>8. Peak Dining &amp; Celebration Coordination</strong><span>Priority table seating during peak dinner hours, custom meal spice/temperature coordination for toddlers and elders, and dedicated assistance for birthday or anniversary setups.</span></li>
+        <li><strong>9. Departure &amp; Return Care</strong><span>Smooth check-out processing, priority luggage loading, and complimentary vehicle windshield/glass cleaning support before your family starts the return mountain journey.</span></li>
+        <li><strong>10. Emergency Medical &amp; First-Aid Assistance</strong><span>Immediate first-aid support at the front desk, coordination with trusted local medical practitioners or clinics, and emergency pharmacy delivery assistance during your stay.</span></li>
+      </ul>
     </div>
   </div>
 </section>
