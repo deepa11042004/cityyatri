@@ -34,7 +34,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 </section>
 
 <!-- Destination map: every destination as a pin -->
-<section class="section" id="destinationMapSection" style="padding-top: 0; padding-bottom: 50px;">
+<section class="section" id="destinationMapSection" style="padding-top: 40px; padding-bottom: 50px;">
   <div class="container">
     <?php include __DIR__ . '/includes/destination-map.php'; ?>
   </div>
