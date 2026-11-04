@@ -20,10 +20,11 @@ include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
-<section class="section" style="padding-top: 60px; padding-bottom: 80px;">
-  <div class="container" style="max-width: 680px;">
+<section class="section about-hero form-page" style="padding-top: 60px; padding-bottom: 80px;">
+  <?php include __DIR__ . '/includes/leaves.php'; ?>
+  <div class="container" style="max-width: 680px;"; position: relative; z-index: 1;">
     
-    <div style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg), var(--shadow-gold);">
+    <div class="form-card" style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg), var(--shadow-gold);">
       <div style="text-align: center; margin-bottom: 32px;">
         <div class="sub-tag" style="margin-bottom: 12px;">Executive Relations</div>
         <h1 class="heading-serif" style="font-size: 2.2rem; color: var(--color-text); margin-bottom: 10px;">Schedule VIP Consultation</h1>

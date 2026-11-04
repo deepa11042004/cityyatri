@@ -25,10 +25,11 @@ include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
-<section class="section" style="padding-top: 50px; padding-bottom: 80px; background: var(--color-background-soft);">
-  <div class="container" style="max-width: 500px;">
+<section class="section about-hero form-page" style="padding-top: 50px; padding-bottom: 80px; background: var(--color-background-soft);">
+  <?php include __DIR__ . '/includes/leaves.php'; ?>
+  <div class="container" style="max-width: 500px;"; position: relative; z-index: 1;">
     
-    <div style="background: #FFFFFF; border: 1.5px solid var(--color-border); border-radius: var(--radius-card); padding: 44px 36px; box-shadow: var(--shadow-card);">
+    <div class="form-card" style="background: #FFFFFF; border: 1.5px solid var(--color-border); border-radius: var(--radius-card); padding: 44px 36px; box-shadow: var(--shadow-card);">
       
       <div style="text-align: center; margin-bottom: 28px;">
         <img src="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png" alt="Club Yatri" width="56" height="56" style="margin: 0 auto 12px auto; display: block;">

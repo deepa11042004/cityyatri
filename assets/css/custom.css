@@ -1754,3 +1754,14 @@ p { font-family: var(--font-para); }
 #resortExplorerGrid .slider-track { --slides: 3; }
 @media (max-width: 1100px) { #resortExplorerGrid .slider-track { --slides: 2; } }
 @media (max-width: 640px) { #resortExplorerGrid .slider-track { --slides: 1; } }
+
+/* Standalone form pages (callback, booking request, login): leaves + colourful form card */
+.form-page { border-bottom: 0; }
+.form-card { position: relative; overflow: hidden; border: 0 !important; border-radius: 28px !important; background: linear-gradient(160deg, #FFF3EF 0%, #F3F8FF 55%, #F4F0FF 100%) !important; box-shadow: 0 24px 60px rgba(26, 26, 26, 0.14) !important; }
+.form-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: linear-gradient(90deg, #F2766B 0%, #F6B73C 33%, #4FC4BE 66%, #8B7BEA 100%); }
+.form-card label { color: #1A1A1A; font-weight: 700; }
+.form-card input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), .form-card select, .form-card textarea { background: #FFFFFF; border: 2px solid #E4E7F2; border-radius: 14px; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-card input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):focus, .form-card select:focus, .form-card textarea:focus { outline: 0; border-color: #8B7BEA; box-shadow: 0 0 0 4px rgba(139, 123, 234, 0.2); }
+.form-card input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):hover, .form-card select:hover, .form-card textarea:hover { border-color: #F6B73C; }
+.form-card button[type="submit"], .form-card input[type="submit"] { background: linear-gradient(90deg, #F2766B 0%, #F6B73C 100%); color: #1A1A1A; border: 0; font-weight: 800; box-shadow: 0 12px 26px rgba(242, 118, 107, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.form-card button[type="submit"]:hover, .form-card input[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(242, 118, 107, 0.45); }

@@ -35,8 +35,9 @@ include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
-<section class="section" style="padding-top: 60px; padding-bottom: 80px;">
-  <div class="container" style="max-width: 840px;">
+<section class="section about-hero form-page" style="padding-top: 60px; padding-bottom: 80px;">
+  <?php include __DIR__ . '/includes/leaves.php'; ?>
+  <div class="container" style="max-width: 840px;"; position: relative; z-index: 1;">
     
     <?php if ($confirmedCode): ?>
       <div style="background: rgba(0, 201, 167, 0.12); border: 1.5px solid var(--teal-accent); border-radius: var(--radius-xl); padding: 36px; text-align: center; margin-bottom: 40px;">
@@ -51,7 +52,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       </div>
     <?php endif; ?>
 
-    <div style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg);">
+    <div class="form-card" style="background: var(--bg-card); border: 1.5px solid var(--border-gold); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-lg);">
       <div class="sub-tag" style="margin-bottom: 10px;">Priority Member Allocation</div>
       <h1 class="heading-serif" style="font-size: 2.2rem; color: var(--color-text); margin-bottom: 12px;">Vacation Reservation Desk</h1>
       <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 0.95rem; line-height: 1.6;">
