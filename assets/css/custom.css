@@ -1745,3 +1745,6 @@ p { font-family: var(--font-para); }
 .slider-next { right: -22px; }
 @media (max-width: 1100px) { .slider-track { --slides: 2; } }
 @media (max-width: 640px) { .slider-track { --slides: 1; } .slider-prev { left: -6px; } .slider-next { right: -6px; } }
+
+/* Exclusive pass collection: equal card heights (images share one aspect ratio; any extra is trimmed from the bottom) */
+.pc-card.pc-img .pass-zoom img { aspect-ratio: 879 / 1562; object-fit: cover; object-position: top center; }
