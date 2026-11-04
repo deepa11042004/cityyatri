@@ -32,6 +32,21 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<!-- Intro -->
+<section class="section" style="padding-top: 50px; padding-bottom: 10px; text-align: center; border-bottom: 0;">
+  <div class="container" style="max-width: 860px;">
+    <h2 class="heading-serif" style="font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 16px;">
+      Six Ways to Stay, <span style="color: var(--color-primary);">One Standard of Care</span>.
+    </h2>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75; margin-bottom: 14px;">
+      Whether you want a spacious family suite, a private villa with a pool, a treehouse in the hills, a houseboat on calm waters, a geodesic dome or a glamping tent under the stars, every Club Yatri room category is selected with your family's comfort and safety in mind.
+    </p>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75;">
+      Explore the categories below to compare room sizes, capacity and bed types, then pick the one that suits your next holiday.
+    </p>
+  </div>
+</section>
+
 <section class="section" style="padding-top: 20px; padding-bottom: 80px;">
   <div class="container">
     <div class="grid-2" style="gap: 36px;">
