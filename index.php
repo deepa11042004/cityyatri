@@ -335,6 +335,16 @@ include __DIR__ . '/includes/navbar.php';
 
 <!-- 3. Subscription Passes (3-Year, 5-Year, 10-Year, 25-Year) -->
 <section class="section" id="backendPassesSection">
+  <div class="sky-clouds" aria-hidden="true">
+    <img class="sky-cloud cl-a" src="<?php echo e(url('images/clouds/cloud1.png')); ?>" alt="" style="top: 4%; width: 19vw; animation-duration: 46s; animation-delay: 0s;">
+    <img class="sky-cloud cl-b" src="<?php echo e(url('images/clouds/cloud2.png')); ?>" alt="" style="top: 12%; width: 22vw; animation-duration: 70s; animation-delay: -20s;">
+    <img class="sky-cloud cl-c" src="<?php echo e(url('images/clouds/cloud1.png')); ?>" alt="" style="top: 24%; width: 15vw; animation-duration: 58s; animation-delay: -33s;">
+    <img class="sky-cloud cl-a" src="<?php echo e(url('images/clouds/cloud2.png')); ?>" alt="" style="top: 36%; width: 25vw; animation-duration: 82s; animation-delay: -50s;">
+    <img class="sky-cloud cl-b" src="<?php echo e(url('images/clouds/cloud1.png')); ?>" alt="" style="top: 48%; width: 22vw; animation-duration: 50s; animation-delay: -12s;">
+    <img class="sky-cloud cl-c" src="<?php echo e(url('images/clouds/cloud2.png')); ?>" alt="" style="top: 60%; width: 20vw; animation-duration: 74s; animation-delay: -61s;">
+    <img class="sky-cloud cl-a" src="<?php echo e(url('images/clouds/cloud1.png')); ?>" alt="" style="top: 72%; width: 18vw; animation-duration: 62s; animation-delay: -27s;">
+    <img class="sky-cloud cl-b" src="<?php echo e(url('images/clouds/cloud2.png')); ?>" alt="" style="top: 84%; width: 23vw; animation-duration: 88s; animation-delay: -44s;">
+  </div>
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Today's Special Drop</div>
