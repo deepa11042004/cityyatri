@@ -610,7 +610,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .footer-link:hover { color: var(--color-primary-dark); }
 .footer-bottom { border-top: 1px solid rgba(26, 26, 26, 0.1); color: var(--color-ink-soft); }
 .footer .brand-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-.footer .brand-logo-img { width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto; }
+.footer .brand-logo-img { width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85); }
 .brand-name { font-family: var(--font-sans); font-weight: 800; color: var(--color-ink); }
 .brand-name span { color: var(--color-primary); }
 
