@@ -1687,3 +1687,18 @@ p { font-family: var(--font-para); }
 .leaf-bl2 { width: min(8vw, 120px); left: min(9vw, 130px); }
 .leaf-br1 { width: min(10vw, 160px); }
 .leaf-br2 { width: min(5vw, 76px); right: min(9vw, 140px); }
+
+/* About hero foliage: gentle wind sway (uses the independent rotate property, so the per-leaf transforms above still apply) */
+@keyframes leaf-sway { 0%, 100% { rotate: calc(var(--sway, 3deg) * -1); translate: 0 0; } 35% { rotate: calc(var(--sway, 3deg) * 0.6); translate: 2px 3px; } 70% { rotate: var(--sway, 3deg); translate: -2px 1px; } }
+@keyframes leaf-flutter { 0%, 100% { rotate: calc(var(--sway, 6deg) * -1); } 25% { rotate: calc(var(--sway, 6deg) * 0.5); } 50% { rotate: var(--sway, 6deg); } 75% { rotate: calc(var(--sway, 6deg) * -0.4); } }
+.about-leaves .leaf { animation: leaf-sway 6.5s ease-in-out infinite; will-change: rotate, translate; }
+.leaf-tl { transform-origin: 8% 0%; --sway: -3.2deg; animation-duration: 7s; }
+.leaf-tr { transform-origin: 92% 0%; --sway: 3.2deg; animation-duration: 7.6s; animation-delay: -2.4s; }
+.leaf-bl1 { transform-origin: 50% 100%; animation-name: leaf-flutter; --sway: 5deg; animation-duration: 5.2s; animation-delay: -1s; }
+.leaf-bl2 { transform-origin: 50% 100%; animation-name: leaf-flutter; --sway: 4deg; animation-duration: 6.1s; animation-delay: -3.3s; }
+.leaf-br1 { transform-origin: 50% 100%; animation-name: leaf-flutter; --sway: -5deg; animation-duration: 5.7s; animation-delay: -2s; }
+.leaf-br2 { transform-origin: 50% 100%; animation-name: leaf-flutter; --sway: 6deg; animation-duration: 4.6s; animation-delay: -0.6s; }
+@media (prefers-reduced-motion: reduce) { .about-leaves .leaf { animation: none; } }
+
+/* top-left palm uses a pre-mirrored image, so no flip is needed (the flip moved it off-screen around its pivot) */
+.leaf-tl { transform: none; transform-origin: 8% 0%; }

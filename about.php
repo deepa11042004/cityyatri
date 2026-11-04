@@ -21,7 +21,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 <!-- Header Banner -->
 <section class="section about-hero" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
   <div class="about-leaves" aria-hidden="true">
-    <img class="leaf leaf-tl" src="<?php echo e(url('images/leaves/leaf-palm.png')); ?>" alt="">
+    <img class="leaf leaf-tl" src="<?php echo e(url('images/leaves/leaf-palm-left.png')); ?>" alt="">
     <img class="leaf leaf-tr" src="<?php echo e(url('images/leaves/leaf-palm.png')); ?>" alt="">
     <img class="leaf leaf-bl1" src="<?php echo e(url('images/leaves/leaf-fan.png')); ?>" alt="">
     <img class="leaf leaf-bl2" src="<?php echo e(url('images/leaves/leaf-monstera.png')); ?>" alt="">

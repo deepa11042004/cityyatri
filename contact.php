@@ -18,8 +18,9 @@ include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
-<section class="section" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
-  <div class="container">
+<section class="section about-hero" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
+  <?php include __DIR__ . '/includes/leaves.php'; ?>
+  <div class="container" style="position: relative; z-index: 1;">
     <div class="sub-tag">24/7 VIP Hospitality Services</div>
     <h1 class="heading-serif" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 16px;">
       Connect with Your <span class="gold-text">Lifestyle Concierge</span>

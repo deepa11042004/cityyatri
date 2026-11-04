@@ -19,8 +19,9 @@ include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
-<section class="section" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
-  <div class="container">
+<section class="section about-hero" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
+  <?php include __DIR__ . '/includes/leaves.php'; ?>
+  <div class="container" style="position: relative; z-index: 1;">
     <div class="sub-tag">Vacation Ownership Framework</div>
     <h1 class="heading-serif" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 16px;">
       Club Yatri <span class="gold-text">Holiday Passes</span>
