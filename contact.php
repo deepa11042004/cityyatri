@@ -31,6 +31,21 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<!-- Intro -->
+<section class="section" style="padding-top: 50px; padding-bottom: 10px; text-align: center; border-bottom: 0;">
+  <div class="container" style="max-width: 860px;">
+    <h2 class="heading-serif" style="font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 16px;">
+      We're Here Before, During and <span style="color: var(--color-primary);">After Your Stay</span>.
+    </h2>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75; margin-bottom: 14px;">
+      Planning a first holiday, choosing the right pass, or need help with a booking that is already confirmed? A dedicated member of the Club Yatri concierge team will listen, guide you and follow through until everything is sorted.
+    </p>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75;">
+      Call our toll-free line, or send us a message using the form below, and we will get back to you as soon as we can.
+    </p>
+  </div>
+</section>
+
 <section class="section" style="padding-top: 10px; padding-bottom: 80px;">
   <div class="container">
     <div class="grid-2" style="gap: 48px;">
