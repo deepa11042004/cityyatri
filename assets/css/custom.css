@@ -1765,3 +1765,42 @@ p { font-family: var(--font-para); }
 .form-card input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):hover, .form-card select:hover, .form-card textarea:hover { border-color: #F6B73C; }
 .form-card button[type="submit"], .form-card input[type="submit"] { background: linear-gradient(90deg, #F2766B 0%, #F6B73C 100%); color: #1A1A1A; border: 0; font-weight: 800; box-shadow: 0 12px 26px rgba(242, 118, 107, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .form-card button[type="submit"]:hover, .form-card input[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(242, 118, 107, 0.45); }
+
+
+/* ==========================================================================
+   Responsive hardening (all screens)
+   ========================================================================== */
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, svg, iframe { max-width: 100%; }
+.footer-top > * { min-width: 0; }
+.newsletter-form { display: flex; flex-wrap: wrap; gap: 8px; }
+.newsletter-input { flex: 1 1 180px; min-width: 0; width: auto; }
+.footer-disclaimer, .footer-bottom { overflow-wrap: anywhere; }
+@media (max-width: 480px) { .newsletter-form .btn, .newsletter-form button { flex: 1 1 100%; } }
+
+/* Phones: keep hero buttons clear of the slider controls; slider arrows sit over the card photo, not the text */
+@media (max-width: 768px) {
+  .hero-content { padding: 90px 16px 96px; }
+  .hero-controls { bottom: 14px; }
+  .slider-arrow { width: 40px; height: 40px; font-size: 1.1rem; top: 96px; }
+  .slider-prev { left: 6px; }
+  .slider-next { right: 6px; }
+}
+
+/* Corner foliage stays visible on small screens */
+@media (max-width: 900px) {
+  .about-leaves .leaf.leaf-tl, .about-leaves .leaf.leaf-tr { width: 26vw; top: -8px; }
+  .about-leaves .leaf.leaf-tl { left: -6vw; }
+  .about-leaves .leaf.leaf-tr { right: -6vw; }
+  .about-leaves .leaf.leaf-bl1 { width: 20vw; left: -4vw; }
+  .about-leaves .leaf.leaf-br1 { width: 18vw; right: -3vw; }
+}
+
+/* Tables become stacked cards on phones (dashboard bookings) */
+@media (max-width: 640px) {
+  .stack-table, .stack-table tbody, .stack-table tr, .stack-table td { display: block; width: 100%; }
+  .stack-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .stack-table tr { margin-bottom: 14px; padding: 6px 4px; border: 1.5px solid var(--color-border) !important; border-radius: 16px; background: #FFFFFF; }
+  .stack-table td { display: flex; justify-content: space-between; gap: 16px; padding: 7px 12px !important; text-align: right; border: 0; }
+  .stack-table td::before { content: attr(data-label); font-weight: 800; color: var(--color-text-muted); text-align: left; }
+}

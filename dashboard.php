@@ -98,7 +98,7 @@ $card = 'background:#FFFFFF;border:1.5px solid var(--color-border);border-radius
           <p style="color: var(--color-text-muted);">No booking requests yet.</p>
         <?php else: ?>
           <div style="overflow-x:auto;">
-            <table style="width:100%;border-collapse:collapse;font-size:.92rem;">
+            <table class="stack-table" style="width:100%;border-collapse:collapse;font-size:.92rem;">
               <thead>
                 <tr style="text-align:left;border-bottom:1.5px solid var(--color-border);">
                   <th style="padding:8px;">Code</th><th style="padding:8px;">Destination</th><th style="padding:8px;">Room</th>
@@ -108,13 +108,13 @@ $card = 'background:#FFFFFF;border:1.5px solid var(--color-border);border-radius
               <tbody>
                 <?php foreach ($bookings as $b): ?>
                   <tr style="border-bottom:1px solid var(--color-border);">
-                    <td style="padding:8px;"><?php echo e($b['booking_code']); ?></td>
-                    <td style="padding:8px;"><?php echo e($b['destination_name']); ?></td>
-                    <td style="padding:8px;"><?php echo e($b['room_type']); ?></td>
-                    <td style="padding:8px;"><?php echo e(date('j M Y', strtotime($b['checkin_date']))); ?></td>
-                    <td style="padding:8px;"><?php echo (int)$b['duration_nights']; ?></td>
-                    <td style="padding:8px;"><?php echo number_format((int)$b['points_deducted']); ?></td>
-                    <td style="padding:8px;"><?php echo e(ucfirst($b['status'])); ?></td>
+                    <td data-label="Code" style="padding:8px;"><?php echo e($b['booking_code']); ?></td>
+                    <td data-label="Destination" style="padding:8px;"><?php echo e($b['destination_name']); ?></td>
+                    <td data-label="Room" style="padding:8px;"><?php echo e($b['room_type']); ?></td>
+                    <td data-label="Check-in" style="padding:8px;"><?php echo e(date('j M Y', strtotime($b['checkin_date']))); ?></td>
+                    <td data-label="Nights" style="padding:8px;"><?php echo (int)$b['duration_nights']; ?></td>
+                    <td data-label="Points" style="padding:8px;"><?php echo number_format((int)$b['points_deducted']); ?></td>
+                    <td data-label="Status" style="padding:8px;"><?php echo e(ucfirst($b['status'])); ?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
