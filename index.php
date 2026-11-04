@@ -166,10 +166,14 @@ include __DIR__ . '/includes/navbar.php';
     <?php include __DIR__ . '/includes/destination-map.php'; ?>
 
     <!-- Filtered Properties Grid -->
-    <div class="grid-3" id="resortExplorerGrid">
+    <div class="card-slider" id="resortExplorerGrid">
+      <button type="button" class="slider-arrow slider-prev" aria-label="Previous resorts" disabled>&#8592;</button>
+      <div class="slider-track" tabindex="0" aria-label="Featured resorts">
       <?php foreach ($resortsList as $resort): ?>
         <?php include __DIR__ . '/includes/resort-card.php'; ?>
       <?php endforeach; ?>
+      </div>
+      <button type="button" class="slider-arrow slider-next" aria-label="Next resorts">&#8594;</button>
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
@@ -415,7 +419,7 @@ include __DIR__ . '/includes/navbar.php';
     var track = box.querySelector('.slider-track');
     var prev = box.querySelector('.slider-prev'), next = box.querySelector('.slider-next');
     function step() {
-      var c = track.querySelector('.slider-slide');
+      var c = track.firstElementChild;
       return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 24) : track.clientWidth;
     }
     function update() {

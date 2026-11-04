@@ -1748,3 +1748,9 @@ p { font-family: var(--font-para); }
 
 /* Exclusive pass collection: equal card heights (images share one aspect ratio; any extra is trimmed from the bottom) */
 .pc-card.pc-img .pass-zoom img { aspect-ratio: 879 / 1562; object-fit: cover; object-position: top center; }
+
+/* any card placed directly in a slider track is a slide */
+.slider-track > * { flex: 0 0 calc((100% - (var(--slides) - 1) * var(--gap)) / var(--slides)); min-width: 0; scroll-snap-align: start; }
+#resortExplorerGrid .slider-track { --slides: 3; }
+@media (max-width: 1100px) { #resortExplorerGrid .slider-track { --slides: 2; } }
+@media (max-width: 640px) { #resortExplorerGrid .slider-track { --slides: 1; } }
