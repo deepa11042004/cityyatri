@@ -374,9 +374,11 @@ include __DIR__ . '/includes/navbar.php';
       </p>
     </div>
 
-    <div class="grid-4">
+    <div class="card-slider" id="roomSlider">
+      <button type="button" class="slider-arrow slider-prev" aria-label="Previous rooms" disabled>&#8592;</button>
+      <div class="slider-track" tabindex="0" aria-label="Room categories">
       <?php foreach ($roomCategories as $room): ?>
-        <article class="card-luxury">
+        <article class="card-luxury slider-slide">
           <div class="card-img-wrap" style="height: 220px;">
             <img src="<?php echo e($room['image']); ?>" alt="<?php echo e($room['title']); ?>" loading="lazy">
             <span class="card-badge">
@@ -400,9 +402,38 @@ include __DIR__ . '/includes/navbar.php';
           </div>
         </article>
       <?php endforeach; ?>
+      </div>
+      <button type="button" class="slider-arrow slider-next" aria-label="Next rooms">&#8594;</button>
     </div>
   </div>
 </section>
+
+<script>
+/* Card slider (room categories): arrows scroll one card at a time; swipe/drag works natively */
+(function () {
+  document.querySelectorAll('.card-slider').forEach(function (box) {
+    var track = box.querySelector('.slider-track');
+    var prev = box.querySelector('.slider-prev'), next = box.querySelector('.slider-next');
+    function step() {
+      var c = track.querySelector('.slider-slide');
+      return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 24) : track.clientWidth;
+    }
+    function update() {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { track.scrollBy({ left: step(), behavior: 'smooth' }); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { track.scrollBy({ left: -step(), behavior: 'smooth' }); e.preventDefault(); }
+    });
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
+</script>
 
 <!-- 5b. How Booking Works (process steps) -->
 <section class="section" id="howBookingWorks">
