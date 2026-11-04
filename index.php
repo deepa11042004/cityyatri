@@ -334,80 +334,6 @@ include __DIR__ . '/includes/navbar.php';
 </section>
 
 <!-- 3. Subscription Passes (3-Year, 5-Year, 10-Year, 25-Year) -->
-<?php
-$subscriptionPasses = [
-    [
-        'plan' => 'royal-bharat', 'years' => 3,
-        'tag' => 'FLAGSHIP LUXURY ASSET ★',
-        'title' => '3-Year Pass (Yatri Privilege Crown Asset)',
-        'intro' => 'Secure 3 years of uncompromised 3, to 5-star holiday security across 200+ premier luxury hotels, resorts, cottages, villas, and treehouses in India.',
-        'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(Standard All-Season Access - Blackout Dates Apply)',
-        'fee' => '₹14,999 / Year',
-        'fee_note' => '(Payable before booking; covers 24/7 dedicated travel manager, property upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => 'BOOKING POLICY',
-        'policy' => ['Advance Booking: 25 to 45 Days Prior Notice Required', 'Annual Subscription & Concierge Fee payable before booking.'],
-        'policy_note' => '(Subject to Property Availability & Excluding Blackout Dates) Prices are exclusive of applicable GST.',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access', 'Diverse Stays: Access across premium hotels, resorts, private cottages, luxury villas, and scenic treehouses.'],
-        'featured' => false,
-    ],
-    [
-        'plan' => 'asian-signature', 'years' => 5,
-        'tag' => 'INTERNATIONAL & DOMESTIC ASSET ★',
-        'title' => '5-Year Pass (Yatri Privilege Crown Asset)',
-        'intro' => 'Secure 5 years of uncompromised 3, to 5-star holiday security across premier hotels, resorts, cottages, villas, and treehouses in India, Asian Countries & Middle East.',
-        'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(Standard All-Season Access - Blackout Dates Apply)',
-        'fee' => '₹14,999 / Year',
-        'fee_note' => '(Payable before booking; covers 24/7 dedicated travel manager, property upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => 'BOOKING POLICY',
-        'policy' => [
-            'Destination Access: India, Asian Countries & Middle East',
-            'Resort Category: Mid-List & Premium 3, To 5-Star Properties',
-            'Advance Booking: 25 to 45 Days Prior Notice Required',
-            'Annual Subscription & Concierge Fee payable before booking.',
-        ],
-        'policy_note' => '(Subject to Property Availability & Excluding Blackout Dates) Prices are exclusive of applicable GST.',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access', 'Diverse Stays: Access across luxury hotels, premium resorts, private cottages, villas, and scenic treehouses.'],
-        'featured' => false,
-    ],
-    [
-        'plan' => 'imperial-world', 'years' => 10,
-        'tag' => '★ ULTIMATE GLOBAL VIP ASSET ★',
-        'title' => '10-Year Pass (Ultimate Global VIP Asset)',
-        'intro' => 'Secure 10 years of uncompromised luxury holiday security across premier hotels, resorts, cottages, villas, and treehouses in India, Asian Countries & Middle East.',
-        'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(Standard All-Season Access - Blackout Dates Apply)',
-        'fee' => '₹14,999 / Year',
-        'fee_note' => '(Payable before booking; covers 24/7 dedicated travel manager, VIP property upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => 'BOOKING POLICY',
-        'policy' => [
-            'Destination Access: India, Asian Countries & Middle East',
-            'Resort Category: Premium 4 & 5-Star Luxury Properties',
-            'Advance Booking: 25 to 45 Days Prior Notice Required',
-            'Annual Subscription & Concierge Fee payable before booking.',
-        ],
-        'policy_note' => '(Subject to Property Availability & Excluding Blackout Dates) Prices are exclusive of applicable GST.',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access', 'Diverse Stays: Access across luxury hotels, resorts, private cottages, villas, and treehouses in India, Asian Countries & Middle East.'],
-        'featured' => false,
-    ],
-    [
-        'plan' => 'privilege-crown', 'years' => 25,
-        'tag' => 'FLAGSHIP LUXURY ASSET ★',
-        'title' => '25-Year Pass (Yatri Privilege Crown Asset)',
-        'intro' => 'Lock in 25 years of guaranteed 3, 4 & 5-star holiday security across 200+ premier resorts in India & worldwide.',
-        'allocation' => '6 Nights / 7 Days / Year',
-        'allocation_note' => '(Lifetime Points Banking Included)',
-        'fee' => '₹14,999 / Year',
-        'fee_note' => '(Covers 24/7 dedicated travel manager, resort upkeep, and guaranteed 6N/7D booking access)',
-        'policy_title' => '',
-        'policy' => [],
-        'policy_note' => '',
-        'perks' => ['100% Inflation Free Stays', 'Fully Inheritable Family Asset', 'Priority Booking Access'],
-        'featured' => false,
-    ],
-];
-?>
 <section class="section" id="backendPassesSection">
   <div class="container">
     <div class="section-title-wrap">
@@ -417,89 +343,11 @@ $subscriptionPasses = [
       <p class="pass-pitch">Lock in your subscription today to unlock inflation-free 3- to 5-star stays, dedicated concierge care, and our absolute finest travel experiences for years to come.</p>
     </div>
 
-    <div class="pass-stack" id="passStack">
-      <?php $passTotal = count($subscriptionPasses); ?>
-      <?php foreach ($subscriptionPasses as $i => $p): ?>
-        <?php if ($i > 0): ?><div class="pass-gap" aria-hidden="true"></div><?php endif; ?>
-        <div class="pass-anchor" aria-hidden="true"></div>
-        <article class="pass-card pass-card-img tone-<?php echo $i + 1; ?>" style="--i: <?php echo $i; ?>;">
-          <button type="button" class="pass-zoom" aria-label="View <?php echo e($p['title']); ?> full screen">
-            <img class="pass-banner" src="<?php echo e(url('images/passes/pass-' . (int)$p['years'] . '-year.jpg')); ?>" alt="<?php echo e($p['title']); ?>" width="2000" height="1116"<?php echo $i > 0 ? ' loading="lazy"' : ''; ?>>
-          </button>
-          <div class="pass-banner-bar">
-            <a href="<?php echo url('booking-request.php?plan=' . urlencode($p['plan'])); ?>" class="btn-yellow pass-cta">
-              Enquire <?php echo (int)$p['years']; ?>-Year Pass
-            </a>
-          </div>
-        </article>
-      <?php endforeach; ?>
-      <div class="pass-tail" aria-hidden="true"></div>
-    </div>
+    <?php include __DIR__ . '/includes/pass-stack.php'; ?>
   </div>
 </section>
 
-<div class="pass-lightbox" id="passLightbox" role="dialog" aria-modal="true" aria-label="Pass image" hidden>
-  <button type="button" class="pass-lightbox-close" aria-label="Close">&times;</button>
-  <img id="passLightboxImg" src="" alt="">
-</div>
-<script>
-(function () {
-  var box = document.getElementById('passLightbox');
-  var big = document.getElementById('passLightboxImg');
-  if (!box) { return; }
-  function close() { box.hidden = true; big.src = ''; document.body.style.overflow = ''; }
-  document.querySelectorAll('.pass-zoom').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var img = btn.querySelector('img');
-      big.src = img.currentSrc || img.src; big.alt = img.alt;
-      box.hidden = false; document.body.style.overflow = 'hidden';
-      box.querySelector('.pass-lightbox-close').focus();
-    });
-  });
-  box.addEventListener('click', function (e) { if (e.target !== big) { close(); } });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) { close(); } });
-})();
-</script>
-
-<script>
-/* Stacked pass cards (scroll-linked): every card shrinks a little as it pins to the top, and cards further
-   back in the stack shrink more as later cards slide up over them. */
-(function () {
-  var stack = document.getElementById('passStack');
-  if (!stack) { return; }
-  var cards = Array.prototype.slice.call(stack.querySelectorAll('.pass-card'));
-  var anchors = Array.prototype.slice.call(stack.querySelectorAll('.pass-anchor'));
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var ticking = false;
-  var OWN = 0.05, DEPTH = 0.04;
-
-  function clamp(v) { return Math.min(1, Math.max(0, v)); }
-
-  function update() {
-    ticking = false;
-    var sticky = getComputedStyle(cards[0]).position === 'sticky';
-    if (!sticky || reduce.matches) {
-      cards.forEach(function (c) { c.style.transform = ''; });
-      return;
-    }
-    var vh = window.innerHeight;
-    var pins = cards.map(function (c) { return parseFloat(getComputedStyle(c).top) || 0; });
-    var nats = anchors.map(function (a) { return a.getBoundingClientRect().top; });   // where each card would be without sticky
-    cards.forEach(function (card, i) {
-      var own = clamp((pins[i] - nats[i]) / (vh * 0.55));            // shrink while pinned
-      var deep = 0;                                                    // shrink as later cards arrive
-      for (var j = i + 1; j < cards.length; j++) { deep += clamp(1 - (nats[j] - pins[j]) / (vh * 0.85)); }
-      var scale = 1 - OWN * own - DEPTH * deep;
-      card.style.transform = 'scale(' + scale.toFixed(4) + ')';
-    });
-  }
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  update();
-})();
-</script>
+<?php include __DIR__ . '/includes/pass-stack-scripts.php'; ?>
 
 
 

@@ -65,11 +65,11 @@ global $socialLinks;
           <div style="margin-top: 14px; font-size: 0.75rem; color: var(--color-ink-soft);">
             We respect your privacy. Strictly zero spam.
           </div>
-          <div style="margin-top: 18px; display: flex; gap: 14px;">
-            <a href="<?php echo e($socialLinks['facebook']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">Facebook</a>
-            <a href="<?php echo e($socialLinks['instagram']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">Instagram</a>
-            <a href="<?php echo e($socialLinks['linkedin']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">LinkedIn</a>
-            <a href="<?php echo e($socialLinks['youtube']); ?>" target="_blank" rel="noopener" style="color: var(--color-ink-soft); font-size: 0.85rem;">YouTube</a>
+          <div class="footer-social">
+            <a href="<?php echo e($socialLinks['facebook']); ?>" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"/></svg></a>
+            <a href="<?php echo e($socialLinks['instagram']); ?>" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.2"/></svg></a>
+            <a href="<?php echo e($socialLinks['linkedin']); ?>" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M5.1 9.2h3.1V19H5.1V9.2zM6.7 4.5a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10.2 9.2h3v1.3c.5-.9 1.6-1.6 3.1-1.6 3 0 3.7 2 3.7 4.6V19h-3.1v-4.7c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V19h-3.1V9.2z"/></svg></a>
+            <a href="<?php echo e($socialLinks['youtube']); ?>" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a>
           </div>
         </div>
       </div>

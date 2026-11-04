@@ -34,13 +34,11 @@ include __DIR__ . '/includes/breadcrumbs.php';
 <!-- Pass Cards Grid -->
 <section class="section" style="padding-top: 20px; padding-bottom: 60px;">
   <div class="container">
-    <div class="grid-4">
-      <?php foreach ($subscriptionPlans as $plan): ?>
-        <?php include __DIR__ . '/includes/subscription-card.php'; ?>
-      <?php endforeach; ?>
-    </div>
+    <?php include __DIR__ . '/includes/pass-stack.php'; ?>
   </div>
 </section>
+
+<?php include __DIR__ . '/includes/pass-stack-scripts.php'; ?>
 
 <!-- The Four Seasonal Studio Tiers -->
 <section class="section" style="background: var(--bg-secondary); padding-top: 80px; padding-bottom: 80px;">
