@@ -19,8 +19,16 @@ include __DIR__ . '/includes/breadcrumbs.php';
 ?>
 
 <!-- Header Banner -->
-<section class="section" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
-  <div class="container">
+<section class="section about-hero" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
+  <div class="about-leaves" aria-hidden="true">
+    <img class="leaf leaf-tl" src="<?php echo e(url('images/leaves/leaf-palm.png')); ?>" alt="">
+    <img class="leaf leaf-tr" src="<?php echo e(url('images/leaves/leaf-palm.png')); ?>" alt="">
+    <img class="leaf leaf-bl1" src="<?php echo e(url('images/leaves/leaf-fan.png')); ?>" alt="">
+    <img class="leaf leaf-bl2" src="<?php echo e(url('images/leaves/leaf-monstera.png')); ?>" alt="">
+    <img class="leaf leaf-br1" src="<?php echo e(url('images/leaves/leaf-banana.png')); ?>" alt="">
+    <img class="leaf leaf-br2" src="<?php echo e(url('images/leaves/leaf-broad.png')); ?>" alt="">
+  </div>
+  <div class="container" style="position: relative; z-index: 1;">
     <div class="sub-tag">The Ethos of Yatri (यात्री)</div>
     <h1 class="heading-serif" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 20px;">
       Redefining Vacation Ownership with <span class="gold-text">Honour & Integrity</span>
