@@ -76,14 +76,14 @@ include __DIR__ . '/includes/breadcrumbs.php';
       </div>
 
       <div style="border-radius: var(--radius-xl); overflow: hidden; border: 1.5px solid var(--border-gold); box-shadow: var(--shadow-lg), var(--shadow-gold);">
-        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80" alt="Club Yatri Luxury Sanctuary" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="<?php echo e(url('images/about/family-beach.jpg')); ?>" alt="A family walking hand in hand on a quiet beach at sunset" style="width: 100%; height: 100%; object-fit: cover; display: block;">
       </div>
     </div>
   </div>
 </section>
 
 <!-- Pillars of Excellence -->
-<section class="section" style="background: var(--bg-secondary); padding-top: 80px; padding-bottom: 80px;">
+<section class="section arc-section" style="background: var(--bg-secondary); padding-top: 80px; padding-bottom: 80px;">
   <div class="container">
     <div class="section-title-wrap">
       <div class="sub-tag">Our Guarantees</div>
@@ -91,39 +91,43 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <p class="section-desc">Designed for your family's safety, comfort, and unforgettable memories.</p>
     </div>
 
-    <div class="grid-4">
-      <div class="card-luxury" style="padding: 32px 24px;">
-        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 1 · Family Safety &amp; Care</div>
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Kid-Friendly &amp; Safe Spaces</h3>
-        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">24/7 Medical &amp; Security Support</p>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Dedicated kids' play zones, safe swimming pools, child-proof room setups, and a 24/7 doctor-on-call for immediate assistance during emergencies.
-        </p>
+    <div class="arc-carousel" id="pillarArc" aria-roledescription="carousel" aria-label="The 4 Pillars of Club Yatri">
+      <div class="arc-stage">
+        <article class="arc-card arc-tone-1" tabindex="0" aria-label="Pillar 1: Family Safety &amp; Care">
+          <svg class="arc-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.2 5.6 5.8-2.1-2.1 5.8 5.6 2.2-5.6 2.2 2.1 5.8-5.8-2.1L12 24l-2.2-5.6-5.8 2.1 2.1-5.8L.5 12.5l5.6-2.2L4 4.5l5.8 2.1z" transform="scale(.92) translate(1 -1)"/></svg>
+          <div class="arc-kicker">Pillar 1 &middot; Family Safety &amp; Care</div>
+          <h3 class="arc-title">Kid-Friendly &amp; Safe Spaces</h3>
+          <p class="arc-sub">24/7 Medical &amp; Security Support</p>
+          <p class="arc-text">Dedicated kids' play zones, safe swimming pools, child-proof room setups, and a 24/7 doctor-on-call for immediate assistance during emergencies.</p>
+        </article>
+        <article class="arc-card arc-tone-2" tabindex="0" aria-label="Pillar 2: Ultimate Comfort &amp; Dining">
+          <svg class="arc-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.2 5.6 5.8-2.1-2.1 5.8 5.6 2.2-5.6 2.2 2.1 5.8-5.8-2.1L12 24l-2.2-5.6-5.8 2.1 2.1-5.8L.5 12.5l5.6-2.2L4 4.5l5.8 2.1z" transform="scale(.92) translate(1 -1)"/></svg>
+          <div class="arc-kicker">Pillar 2 &middot; Ultimate Comfort &amp; Dining</div>
+          <h3 class="arc-title">Tailored Family Dining &amp; Suites</h3>
+          <p class="arc-sub">Home-Style Food &amp; 24/7 Service</p>
+          <p class="arc-text">Customized low-spice meals for children and elders, pure vegetarian/Jain options, spacious family suites, and round-the-clock in-room dining.</p>
+        </article>
+        <article class="arc-card arc-tone-3" tabindex="0" aria-label="Pillar 3: Hassle-Free Experience">
+          <svg class="arc-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.2 5.6 5.8-2.1-2.1 5.8 5.6 2.2-5.6 2.2 2.1 5.8-5.8-2.1L12 24l-2.2-5.6-5.8 2.1 2.1-5.8L.5 12.5l5.6-2.2L4 4.5l5.8 2.1z" transform="scale(.92) translate(1 -1)"/></svg>
+          <div class="arc-kicker">Pillar 3 &middot; Hassle-Free Experience</div>
+          <h3 class="arc-title">Seamless Travel &amp; Concierge</h3>
+          <p class="arc-sub">Door-to-Door Pickup &amp; Instant Check-in</p>
+          <p class="arc-text">Door-to-door luxury transfers, zero-waiting room check-in upon arrival, and a dedicated personal relationship manager for your entire trip.</p>
+        </article>
+        <article class="arc-card arc-tone-4" tabindex="0" aria-label="Pillar 4: Unforgettable Memories &amp; Savings">
+          <svg class="arc-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.2 5.6 5.8-2.1-2.1 5.8 5.6 2.2-5.6 2.2 2.1 5.8-5.8-2.1L12 24l-2.2-5.6-5.8 2.1 2.1-5.8L.5 12.5l5.6-2.2L4 4.5l5.8 2.1z" transform="scale(.92) translate(1 -1)"/></svg>
+          <div class="arc-kicker">Pillar 4 &middot; Unforgettable Memories &amp; Savings</div>
+          <h3 class="arc-title">Family Activities &amp; Zero Hidden Fees</h3>
+          <p class="arc-sub">Flexible Dates &amp; Transparent Pricing</p>
+          <p class="arc-text">Evening family bonfires, indoor gaming, complimentary family photo sessions, and absolute freedom to reschedule dates without heavy penalties.</p>
+        </article>
       </div>
-      <div class="card-luxury" style="padding: 32px 24px;">
-        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 2 · Ultimate Comfort &amp; Dining</div>
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Tailored Family Dining &amp; Suites</h3>
-        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Home-Style Food &amp; 24/7 Service</p>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Customized low-spice meals for children and elders, pure vegetarian/Jain options, spacious family suites, and round-the-clock in-room dining.
-        </p>
+      <div class="arc-controls">
+        <button type="button" class="arc-btn" data-dir="-1" aria-label="Previous pillar">&#8592;</button>
+        <div class="arc-dots" role="tablist" aria-label="Choose a pillar"></div>
+        <button type="button" class="arc-btn" data-dir="1" aria-label="Next pillar">&#8594;</button>
       </div>
-      <div class="card-luxury" style="padding: 32px 24px;">
-        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 3 · Hassle-Free Experience</div>
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Seamless Travel &amp; Concierge</h3>
-        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Door-to-Door Pickup &amp; Instant Check-in</p>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Door-to-door luxury transfers, zero-waiting room check-in upon arrival, and a dedicated personal relationship manager for your entire trip.
-        </p>
-      </div>
-      <div class="card-luxury" style="padding: 32px 24px;">
-        <div style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); margin-bottom: 10px;">Pillar 4 · Unforgettable Memories &amp; Savings</div>
-        <h3 style="font-size: 1.25rem; color: var(--gold-light); margin-bottom: 6px;">Family Activities &amp; Zero Hidden Fees</h3>
-        <p style="font-size: 0.92rem; font-weight: 700; color: var(--color-text); margin-bottom: 10px;">Flexible Dates &amp; Transparent Pricing</p>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-          Evening family bonfires, indoor gaming, complimentary family photo sessions, and absolute freedom to reschedule dates without heavy penalties.
-        </p>
-      </div>
+      <p class="arc-hint">Drag or swipe to explore</p>
     </div>
 
     <!-- Member vs Non-Member -->
@@ -172,6 +176,92 @@ include __DIR__ . '/includes/breadcrumbs.php';
     </div>
   </div>
 </section>
+
+<script>
+/* Draggable arc carousel (The 4 Pillars): a ring of the 4 cards plus 4 clones, so both sides of the arc are always filled */
+(function () {
+  var root = document.getElementById('pillarArc');
+  if (!root) { return; }
+  var stage = root.querySelector('.arc-stage');
+  var real = Array.prototype.slice.call(stage.querySelectorAll('.arc-card'));
+  var R = real.length;
+  var clones = real.map(function (c) {
+    var k = c.cloneNode(true);
+    k.setAttribute('aria-hidden', 'true'); k.setAttribute('tabindex', '-1'); k.removeAttribute('aria-label');
+    stage.appendChild(k); return k;
+  });
+  var cards = real.concat(clones), N = cards.length;
+  var dotsBox = root.querySelector('.arc-dots');
+  var pos = 0, dragging = false, moved = false, startX = 0, startPos = 0, prev = [];
+  function mod(v, m) { return ((v % m) + m) % m; }
+  var dots = real.map(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'arc-dot'; b.setAttribute('aria-label', 'Show pillar ' + (i + 1));
+    b.addEventListener('click', function () { toReal(i); });
+    dotsBox.appendChild(b); return b;
+  });
+  function spacing() { return cards[0].offsetWidth * 0.86; }
+  function render() {
+    var sp = spacing(), active = mod(Math.round(pos), R);
+    cards.forEach(function (c, i) {
+      var o = mod(i - pos + N / 2, N) - N / 2, ao = Math.abs(o);
+      var x = o * sp, y = Math.pow(ao, 1.6) * 26, rot = o * 9;
+      var fade = Math.min(1, Math.max(0.3, 1 - Math.max(0, ao - 1.2) * 0.45)) * Math.min(1, Math.max(0, (3.1 - ao) / 0.6));
+      var jumped = prev[i] !== undefined && Math.abs(o - prev[i]) > N / 2;
+      c.style.transition = jumped ? 'none' : '';
+      prev[i] = o;
+      c.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + (1 - Math.min(ao, 2.5) * 0.04).toFixed(3) + ')';
+      c.style.opacity = fade.toFixed(2);
+      c.style.zIndex = String(100 - Math.round(ao * 10));
+      c.style.pointerEvents = fade < 0.05 ? 'none' : '';
+      c.classList.toggle('is-active', mod(i, R) === active && ao < 0.5);
+    });
+    dots.forEach(function (d, i) { d.classList.toggle('is-on', i === active); });
+  }
+  function go(p) { pos = p; root.classList.add('is-settling'); render(); }
+  function toReal(j) {
+    var d = mod(j - Math.round(pos), R);
+    go(Math.round(pos) + (d > R / 2 ? d - R : d));
+  }
+  root.querySelectorAll('.arc-btn').forEach(function (b) {
+    b.addEventListener('click', function () { go(Math.round(pos) + parseInt(b.getAttribute('data-dir'), 10)); });
+  });
+  stage.addEventListener('pointerdown', function (e) {
+    dragging = true; moved = false; startX = e.clientX; startPos = pos;
+    root.classList.remove('is-settling'); root.classList.add('is-dragging');
+    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!dragging) { return; }
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) { moved = true; }
+    pos = startPos - dx / spacing(); render();
+  });
+  function end() {
+    if (!dragging) { return; }
+    dragging = false; root.classList.remove('is-dragging');
+    go(Math.round(pos));
+  }
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
+  cards.forEach(function (c, i) {
+    c.addEventListener('click', function () {
+      if (moved) { return; }
+      var d = mod(i - pos + N / 2, N) - N / 2;
+      if (Math.abs(d) > 0.5) { go(Math.round(pos + d)); }
+    });
+  });
+  real.forEach(function (c, i) {
+    c.addEventListener('focus', function () { if (mod(Math.round(pos), R) !== i) { toReal(i); } });
+  });
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { go(Math.round(pos) + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(Math.round(pos) - 1); e.preventDefault(); }
+  });
+  window.addEventListener('resize', render);
+  go(0);
+})();
+</script>
 
 <!-- Legal & Trust Statement -->
 <section class="section" style="padding-top: 60px; padding-bottom: 80px;">
