@@ -1628,3 +1628,30 @@ p { font-family: var(--font-para); }
 /* Arc carousel: full-width stage so cards fade out instead of being cut at the container edge */
 .arc-section { overflow-x: clip; }
 .arc-stage { width: 100vw; margin-left: calc(50% - 50vw); }
+
+/* Member comparison table: colourful, matching the pillar cards */
+.pillar-table-wrap { border: 0; border-radius: 22px; box-shadow: 0 18px 44px rgba(26, 26, 26, 0.12); background: #FFFFFF; }
+.pillar-table { border-collapse: separate; border-spacing: 0; }
+.pillar-table thead th { color: #111; font-size: 0.82rem; padding: 18px; border-bottom: 0; }
+.pillar-table thead th:nth-child(1) { background: linear-gradient(160deg, #FBF1C7 0%, #E9D98E 100%); }
+.pillar-table thead th:nth-child(2) { background: linear-gradient(160deg, #B9D9B0 0%, #86B08A 100%); }
+.pillar-table thead th:nth-child(3) { background: linear-gradient(160deg, #A9C8D6 0%, #8E97C4 100%); }
+.pillar-table tbody th, .pillar-table tbody td { border-bottom: 1px solid rgba(255, 255, 255, 0.85); }
+.pillar-table tbody tr:nth-child(4n+1) th { background: linear-gradient(160deg, #FBF1C7 0%, #F1E3A3 100%); }
+.pillar-table tbody tr:nth-child(4n+2) th { background: linear-gradient(160deg, #C4DCE6 0%, #A3B7C8 100%); }
+.pillar-table tbody tr:nth-child(4n+3) th { background: linear-gradient(160deg, #F0DCF4 0%, #C3C6E3 100%); }
+.pillar-table tbody tr:nth-child(4n+4) th { background: linear-gradient(160deg, #CDE5C6 0%, #A6C8A8 100%); }
+.pillar-table tbody td:nth-child(2) { background: #EEF6EA; color: #1A1A1A; font-weight: 600; }
+.pillar-table tbody td:nth-child(3) { background: #F1F3F8; }
+.pillar-table tbody tr:last-child th, .pillar-table tbody tr:last-child td { border-bottom: 0; }
+
+/* Member comparison table: coral / teal / peach / pink palette (distinct from the pillar cards) */
+.pillar-table thead th:nth-child(1) { background: linear-gradient(160deg, #FFD3CC 0%, #F29A94 100%); }
+.pillar-table thead th:nth-child(2) { background: linear-gradient(160deg, #BDEDEA 0%, #6CCBC7 100%); }
+.pillar-table thead th:nth-child(3) { background: linear-gradient(160deg, #FFE2C4 0%, #F5B67C 100%); }
+.pillar-table tbody tr:nth-child(4n+1) th { background: linear-gradient(160deg, #FFE0DB 0%, #F8B3AD 100%); }
+.pillar-table tbody tr:nth-child(4n+2) th { background: linear-gradient(160deg, #FFE6CE 0%, #F7C08A 100%); }
+.pillar-table tbody tr:nth-child(4n+3) th { background: linear-gradient(160deg, #D2F2F0 0%, #8ED8D4 100%); }
+.pillar-table tbody tr:nth-child(4n+4) th { background: linear-gradient(160deg, #FFDCEB 0%, #F3A9C9 100%); }
+.pillar-table tbody td:nth-child(2) { background: #EAF8F7; }
+.pillar-table tbody td:nth-child(3) { background: #FDF4EC; }
