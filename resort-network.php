@@ -35,6 +35,21 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<!-- Intro -->
+<section class="section" style="padding-top: 50px; padding-bottom: 10px; text-align: center; border-bottom: 0;">
+  <div class="container" style="max-width: 860px;">
+    <h2 class="heading-serif" style="font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 16px;">
+      A Stay for Every Mood, <span style="color: var(--color-primary);">Every Family</span>, Every Season.
+    </h2>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75; margin-bottom: 14px;">
+      From quiet hill-station cottages and private villas to treehouses, houseboats, domes and glamping tents, the Club Yatri network brings together stays that are chosen for comfort, safety and genuine hospitality, in India and abroad.
+    </p>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75;">
+      Browse the directory below, filter by destination or stay style, and open any property to see its photos, amenities and location before you request a booking.
+    </p>
+  </div>
+</section>
+
 <!-- Network Metrics -->
 <section class="section" style="padding-top: 10px; padding-bottom: 60px;">
   <div class="container">

@@ -32,6 +32,21 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<!-- Intro -->
+<section class="section" style="padding-top: 50px; padding-bottom: 10px; text-align: center; border-bottom: 0;">
+  <div class="container" style="max-width: 860px;">
+    <h2 class="heading-serif" style="font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 16px;">
+      One Pass. <span style="color: var(--color-primary);">Years of Holidays</span>, Locked at Today's Price.
+    </h2>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75; margin-bottom: 14px;">
+      A Club Yatri pass is not a one-time booking. It is a long-term holiday plan for your family. Choose a 3, 5, 10 or 25-year pass, and enjoy 6 Nights / 7 Days every year at handpicked 3 to 5-star resorts, villas and cottages, without worrying about rising holiday tariffs.
+    </p>
+    <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75;">
+      Pick the tenure that fits how often you travel, compare the passes below, and speak to our concierge team whenever you are ready to book.
+    </p>
+  </div>
+</section>
+
 <!-- Pass Cards Grid -->
 <section class="section" style="padding-top: 20px; padding-bottom: 60px;">
   <div class="container">
