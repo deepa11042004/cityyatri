@@ -1722,3 +1722,13 @@ p { font-family: var(--font-para); }
 .sky-clouds::after { top: 58%; height: 320px; animation-duration: 120s; animation-delay: -75s; }
 @keyframes fog-drift { from { transform: translateX(-80vw); } to { transform: translateX(120vw); } }
 @media (prefers-reduced-motion: reduce) { .sky-clouds::before, .sky-clouds::after { animation: none; transform: translateX(8vw); } }
+
+/* Resort Network stat cards: colourful gradients */
+.stat-cards .card-luxury { border: 0; box-shadow: 0 14px 32px rgba(26, 26, 26, 0.12); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.stat-cards .card-luxury:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(26, 26, 26, 0.16); }
+.stat-cards .card-luxury:nth-child(1) { background: linear-gradient(150deg, #FFE3DD 0%, #F8A79F 100%); }
+.stat-cards .card-luxury:nth-child(2) { background: linear-gradient(150deg, #D3F3F0 0%, #77D2CD 100%); }
+.stat-cards .card-luxury:nth-child(3) { background: linear-gradient(150deg, #FFF0C2 0%, #F6C95E 100%); }
+.stat-cards .card-luxury:nth-child(4) { background: linear-gradient(150deg, #E7E4FF 0%, #A9A3EE 100%); }
+.stat-cards .stat-number { color: #1A1A1A; background: none; -webkit-text-fill-color: #1A1A1A; }
+.stat-cards .stat-label { color: rgba(26, 26, 26, 0.75); font-weight: 800; }

@@ -53,7 +53,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 <!-- Network Metrics -->
 <section class="section" style="padding-top: 10px; padding-bottom: 60px;">
   <div class="container">
-    <div class="grid-4" style="margin-bottom: 60px;">
+    <div class="grid-4 stat-cards" style="margin-bottom: 60px;">
       <div class="card-luxury" style="padding: 32px 20px; text-align: center;">
         <div class="stat-number" style="font-size: 2.8rem;">85+</div>
         <div class="stat-label">Direct Indian Resorts</div>
