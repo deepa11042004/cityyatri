@@ -38,8 +38,6 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
-<?php include __DIR__ . '/includes/pass-stack-scripts.php'; ?>
-
 <!-- The Four Seasonal Studio Tiers -->
 <section class="section" style="background: var(--bg-secondary); padding-top: 80px; padding-bottom: 80px;">
   <div class="container">
@@ -51,20 +49,26 @@ include __DIR__ . '/includes/breadcrumbs.php';
       </p>
     </div>
 
-    <div class="grid-4">
-      <?php foreach ($seasonalStudioCategories as $season): ?>
-        <div class="card-luxury" style="padding: 32px 24px;">
-          <div style="display: inline-block; padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; color: #fff; background: <?php echo e($season['badge_color']); ?>; margin-bottom: 14px;">
-            <?php echo e($season['period']); ?>
-          </div>
-          <h3 style="font-size: 1.3rem; color: var(--color-ink); margin-bottom: 12px;"><?php echo e($season['name']); ?></h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-            <?php echo e($season['description']); ?>
-          </p>
-        </div>
+    <?php
+    $collection = [
+        ['green', 'Yatri Green Pass', 'Off-Peak / Monsoon Season'],
+        ['blue', 'Yatri Blue Pass', 'Mid Season'],
+        ['yellow', 'Yatri Yellow Pass', 'Peak Season'],
+        ['red', 'Yatri Red Pass', 'Super Peak Season'],
+    ];
+    ?>
+    <div class="pass-collection-grid">
+      <?php foreach ($collection as $c): ?>
+        <article class="pc-card pc-img pc-<?php echo e($c[0]); ?>">
+          <button type="button" class="pass-zoom" aria-label="View <?php echo e($c[1]); ?> full screen">
+            <img src="<?php echo e(url('images/passes/pc-' . $c[0] . '.jpg')); ?>" alt="<?php echo e($c[1] . ' - ' . $c[2]); ?>" loading="lazy">
+          </button>
+        </article>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
+
+<?php include __DIR__ . '/includes/pass-stack-scripts.php'; ?>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
