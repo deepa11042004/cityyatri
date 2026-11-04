@@ -594,7 +594,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
    -------------------------------------------------------------------------- */
 .footer { background: #FFFFFF; border-top: 0; padding: 40px 16px 24px; }
 .footer > .container {
-  background: #F08080;
+  background: #C2C2C2;
   border-radius: var(--radius-xl);
   padding: 56px 48px 28px;
 }
@@ -1485,10 +1485,10 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
   .pass-card { will-change: auto; }
 }
 
-/* Footer on coral (#F08080): darker text so red and grey copy stays readable */
+/* Footer on grey (#C2C2C2): darker text so red and grey copy stays readable */
 .footer .footer-heading, .footer .brand-name span, .footer a[href^="tel"] { color: #5A0000; }
 .footer .footer-brand p, .footer .footer-newsletter p, .footer .footer-link, .footer-bottom { color: #1a1a1a; }
-.footer .footer-link:hover { color: #FFFFFF; }
+.footer .footer-link:hover { color: #EA2224; }
 .footer-bottom { border-top-color: rgba(90, 0, 0, 0.25); }
 .footer .footer-brand div, .footer .footer-brand div a, .footer .footer-newsletter a, .footer .footer-newsletter small, .footer .footer-newsletter div { color: #1a1a1a !important; }
 .footer .footer-brand a[href^="tel"] { color: #5A0000 !important; }
