@@ -38,7 +38,23 @@ require_once __DIR__ . '/helpers.php';
 // Display flash messages if any
 $flash = get_flash_message();
 if ($flash): ?>
-  <div style="background: <?php echo $flash['type'] === 'success' ? 'rgba(0, 201, 167, 0.9)' : 'rgba(239, 68, 68, 0.9)'; ?>; color: #fff; text-align: center; padding: 12px 20px; font-weight: 600; font-size: 0.92rem; position: fixed; top: 0; left: 0; right: 0; z-index: 99999;">
-    <?php echo e($flash['message']); ?>
+  <?php $flashOk = $flash['type'] === 'success'; ?>
+  <div id="flashPopup" role="alertdialog" aria-modal="true" aria-labelledby="flashPopupMsg" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(20,16,12,.55);">
+    <div style="background:#fff;border-radius:24px;max-width:440px;width:100%;padding:36px 30px 28px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35);">
+      <div style="width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-size:2rem;font-weight:700;color:#fff;background:<?php echo $flashOk ? '#00A98B' : '#EF4444'; ?>;"><?php echo $flashOk ? '&#10003;' : '!'; ?></div>
+      <h3 style="margin:0 0 10px;font-size:1.35rem;color:#1a1a1a;"><?php echo $flashOk ? 'Message sent' : 'Something went wrong'; ?></h3>
+      <p id="flashPopupMsg" style="margin:0 0 22px;color:#555;line-height:1.55;"><?php echo e($flash['message']); ?></p>
+      <button type="button" id="flashPopupClose" style="border:0;border-radius:999px;padding:11px 34px;font-weight:700;background:#FFB400;color:#1a1a1a;cursor:pointer;">OK</button>
+    </div>
   </div>
+  <script>
+    (function () {
+      var p = document.getElementById('flashPopup');
+      function close() { if (p) { p.remove(); } }
+      document.getElementById('flashPopupClose').addEventListener('click', close);
+      p.addEventListener('click', function (e) { if (e.target === p) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      document.getElementById('flashPopupClose').focus();
+    })();
+  </script>
 <?php endif; ?>

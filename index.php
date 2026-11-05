@@ -582,10 +582,14 @@ include __DIR__ . '/includes/navbar.php';
       <h3 class="heading-serif" style="text-align: center; color: var(--color-text); font-size: 1.8rem; margin-bottom: 28px;">
         Current Experience by <span style="color: var(--color-primary);">Club Yatri Member</span>
       </h3>
-      <div class="grid-3">
-        <?php foreach (array_slice($testimonialsList, 0, 3) as $testimonial): ?>
-          <?php include __DIR__ . '/includes/testimonial-card.php'; ?>
-        <?php endforeach; ?>
+      <div class="cy-slider" data-slider>
+        <button type="button" class="cy-slider-btn prev" aria-label="Previous testimonials">&#8592;</button>
+        <div class="cy-slider-track">
+          <?php foreach ($testimonialsList as $testimonial): ?>
+            <?php include __DIR__ . '/includes/testimonial-card.php'; ?>
+          <?php endforeach; ?>
+        </div>
+        <button type="button" class="cy-slider-btn next" aria-label="Next testimonials">&#8594;</button>
       </div>
     </div>
 

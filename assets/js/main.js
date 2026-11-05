@@ -333,3 +333,22 @@ function showToast(msg) {
     toast.style.transform = 'translateY(15px)';
   }, 4500);
 }
+
+/* Card sliders: arrow buttons scroll one card at a time */
+document.querySelectorAll('[data-slider]').forEach(function (box) {
+  var track = box.querySelector('.cy-slider-track');
+  var prev = box.querySelector('.prev'), next = box.querySelector('.next');
+  if (!track || !prev || !next) return;
+  function step() { var c = track.firstElementChild; return c ? c.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0) : 300; }
+  function update() {
+    var max = track.scrollWidth - track.clientWidth;
+    box.classList.toggle('has-overflow', max > 4);
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max - 2;
+  }
+  prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});

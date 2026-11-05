@@ -33,7 +33,9 @@ if ($vtPlaceholder) {
     Hear directly from Club Yatri members about their holidays.
   </p>
 
-  <div class="grid-3 video-grid">
+  <div class="cy-slider" data-slider>
+  <button type="button" class="cy-slider-btn prev" aria-label="Previous videos">&#8592;</button>
+  <div class="cy-slider-track video-grid">
     <?php foreach ($vtItems as $v): ?>
       <?php
         $yt = (string)($v['youtube'] ?? '');
@@ -69,6 +71,8 @@ if ($vtPlaceholder) {
         </div>
       </article>
     <?php endforeach; ?>
+  </div>
+  <button type="button" class="cy-slider-btn next" aria-label="Next videos">&#8594;</button>
   </div>
 </div>
 
