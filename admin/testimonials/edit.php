@@ -29,7 +29,7 @@ $old = null;
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     if (admin_post_too_large()) {
-        $errors[] = 'The files you selected are larger than the server allows (max 2 MB each). Compress them and try again.';
+        $errors[] = 'The files you selected are larger than the server allows (videos max 5 MB, photos max 2 MB). Compress them and try again.';
     } elseif (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
         $errors[] = 'Your session expired. Please try again.';
     } else {
@@ -51,7 +51,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
                 $ref = content_video_ref($source, $url);
                 if ($ref === '') { $errors[] = 'That does not look like a valid ' . ucfirst($source) . ' link. Paste the full video address.'; }
             } elseif (empty($_FILES['video_file']['name']) && empty($t['video_path'])) {
-                $errors[] = 'Upload an MP4 video (max 2 MB) or choose YouTube / Vimeo.';
+                $errors[] = 'Upload an MP4 video (max 5 MB) or choose YouTube / Vimeo.';
             }
         }
 
@@ -176,7 +176,7 @@ admin_header($pageTitle, 'testimonials', [['Testimonials', 'testimonials/index.p
           <option value="upload" <?php echo $src === 'upload' ? 'selected' : ''; ?>>Upload MP4</option></select></div>
         <div class="col-md-8" data-src="link"><label class="form-label fw-bold" for="video_url">Video link *</label><input class="form-control" id="video_url" name="video_url" maxlength="500" value="<?php echo $val('video_url'); ?>" placeholder="https://www.youtube.com/watch?v=…"><div class="form-text">Paste the normal address from the browser.</div></div>
         <div class="col-md-8" data-src="upload"><label class="form-label fw-bold" for="video_file">MP4 file *</label><input class="form-control" type="file" id="video_file" name="video_file" accept="video/mp4">
-          <div class="form-text">Max 2 MB on this hosting, so only very short clips fit. For anything longer, use YouTube or Vimeo.<?php echo !empty($t['video_path']) ? ' <strong>A video is already uploaded; choose a file only to replace it.</strong>' : ''; ?></div></div>
+          <div class="form-text">Max 5 MB, so only short clips fit. For anything longer, use YouTube or Vimeo.<?php echo !empty($t['video_path']) ? ' <strong>A video is already uploaded; choose a file only to replace it.</strong>' : ''; ?></div></div>
         <div class="col-12"><label class="form-label fw-bold" for="description">Short quote / description</label><textarea class="form-control" id="description" name="description" rows="3"><?php echo $val('description'); ?></textarea></div>
         <div class="col-12"><h3 class="h6 fw-bold mb-1">Thumbnail</h3>
           <?php if (!empty($t['thumbnail_path'])): ?><img src="<?php echo e(content_image_url($t['thumbnail_path'])); ?>" alt="" style="width:160px;height:100px;object-fit:cover;border-radius:10px;" class="d-block mb-1"><label class="form-check small text-danger mb-2"><input class="form-check-input" type="checkbox" name="remove_thumbnail" value="1"> Remove thumbnail</label><?php endif; ?>

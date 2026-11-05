@@ -98,6 +98,9 @@ document.querySelectorAll('#videoTestimonials .video-play[data-youtube], #videoT
       el = document.createElement('video');
       el.src = btn.getAttribute('data-mp4');
       el.controls = true; el.autoplay = true; el.playsInline = true;
+      el.setAttribute('controlsList', 'nodownload');
+      el.disablePictureInPicture = false;
+      el.addEventListener('contextmenu', function (e) { e.preventDefault(); });
       el.setAttribute('aria-label', title);
     }
     frame.innerHTML = '';

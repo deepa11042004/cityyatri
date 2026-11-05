@@ -1,9 +1,11 @@
 <?php
 /**
- * Club Yatri Admin - video upload helper (MP4 only, 2 MB hosting limit).
+ * Club Yatri Admin - video upload helper (MP4 only, 5 MB limit).
  */
 
 declare(strict_types=1);
+
+const ADMIN_MAX_VIDEO_BYTES = 5 * 1024 * 1024;   // video testimonials only; images stay at 2 MB
 
 /**
  * Validate and store one uploaded MP4 under assets/videos/<dir>/.
@@ -17,8 +19,8 @@ function admin_save_video(array $file, string $dir, string $label = 'Video'): ar
         return ['ok' => false, 'error' => ''];
     }
     $name = (string)($file['name'] ?? 'file');
-    if ($err === UPLOAD_ERR_INI_SIZE || $err === UPLOAD_ERR_FORM_SIZE || (int)($file['size'] ?? 0) > ADMIN_MAX_UPLOAD_BYTES) {
-        return ['ok' => false, 'error' => "$label \"$name\" is larger than 2 MB. Upload it to YouTube or Vimeo and paste the link instead."];
+    if ($err === UPLOAD_ERR_INI_SIZE || $err === UPLOAD_ERR_FORM_SIZE || (int)($file['size'] ?? 0) > ADMIN_MAX_VIDEO_BYTES) {
+        return ['ok' => false, 'error' => "$label \"$name\" is larger than 5 MB. Upload it to YouTube or Vimeo and paste the link instead."];
     }
     if ($err !== UPLOAD_ERR_OK || !is_uploaded_file((string)$file['tmp_name'])) {
         return ['ok' => false, 'error' => "$label \"$name\" could not be uploaded (error $err)."];
