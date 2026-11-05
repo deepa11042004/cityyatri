@@ -7,33 +7,53 @@ declare(strict_types=1);
 
 $faqsList = [
     [
-        'category' => 'Ownership & Structure',
-        'question' => 'How does Club Yatri vacation ownership differ from traditional timeshare?',
-        'answer' => 'Traditional timeshares locked owners into fixed calendar weeks in a single aging apartment with steep escalating maintenance dues. Club Yatri is a next-generation flexible holiday pass system. Your subscription provides an annual allocation of flexible points that you can redeem across 200+ luxury resorts, split into multiple weekend getaways, bank forward for up to 4 years, or exchange for international stays.'
+        'category' => 'Holiday Pass',
+        'question' => 'How does the Club Yatri holiday pass differ from traditional vacation ownership?',
+        'answer' => 'Unlike traditional ownership that traps you in a rigid, fixed property with hidden hassles, Club Yatri is a flexible subscription pass that gives you the freedom to explore wonderful resorts on your own terms.'
     ],
     [
-        'category' => 'Ownership & Structure',
-        'question' => 'What are the four seasonal studio categories (Green, Purple, Yellow, Red)?',
-        'answer' => 'To balance demand and maintain 100% reservation availability, Club Yatri categorizes travel periods into Green Studio (Monsoon/Off-Peak wellness), Purple Studio (Regular pleasant season), Yellow Studio (Peak summer and holiday weekends), and Red Studio (Super Peak festive periods like Diwali, Christmas, and New Year). Higher tier passes include broader seasonal freedom with zero blackout restrictions.'
+        'category' => 'Pricing',
+        'question' => 'What does the annual subscription and concierge cover?',
+        'answer' => 'This covers the annual subscription and concierge fee of ₹14,999 + GST per year, which provides 6 nights and 7 days annually for the entire duration of your plan.'
     ],
     [
-        'category' => 'Reservations & Booking',
-        'question' => 'What is the advance booking window for subscriber vacations?',
-        'answer' => 'Subscribers require a minimum 45-day prior advance booking notice. Asian Signature pass holders enjoy 120-day priority windows; Imperial World and 25-Year Privilege Crown subscribers have year-round 365-day advance priority reservation rights, ensuring guaranteed availability even during high-demand Diwali and New Year weeks.'
+        'category' => 'Concierge',
+        'question' => 'Is there any extra service included with the annual subscription?',
+        'answer' => 'Yes, a concierge service is included completely free with your annual subscription to help you seamlessly manage your trip planning and holiday needs.'
     ],
     [
-        'category' => 'Points & Banking',
+        'category' => 'Seasons',
+        'question' => 'What are the seasonal studio categories (Green, Purple, Yellow, and Red)?',
+        'answer' => 'These categories are organized by travel seasons (such as off-peak, regular weather, and holidays) to balance demand and ensure smooth booking availability throughout the year.'
+    ],
+    [
+        'category' => 'Booking',
+        'question' => 'What are the rules for advance vacation bookings?',
+        'answer' => 'Bookings open 25 to 45 days in advance.'
+    ],
+    [
+        'category' => 'Booking',
+        'question' => 'Are bookings available on blackout dates?',
+        'answer' => 'No, bookings are not available on blackout dates.'
+    ],
+    [
+        'category' => 'Nights',
         'question' => 'What happens if our family cannot travel in a particular year?',
-        'answer' => 'Your vacation points never expire unused. Unredeemed points automatically rollover for up to 3 to 4 years depending on your pass tier. Furthermore, you can gift holiday weeks to friends or extended family with zero transfer fees, or borrow up to 50% from the subsequent year’s allotment.'
+        'answer' => 'Your nights never go to waste. If you miss travelling in any given year, those unused nights roll over and accumulate into the final year of your plan.'
     ],
     [
-        'category' => 'Exchange & International',
-        'question' => 'How do international holiday exchanges work?',
-        'answer' => 'Through our premier global exchange network, Club Yatri subscribers can exchange their allocated domestic points for stays across 4,500+ affiliated resort properties in over 100 countries including the Maldives, Dubai, Bali, Thailand, Switzerland, and Australia. Your dedicated Lifestyle Concierge manages the entire exchange verification.'
+        'category' => 'Nights',
+        'question' => 'How can we use the accumulated nights in the final year?',
+        'answer' => 'You can use all your accumulated nights together at once whenever it suits you during the final year of your plan.'
     ],
     [
-        'category' => 'Legal & Succession',
-        'question' => 'Can our Club Yatri vacation pass be legally inherited or transferred?',
-        'answer' => 'Yes. Club Yatri holiday passes and deeds are structured with full legal succession and inheritance rights. You can bequeath your holiday pass deed to your children or assign beneficiaries at any point during your term with zero notary or transfer surcharges.'
+        'category' => 'Sharing',
+        'question' => 'Can we share or gift our holiday nights to friends and family?',
+        'answer' => 'Yes, you can gift your holiday nights to your friends and family with just a small transfer cost.'
+    ],
+    [
+        'category' => 'Pricing',
+        'question' => 'Are there any hidden charges or maintenance fees?',
+        'answer' => 'No, there are zero hidden maintenance charges or extra fees. Your subscription pricing is completely transparent.'
     ]
 ];
