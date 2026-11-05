@@ -114,4 +114,27 @@ try {
     ]);
 }
 
-migrate_respond(200, ['ok' => true, 'applied' => $applied, 'skipped' => $skipped]);
+// Admin panel structure (idempotent). Optionally create the Super Admin from an
+// 'admin_seed' => ['name' => '', 'email' => '', 'password' => ''] entry in includes/db-config.php
+// (kept on the server only). Remove that entry again once the login works.
+$adminLog = [];
+try {
+    require_once __DIR__ . '/database/admin-migrate.php';
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $adminLog = admin_migrate($pdo);
+    $seed = $cfg['admin_seed'] ?? null;
+    if (is_array($seed) && !empty($seed['email']) && !empty($seed['password'])) {
+        $adminLog[] = admin_seed_user($pdo, (string)($seed['name'] ?? 'Super Admin'), (string)$seed['email'], (string)$seed['password']);
+    }
+} catch (Throwable $e) {
+    error_log('Admin migration failed: ' . $e->getMessage());
+    migrate_respond(500, [
+        'ok' => false,
+        'error' => 'Admin migration failed',
+        'detail' => substr($e->getMessage(), 0, 300),
+        'applied' => $applied,
+        'admin' => $adminLog,
+    ]);
+}
+
+migrate_respond(200, ['ok' => true, 'applied' => $applied, 'skipped' => $skipped, 'admin' => $adminLog]);

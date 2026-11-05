@@ -11,6 +11,17 @@ if (admin_user()) {
     admin_redirect('dashboard.php');
 }
 
+/** True when the admin tables exist (avoids a blank HTTP 500 on a server that has not been migrated yet). */
+function admin_tables_ready(PDO $pdo): bool
+{
+    try {
+        return (int)$pdo->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()
+            AND table_name IN ('admin_users', 'admin_login_attempts')")->fetchColumn() === 2;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
 const LOGIN_MAX_PER_EMAIL = 5;
 const LOGIN_MAX_PER_IP = 12;
 const LOGIN_WINDOW_MINUTES = 15;
@@ -28,6 +39,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $error = 'Your session expired. Please try again.';
     } elseif (!$pdo) {
         $error = 'The database is not reachable right now.';
+    } elseif (!admin_tables_ready($pdo)) {
+        $error = 'The admin database is not set up on this server yet. Run the deployment migration first.';
     } else {
         // Brute-force protection: count recent failures for this email and for this IP
         $w = (int)LOGIN_WINDOW_MINUTES;
