@@ -184,7 +184,7 @@ include __DIR__ . '/includes/navbar.php';
   </div>
 </section>
 
-<?php $homeItineraries = array_slice(itineraries_list(), 0, 6); ?>
+<?php $homeItineraries = itineraries_featured(6); ?>
 <?php if ($homeItineraries): ?>
 <!-- 4c. Curated Itineraries (from the itineraries database) -->
 <section class="section" id="itinerariesSection">

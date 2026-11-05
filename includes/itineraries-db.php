@@ -49,6 +49,15 @@ function itineraries_list(string $type = '', int $limit = 60): array
     return hotels_query($sql . ' ORDER BY featured DESC, ' . (itineraries_admin_ready() ? '(display_order = 0), display_order, ' : '') . 'title LIMIT ' . (int)$limit, $params);
 }
 
+/** Homepage showcase: only itineraries flagged "Featured on the homepage" (before the admin migration: the top of the general list). */
+function itineraries_featured(int $limit = 6): array
+{
+    if (!itineraries_admin_ready()) {
+        return array_slice(itineraries_list(), 0, $limit);
+    }
+    return hotels_query('SELECT * FROM itineraries WHERE is_published = 1 AND featured = 1 ORDER BY (display_order = 0), display_order, title LIMIT ' . (int)$limit, []);
+}
+
 function itineraries_count(string $type = ''): int
 {
     $params = [];
