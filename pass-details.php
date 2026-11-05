@@ -9,16 +9,25 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/data/subscriptions.php';
 
-$planId = $_GET['id'] ?? 'imperial-world';
-$plan = $subscriptionPlans[$planId] ?? $subscriptionPlans['imperial-world'];
+$planId = (string)($_GET['id'] ?? 'imperial-world');
+if (!$subscriptionPlans) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+// an unknown or hidden pass falls back to the most popular one, then to the first
+$plan = $subscriptionPlans[$planId] ?? $subscriptionPlans['imperial-world'] ?? reset($subscriptionPlans);
+$planId = (string)$plan['id'];
 
-$pageTitle = $plan['title'];
-$pageDescription = 'Detailed specifications, annual points, room entitlements, and exchange privileges for ' . $plan['title'];
+$pageTitle = !empty($plan['meta_title']) ? $plan['meta_title'] : $plan['title'];
+$pageDescription = !empty($plan['meta_description']) ? $plan['meta_description']
+    : 'Detailed specifications, annual points, room entitlements, and exchange privileges for ' . $plan['title'];
 
 $breadcrumbTitle = $plan['short_title'];
 $parentTitle = 'Holiday Passes';
 $parentUrl = url('passes-subscriptions.php');
 
+require_once __DIR__ . '/includes/leads.php';
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
@@ -67,8 +76,42 @@ include __DIR__ . '/includes/breadcrumbs.php';
               <span>Dedicated Concierge:</span>
               <strong style="color: var(--color-text);"><?php echo e($plan['concierge']); ?></strong>
             </li>
+            <?php if (!empty($plan['advance_booking'])): ?>
+            <li style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+              <span>Advance Booking:</span>
+              <strong style="color: var(--color-text);"><?php echo e($plan['advance_booking']); ?></strong>
+            </li>
+            <?php endif; ?>
+            <?php if (!empty($plan['display_price'])): ?>
+            <li style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+              <span>Investment:</span>
+              <strong style="color: var(--color-text);"><?php echo e($plan['display_price']); ?></strong>
+            </li>
+            <?php endif; ?>
           </ul>
         </div>
+
+        <?php if (!empty($plan['full_description'])): ?>
+          <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px;"><?php echo nl2br(e($plan['full_description'])); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($plan['benefits'])): ?>
+        <div class="card-luxury" style="padding: 28px; margin-bottom: 24px;">
+          <h3 class="heading-serif" style="font-size: 1.3rem; color: var(--color-text); margin-bottom: 16px;">Pass Benefits</h3>
+          <ul class="pass-benefit-list">
+            <?php foreach ($plan['benefits'] as $b): ?>
+              <li><span class="pb-icon" aria-hidden="true"><?php echo e(content_icon_symbol($b['icon'] ?? '')); ?></span><span><strong><?php echo e($b['title']); ?></strong><?php if (!empty($b['description'])): ?><small><?php echo e($b['description']); ?></small><?php endif; ?></span></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($plan['terms'])): ?>
+        <div class="card-luxury" style="padding: 28px; margin-bottom: 24px;">
+          <h3 class="heading-serif" style="font-size: 1.3rem; color: var(--color-text); margin-bottom: 12px;">Terms &amp; Conditions</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75; margin: 0;"><?php echo nl2br(e($plan['terms'])); ?></p>
+        </div>
+        <?php endif; ?>
       </div>
 
       <!-- Right Form / Enrolment -->
@@ -82,6 +125,8 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
           <form action="<?php echo url('actions/submit-inquiry.php'); ?>" method="POST">
             <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+            <input type="hidden" name="return_to" value="pass-details.php?id=<?php echo e(urlencode((string)$planId)); ?>">
+            <?php echo lead_honeypot(); ?>
             <input type="hidden" name="pass_tier" value="<?php echo e($plan['title']); ?>">
             
             <div class="form-group">

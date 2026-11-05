@@ -5,6 +5,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/leads.php';
+
 global $socialLinks;
 ?>
   <!-- Global Footer -->
@@ -13,7 +15,7 @@ global $socialLinks;
       <div class="footer-top">
         <div class="footer-brand">
           <div class="brand-logo">
-            <img src="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png" alt="Club Yatri Official Logo" class="brand-logo-img">
+            <img src="<?php echo e(site_logo_url()); ?>" alt="Club Yatri Official Logo" class="brand-logo-img">
             <div class="brand-name">CLUB <span>YATRI</span></div>
           </div>
           <p>
@@ -58,6 +60,7 @@ global $socialLinks;
           <p>Subscribe for privileged seasonal resort allocations, private previews, and luxury travel itineraries.</p>
           <form class="newsletter-form" id="newsletterForm" action="<?php echo url('actions/submit-inquiry.php'); ?>" method="POST">
             <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+            <?php echo lead_honeypot(); ?>
             <input type="hidden" name="inquiry_type" value="newsletter">
             <input type="email" name="email" class="newsletter-input" placeholder="Your executive email address" required>
             <button type="submit" class="btn btn-gold btn-sm">Subscribe</button>
@@ -70,6 +73,7 @@ global $socialLinks;
             <a href="<?php echo e($socialLinks['instagram']); ?>" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.2" cy="6.8" r="1.2"/></svg></a>
             <a href="<?php echo e($socialLinks['linkedin']); ?>" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M5.1 9.2h3.1V19H5.1V9.2zM6.7 4.5a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10.2 9.2h3v1.3c.5-.9 1.6-1.6 3.1-1.6 3 0 3.7 2 3.7 4.6V19h-3.1v-4.7c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V19h-3.1V9.2z"/></svg></a>
             <a href="<?php echo e($socialLinks['youtube']); ?>" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a>
+            <?php if (!empty($socialLinks['twitter'])): ?><a href="<?php echo e($socialLinks['twitter']); ?>" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.1l-6.8 7.7L21.8 21h-6.3l-4.9-6.4L5 21H1.9l7.2-8.3L1.5 3h6.4l4.4 5.9L17.5 3zm-1.1 16.2h1.7L6.9 4.7H5.1l11.3 14.5z"/></svg></a><?php endif; ?>
           </div>
         </div>
       </div>
@@ -108,6 +112,8 @@ global $socialLinks;
 
       <form id="clubInquiryForm" action="<?php echo url('actions/submit-inquiry.php'); ?>" method="POST">
         <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+        <input type="hidden" name="inquiry_type" value="enquiry_popup">
+        <?php echo lead_honeypot(); ?>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div class="form-group">
             <label for="modalFullName">Full Name *</label>
@@ -132,10 +138,16 @@ global $socialLinks;
           <div class="form-group">
             <label for="modalTierInterest">Interested Holiday Pass</label>
             <select id="modalTierInterest" name="pass_tier" class="form-control">
-              <option value="10-Year — Yatri Imperial World Pass">10-Year — Yatri Imperial World Pass (Most Popular)</option>
-              <option value="5-Year — Yatri Asian Signature Pass">5-Year — Yatri Asian Signature Pass</option>
-              <option value="3-Year — Yatri Royal Bharat Pass">3-Year — Yatri Royal Bharat Pass</option>
-              <option value="25-Year — Yatri Privilege Crown Asset">25-Year — Yatri Privilege Crown Asset</option>
+              <?php
+              require_once __DIR__ . '/content-db.php';
+              $footerPlans = content_has_rows('passes') ? content_pass_plans() : [
+                  ['title' => '10-Year — Yatri Imperial World Pass', 'featured' => true], ['title' => '5-Year — Yatri Asian Signature Pass', 'featured' => false],
+                  ['title' => '3-Year — Yatri Royal Bharat Pass', 'featured' => false], ['title' => '25-Year — Yatri Privilege Crown Asset', 'featured' => false],
+              ];
+              usort($footerPlans, static fn($x, $y) => (int)$y['featured'] <=> (int)$x['featured']);   // the popular one first
+              foreach ($footerPlans as $fp): ?>
+                <option value="<?php echo e($fp['title']); ?>"><?php echo e($fp['title']); ?><?php echo !empty($fp['featured']) ? ' (Most Popular)' : ''; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
         </div>

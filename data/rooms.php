@@ -121,3 +121,10 @@ $roomCategories = [
         ]
     ]
 ];
+
+// Built-in copy: the starting content loaded into the admin, and the fallback while the database has none
+$roomCategoriesStatic = $roomCategories;
+require_once __DIR__ . '/../includes/content-db.php';
+if (content_has_rows('room_categories')) {
+    $roomCategories = content_rooms();
+}

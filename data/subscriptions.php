@@ -136,3 +136,10 @@ $seasonalStudioCategories = [
         'description' => 'High-demand festive seasons including Diwali, Christmas, New Year celebrations, and premium high-altitude winter snow weeks.'
     ]
 ];
+
+// Built-in copy: the starting content loaded into the admin, and the fallback while the database has none
+$subscriptionPlansStatic = $subscriptionPlans;
+require_once __DIR__ . '/../includes/content-db.php';
+if (content_has_rows('passes')) {
+    $subscriptionPlans = content_pass_plans();
+}

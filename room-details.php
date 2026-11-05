@@ -10,7 +10,12 @@ require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/data/rooms.php';
 
 $roomId = $_GET['id'] ?? 'luxury-suite';
-$room = $roomCategories[$roomId] ?? $roomCategories['luxury-suite'];
+if (!$roomCategories) {
+    http_response_code(404);
+    include __DIR__ . '/404.php';
+    exit;
+}
+$room = $roomCategories[$roomId] ?? reset($roomCategories);
 
 $pageTitle = $room['title'] . ' Details';
 $pageDescription = 'Detailed specifications, capacity, and luxury amenities for ' . $room['title'] . ' at Club Yatri resorts.';
@@ -31,8 +36,20 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <!-- Media & Specs -->
       <div>
         <div style="border-radius: var(--radius-xl); overflow: hidden; border: 1.5px solid var(--border-gold); box-shadow: var(--shadow-lg); margin-bottom: 24px;">
-          <img src="<?php echo e($room['image']); ?>" alt="<?php echo e($room['title']); ?>" style="width: 100%; height: 420px; object-fit: cover; display: block;">
+          <img id="roomMainImage" src="<?php echo e($room['image']); ?>" alt="<?php echo e($room['title']); ?>" style="width: 100%; height: 420px; object-fit: cover; display: block;">
         </div>
+        <?php if (!empty($room['gallery'])): ?>
+          <div class="room-gallery">
+            <?php foreach (array_merge([['url' => $room['image'], 'alt' => $room['title']]], $room['gallery']) as $g): ?>
+              <button type="button" data-src="<?php echo e($g['url']); ?>" aria-label="Show this photo"><img src="<?php echo e($g['url']); ?>" alt="<?php echo e($g['alt'] ?: $room['title']); ?>" loading="lazy"></button>
+            <?php endforeach; ?>
+          </div>
+          <script>
+          document.querySelectorAll('.room-gallery button').forEach(function (b) {
+            b.addEventListener('click', function () { document.getElementById('roomMainImage').src = b.getAttribute('data-src'); });
+          });
+          </script>
+        <?php endif; ?>
 
         <div class="card-luxury" style="padding: 28px;">
           <h3 class="heading-serif" style="font-size: 1.35rem; color: var(--color-text); margin-bottom: 16px;">Key Suite Attributes</h3>

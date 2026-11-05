@@ -87,7 +87,7 @@ $isLoggedIn = !empty($_SESSION['member_authenticated']);
   <div class="container">
     <!-- Brand Logo: Official Red & White Circular Logo ONLY (No text beside it as requested) -->
     <a href="<?php echo url('index.php'); ?>" class="brand-logo-only" aria-label="Club Yatri">
-      <img src="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png" alt="Club Yatri Logo" width="52" height="52">
+      <img src="<?php echo e(site_logo_url()); ?>" alt="Club Yatri Logo" width="52" height="52">
     </a>
 
     <!-- Desktop Navigation Menu -->
@@ -127,7 +127,7 @@ $isLoggedIn = !empty($_SESSION['member_authenticated']);
   <div>
     <div class="drawer-header">
       <a href="<?php echo url('index.php'); ?>" class="brand-logo-only" aria-label="Club Yatri">
-        <img src="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png" alt="Club Yatri Logo" width="46" height="46">
+        <img src="<?php echo e(site_logo_url()); ?>" alt="Club Yatri Logo" width="46" height="46">
       </a>
       <button class="drawer-close" id="drawerCloseBtn" aria-label="Close Mobile Navigation">✕</button>
     </div>

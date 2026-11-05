@@ -9,6 +9,7 @@ require_once __DIR__ . '/destinations-db.php';
 
 $hotelDestination = destination_for_hotel($hotel);
 $hotelImages = hotel_images((int)$hotel['id']);
+$hotelAlts = hotel_image_alts((int)$hotel['id']);
 $hotelMap = hotel_safe_map_url($hotel['map_link'] ?? '');
 $hotelStays = hotel_stay_types($hotel['stay_types'] ?? '');
 $hotelRelated = hotels_related($hotel);
@@ -23,7 +24,7 @@ $hotelFacts = hotel_extended_facts($hotel);
       <div>
         <div class="hotel-gallery-main">
           <?php if ($hotelImages): ?>
-            <img id="hotelMainImage" src="<?php echo e(hotel_image_url($hotelImages[0])); ?>" alt="<?php echo e($hotel['name']); ?>">
+            <img id="hotelMainImage" src="<?php echo e(hotel_image_url($hotelImages[0])); ?>" alt="<?php echo e($hotelAlts[$hotelImages[0]] ?? $hotel['name']); ?>">
           <?php else: ?>
             <div class="hotel-noimg hotel-noimg-lg"><span><?php echo e(mb_substr($hotel['name'], 0, 1)); ?></span></div>
           <?php endif; ?>
@@ -32,7 +33,7 @@ $hotelFacts = hotel_extended_facts($hotel);
           <div class="hotel-gallery-thumbs">
             <?php foreach ($hotelImages as $i => $img): ?>
               <button type="button" class="hotel-thumb<?php echo $i === 0 ? ' active' : ''; ?>" data-src="<?php echo e(hotel_image_url($img)); ?>" aria-label="Show photo <?php echo $i + 1; ?>">
-                <img src="<?php echo e(hotel_image_url($img)); ?>" alt="" loading="lazy">
+                <img src="<?php echo e(hotel_image_url($img)); ?>" alt="<?php echo e($hotelAlts[$img] ?? ''); ?>" loading="lazy">
               </button>
             <?php endforeach; ?>
           </div>

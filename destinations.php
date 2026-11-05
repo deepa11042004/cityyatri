@@ -10,6 +10,7 @@ $pageDescription = 'Explore Club Yatri vacation hubs across Goa, Udaipur, Manali
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/hotels.php';
 require_once __DIR__ . '/data/destinations.php';
 require_once __DIR__ . '/data/resorts.php';
 
@@ -51,10 +52,13 @@ include __DIR__ . '/includes/breadcrumbs.php';
       <p class="section-desc">Handpicked properties offering guaranteed reservation rights for Club Yatri holiday owners.</p>
     </div>
 
-    <div class="grid-3">
-      <?php foreach ($resortsList as $resort): ?>
-        <?php include __DIR__ . '/includes/resort-card.php'; ?>
+    <div class="grid-3 hotel-grid">
+      <?php foreach (hotels_club_properties('', 9) as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
       <?php endforeach; ?>
+    </div>
+    <div style="text-align: center; margin-top: 36px;">
+      <a href="<?php echo e(url('resort-network.php')); ?>" class="btn-red btn-lg">Browse the Full Resort Network &rarr;</a>
     </div>
   </div>
 </section>

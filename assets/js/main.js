@@ -204,12 +204,33 @@ function initModals() {
       e.preventDefault();
       const submitBtn = inquiryForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
-
+      let err = inquiryForm.querySelector('.form-submit-error');
+      if (!err) {
+        err = document.createElement('div');
+        err.className = 'form-submit-error';
+        err.setAttribute('role', 'alert');
+        err.style.cssText = 'display:none;margin:0 0 14px;padding:10px 14px;border-radius:12px;background:#FDECEC;color:#B0171A;font-size:0.9rem;font-weight:600;';
+        submitBtn.parentNode.insertBefore(err, submitBtn);
+      }
+      err.style.display = 'none';
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>Securing Concierge...</span>`;
 
-      setTimeout(() => {
-        inquiryForm.innerHTML = `
+      fetch(inquiryForm.action, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'fetch', 'Accept': 'application/json' },
+        body: new FormData(inquiryForm)
+      })
+        .then((r) => r.json().catch(() => ({ ok: false, message: 'Something went wrong. Please try again.' })))
+        .then((res) => {
+          if (!res.ok) {
+            err.textContent = res.message || 'We could not save your request. Please try again.';
+            err.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            return;
+          }
+          inquiryForm.innerHTML = `
           <div style="text-align: center; padding: 30px 10px;">
             <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(0, 201, 167, 0.15); color: #00c9a7; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; font-size: 28px;">✓</div>
             <h3 class="heading-display" style="font-size: 1.6rem; margin-bottom: 12px; color: #fff;">Inquiry Received with Priority</h3>
@@ -219,7 +240,13 @@ function initModals() {
             <button class="btn btn-outline-gold" onclick="document.getElementById('inquiryModal').classList.remove('active'); document.body.style.overflow='';">Close Window</button>
           </div>
         `;
-      }, 1000);
+        })
+        .catch(() => {
+          err.textContent = 'Network problem. Please check your connection and try again.';
+          err.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        });
     });
   }
 
@@ -256,11 +283,22 @@ function initNewsletter() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]');
+    const btn = form.querySelector('button[type="submit"]');
     if (!input || !input.value) return;
+    if (btn) btn.disabled = true;
 
-    const email = input.value;
-    input.value = '';
-    showToast(`Welcome to the Club Yatri Journal! An exclusive invitation has been dispatched to ${email}.`);
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'fetch', 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+      .then((r) => r.json().catch(() => ({ ok: false, message: 'Something went wrong. Please try again.' })))
+      .then((res) => {
+        if (res.ok) { input.value = ''; }
+        showToast(res.message || (res.ok ? 'Thank you for subscribing.' : 'Could not subscribe. Please try again.'));
+      })
+      .catch(() => showToast('Network problem. Please check your connection and try again.'))
+      .finally(() => { if (btn) btn.disabled = false; });
   });
 }
 

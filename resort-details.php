@@ -16,8 +16,9 @@ $resortId = $_GET['id'] ?? 'azure-sands-goa';
 // Hotels imported into the database are addressed by slug; curated resorts keep their own layout.
 $hotel = (isset($_GET['id']) && !isset($resortsList[$resortId])) ? hotel_find((string)$resortId) : null;
 if ($hotel !== null) {
-    $pageTitle = $hotel['name'] . ' - ' . $hotel['location_name'];
-    $pageDescription = hotel_excerpt($hotel['description'] ?? '', 160);
+    $pageTitle = !empty($hotel['meta_title']) ? $hotel['meta_title'] : $hotel['name'] . ' - ' . $hotel['location_name'];
+    $pageDescription = !empty($hotel['meta_description']) ? $hotel['meta_description']
+        : hotel_excerpt(($hotel['short_description'] ?? '') ?: ($hotel['description'] ?? ''), 160);
     $breadcrumbTitle = $hotel['name'];
     $parentTitle = 'Resort Network';
     $parentUrl = url('resort-network.php');

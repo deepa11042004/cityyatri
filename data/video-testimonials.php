@@ -23,3 +23,8 @@
 declare(strict_types=1);
 
 $videoTestimonials = [];
+
+require_once __DIR__ . '/../includes/content-db.php';
+if (content_has_rows('testimonials', "type = 'video'")) {
+    $videoTestimonials = content_video_testimonials();
+}

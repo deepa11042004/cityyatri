@@ -11,6 +11,30 @@ require_once __DIR__ . '/db.php';
 
 const HOTELS_PER_PAGE = 24;
 
+/** True once the admin migration has added the featured / display_order columns (keeps the site working before it runs). */
+function hotels_admin_cols(): bool
+{
+    static $has = null;
+    if ($has === null) {
+        $has = false;
+        try {
+            if ($pdo = db()) {
+                $has = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = 'hotels' AND column_name IN ('featured', 'display_order')")->fetchColumn() === 2;
+            }
+        } catch (PDOException $e) {
+            error_log('Admin column check failed: ' . $e->getMessage());
+        }
+    }
+    return $has;
+}
+
+/** Manual order from the admin (1, 2, 3...) first, then photographed hotels, then alphabetical. */
+function hotels_order_sql(string $alias = ''): string
+{
+    $a = $alias !== '' ? $alias . '.' : '';
+    return (hotels_admin_cols() ? "({$a}display_order = 0), {$a}display_order, " : '') . "({$a}image_path IS NULL), {$a}name";
+}
+
 function hotel_category_label(string $category): string
 {
     return $category === 'INTERNAL' ? 'Club Yatri Property' : 'Associated Partner';
@@ -141,9 +165,8 @@ function hotels_search(array $f, int $limit = HOTELS_PER_PAGE, ?int $offset = nu
     $params = [];
     $where = hotels_where($f, $params);
     $offset ??= ($f['page'] - 1) * $limit;
-    // Hotels with photos first, then alphabetical
     return hotels_query(
-        "SELECT * FROM hotels WHERE $where ORDER BY (image_path IS NULL), name LIMIT " . (int)$limit . ' OFFSET ' . (int)$offset,
+        "SELECT * FROM hotels WHERE $where ORDER BY " . hotels_order_sql() . ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$offset,
         $params
     );
 }
@@ -181,17 +204,41 @@ function hotel_images(int $hotelId): array
     );
 }
 
+/** path => alt text for photos that have one (set in the admin). */
+function hotel_image_alts(int $hotelId): array
+{
+    $out = [];
+    foreach (hotels_query('SELECT path, alt_text FROM hotel_images WHERE hotel_id = ?', [$hotelId]) as $r) {
+        if (!empty($r['alt_text'])) {
+            $out[$r['path']] = $r['alt_text'];
+        }
+    }
+    return $out;
+}
+
 function hotels_related(array $hotel, int $limit = 3): array
 {
     return hotels_query(
-        'SELECT * FROM hotels WHERE is_published = 1 AND location_name = ? AND id <> ? ORDER BY (image_path IS NULL), name LIMIT ' . (int)$limit,
+        'SELECT * FROM hotels WHERE is_published = 1 AND location_name = ? AND id <> ? ORDER BY ' . hotels_order_sql() . ' LIMIT ' . (int)$limit,
         [$hotel['location_name'], $hotel['id']]
     );
 }
 
-/** One photographed hotel from each of the busiest locations, for the homepage. */
+/**
+ * Homepage hotels: the ones marked "Featured" in the admin; until any are marked,
+ * one photographed hotel from each of the busiest locations.
+ */
 function hotels_featured(int $limit = 8): array
 {
+    if (hotels_admin_cols()) {
+        $picked = hotels_query(
+            'SELECT * FROM hotels WHERE is_published = 1 AND featured = 1 ORDER BY ' . hotels_order_sql() . ' LIMIT ' . (int)$limit,
+            []
+        );
+        if ($picked) {
+            return $picked;
+        }
+    }
     return hotels_query(
         'SELECT h.* FROM hotels h JOIN (
             SELECT location_name, MIN(id) AS id FROM hotels
@@ -200,6 +247,21 @@ function hotels_featured(int $limit = 8): array
          ) t ON t.id = h.id ORDER BY h.location_type, h.location_name',
         []
     );
+}
+
+/**
+ * Club Yatri's own properties (partner type "Club Yatri property") with photos, in the admin's display order.
+ * Used where the site used to show a hard-coded list of sample resorts.
+ */
+function hotels_club_properties(string $type = '', int $limit = 9): array
+{
+    $params = [];
+    $sql = "SELECT * FROM hotels WHERE is_published = 1 AND category = 'INTERNAL' AND image_path IS NOT NULL";
+    if (in_array($type, ['DOMESTIC', 'INTERNATIONAL'], true)) {
+        $sql .= ' AND location_type = ?';
+        $params[] = $type;
+    }
+    return hotels_query($sql . ' ORDER BY ' . hotels_order_sql() . ' LIMIT ' . (int)$limit, $params);
 }
 
 /** Slim list used by the booking request dropdown. */

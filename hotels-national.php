@@ -10,13 +10,13 @@ $pageDescription = 'Explore Club Yatri handpicked national resort properties acr
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/hotels.php';
 require_once __DIR__ . '/data/resorts.php';
 
 $breadcrumbTitle = 'National Resorts';
 $parentTitle = 'Destinations';
 $parentUrl = url('destinations.php');
 
-$nationalResorts = array_filter($resortsList, fn($r) => $r['region'] === 'National');
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
@@ -38,9 +38,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
 <section class="section" style="padding-top: 20px; padding-bottom: 80px;">
   <div class="container">
-    <div class="grid-3">
-      <?php foreach ($nationalResorts as $resort): ?>
-        <?php include __DIR__ . '/includes/resort-card.php'; ?>
+    <div class="grid-3 hotel-grid">
+      <?php foreach (hotels_club_properties('DOMESTIC', 6) as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
       <?php endforeach; ?>
     </div>
   </div>

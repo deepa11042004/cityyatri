@@ -32,7 +32,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
     <div class="form-card" style="background: #FFFFFF; border: 1.5px solid var(--color-border); border-radius: var(--radius-card); padding: 44px 36px; box-shadow: var(--shadow-card);">
       
       <div style="text-align: center; margin-bottom: 28px;">
-        <img src="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png" alt="Club Yatri" width="56" height="56" style="margin: 0 auto 12px auto; display: block;">
+        <img src="<?php echo e(site_logo_url()); ?>" alt="Club Yatri" width="56" height="56" style="margin: 0 auto 12px auto; display: block;">
         <div class="sub-tag" style="margin-bottom: 8px;">Subscriber Portal</div>
         <h1 class="heading-serif" style="font-size: 1.85rem; color: var(--color-text); margin-bottom: 8px;">Sign In to Your Account</h1>
         <p style="font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.5;">

@@ -17,7 +17,7 @@ require_once __DIR__ . '/helpers.php';
   <?php include __DIR__ . '/seo.php'; ?>
 
   <!-- Official Favicon -->
-  <link rel="icon" type="image/png" href="<?php echo e(BASE_PATH); ?>/assets/images/logo/club-yatri-logo.png">
+  <link rel="icon" href="<?php echo e(site_favicon_url()); ?>">
 
   <!-- Core Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

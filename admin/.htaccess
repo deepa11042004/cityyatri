@@ -1,0 +1,5 @@
+# Admin area: no directory listings, no stray file types
+Options -Indexes
+<FilesMatch "\.(sql|log|ini|md)$">
+  Require all denied
+</FilesMatch>

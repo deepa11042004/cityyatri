@@ -27,7 +27,7 @@ $hotelUrl = url('resort-details.php?id=' . urlencode($hotel['slug']));
       <span><?php echo e($hotel['location_name']); ?>, <?php echo e($hotel['country']); ?></span>
     </div>
     <h3 class="card-title"><a href="<?php echo e($hotelUrl); ?>" style="color: inherit;"><?php echo e($hotel['name']); ?></a></h3>
-    <p class="card-desc"><?php echo e(hotel_excerpt($hotel['description'] ?? '')); ?></p>
+    <p class="card-desc"><?php echo e(hotel_excerpt(($hotel['short_description'] ?? '') ?: ($hotel['description'] ?? ''))); ?></p>
     <div class="card-footer">
       <span class="hotel-type-tag"><?php echo e(hotel_type_label($hotel['hotel_type'])); ?></span>
       <div style="display: flex; gap: 8px;">

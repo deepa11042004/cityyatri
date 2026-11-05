@@ -15,6 +15,29 @@ const DESTINATION_SELECT =
     'SELECT d.*, (SELECT COUNT(*) FROM hotels h WHERE h.location_name = d.name AND h.is_published = 1) AS hotels_count
      FROM destinations d';
 
+/** True once the admin migration has added destinations.display_order (keeps the site working before it runs). */
+function destinations_admin_cols(): bool
+{
+    static $has = null;
+    if ($has === null) {
+        $has = false;
+        try {
+            if ($pdo = db()) {
+                $has = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = 'destinations' AND column_name = 'display_order'")->fetchColumn() === 1;
+            }
+        } catch (PDOException $e) {
+            error_log('Admin column check failed: ' . $e->getMessage());
+        }
+    }
+    return $has;
+}
+
+/** Featured first, then the admin's manual order (1, 2, 3...), then busiest destinations first. */
+function destinations_order_sql(): string
+{
+    return (destinations_admin_cols() ? 'd.featured DESC, (d.display_order = 0), d.display_order, ' : '') . 'hotels_count DESC, d.name';
+}
+
 function destination_filters(string $forcedType = ''): array
 {
     $type = $forcedType !== '' ? $forcedType : strtoupper((string)($_GET['type'] ?? ''));
@@ -50,7 +73,7 @@ function destinations_search(array $f, int $limit = DESTINATIONS_PER_PAGE): arra
     $offset = ($f['page'] - 1) * $limit;
     // Busiest destinations first, then alphabetical
     return hotels_query(
-        DESTINATION_SELECT . " WHERE $where ORDER BY hotels_count DESC, d.name LIMIT " . (int)$limit . ' OFFSET ' . (int)$offset,
+        DESTINATION_SELECT . " WHERE $where ORDER BY " . destinations_order_sql() . ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$offset,
         $params
     );
 }
@@ -85,9 +108,15 @@ function destinations_popular(int $limit = 8): array
 {
     return hotels_query(
         DESTINATION_SELECT . ' WHERE d.is_published = 1 AND d.hero_image IS NOT NULL
-         ORDER BY hotels_count DESC, d.name LIMIT ' . (int)$limit,
+         ORDER BY ' . destinations_order_sql() . ' LIMIT ' . (int)$limit,
         []
     );
+}
+
+/** Gallery photos added in the admin (empty until some exist). */
+function destination_gallery(int $destinationId): array
+{
+    return hotels_query('SELECT path, alt_text FROM destination_images WHERE destination_id = ? ORDER BY sort_order, id', [$destinationId]);
 }
 
 function destinations_related(array $dest, int $limit = 3): array

@@ -10,9 +10,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Editable in the admin (Settings); every value below is the default used until something is saved there
+require_once __DIR__ . '/settings.php';
+
 // 1. Brand & Corporate Identity
-define('SITE_NAME', 'Club Yatri');
-define('SITE_TAGLINE', 'Vacation Ownership & Bespoke Timeshare Holidays');
+define('SITE_NAME', site_setting('site_name', 'Club Yatri'));
+define('SITE_TAGLINE', site_setting('site_tagline', 'Vacation Ownership & Bespoke Timeshare Holidays'));
 define('LEGAL_ENTITY_NAME', 'Club Yatri Hotel and Resort Pvt Ltd');
 define('CIN_NUMBER', 'U55101MH2026PTC000000 (Placeholder - Pending Client Verification)');
 define('GSTIN_NUMBER', '27AAAAA0000A1Z5 (Placeholder)');
@@ -34,13 +37,15 @@ define('BASE_URL', $protocol . $host . $basePath);
 define('BASE_PATH', $basePath);
 
 // 3. Contact & Concierge Information
-define('CONTACT_PHONE_TOLL_FREE', '1800-209-9287');
-define('CONTACT_PHONE_TEL', '+9118002099287');
-define('CONTACT_WHATSAPP', '+919876543210');
-define('CONTACT_WHATSAPP_DISPLAY', '+91 98765 43210');
-define('CONTACT_EMAIL', 'concierge@clubyatri.com');
-define('CONTACT_SUPPORT_EMAIL', 'support@clubyatri.com');
-define('CONTACT_ADDRESS', 'Level 14, The Imperial Tower, Bandra Kurla Complex (BKC), Mumbai - 400051, Maharashtra, India');
+define('CONTACT_PHONE_TOLL_FREE', site_setting('contact_phone', '1800-209-9287'));
+define('CONTACT_PHONE_TEL', site_setting('contact_phone') !== '' ? site_phone_tel(site_setting('contact_phone')) : '+9118002099287');
+define('CONTACT_PHONE_ALT', site_setting('contact_phone_alt'));
+define('CONTACT_WHATSAPP', site_setting('contact_whatsapp') !== '' ? site_phone_tel(site_setting('contact_whatsapp')) : '+919876543210');
+define('CONTACT_WHATSAPP_DISPLAY', site_setting('contact_whatsapp', '+91 98765 43210'));
+define('CONTACT_EMAIL', site_setting('contact_email', 'concierge@clubyatri.com'));
+define('CONTACT_SUPPORT_EMAIL', site_setting('contact_support_email', 'support@clubyatri.com'));
+define('CONTACT_ADDRESS', site_setting('contact_address', 'Level 14, The Imperial Tower, Bandra Kurla Complex (BKC), Mumbai - 400051, Maharashtra, India'));
+define('CONTACT_MAP_URL', site_setting('contact_map_url'));
 
 // 4. Brand Palette Tokens (Light Hospitality Theme: Rich Red & Golden Yellow)
 define('COLOR_PRIMARY', '#C8102E');   // Primary Red (#C8102E)
@@ -108,16 +113,21 @@ $GLOBALS['navMenu'] = [
 
 // 7. Social Media Channels
 $GLOBALS['socialLinks'] = [
-    'facebook' => 'https://facebook.com/clubyatri',
-    'instagram' => 'https://instagram.com/clubyatri',
-    'linkedin' => 'https://linkedin.com/company/clubyatri',
-    'youtube' => 'https://youtube.com/@clubyatri',
+    'facebook' => site_setting('social_facebook', 'https://facebook.com/clubyatri'),
+    'instagram' => site_setting('social_instagram', 'https://instagram.com/clubyatri'),
+    'linkedin' => site_setting('social_linkedin', 'https://linkedin.com/company/clubyatri'),
+    'youtube' => site_setting('social_youtube', 'https://youtube.com/@clubyatri'),
 ];
+foreach (['twitter' => 'social_twitter'] as $k => $sk) {   // optional extra network, shown only when filled in
+    if (site_setting($sk) !== '') {
+        $GLOBALS['socialLinks'][$k] = site_setting($sk);
+    }
+}
 
 // 8. Default SEO Metadata
 $GLOBALS['defaultSeo'] = [
-    'title' => 'Club Yatri | Luxury Vacation Ownership & Bespoke Timeshare Holidays',
-    'description' => 'Guaranteed 5-star resort weeks, flexible internal & international holiday exchanges, and 24/7 dedicated lifestyle concierge services with Club Yatri Hotel and Resort Pvt Ltd.',
+    'title' => site_setting('seo_title', 'Club Yatri | Luxury Vacation Ownership & Bespoke Timeshare Holidays'),
+    'description' => site_setting('seo_description', 'Guaranteed 5-star resort weeks, flexible internal & international holiday exchanges, and 24/7 dedicated lifestyle concierge services with Club Yatri Hotel and Resort Pvt Ltd.'),
     'keywords' => 'Club Yatri, vacation ownership, luxury timeshare, holiday club India, holiday passes, Goa luxury villas, Rajasthan palaces, timeshare subscription, holiday asset',
-    'og_image' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+    'og_image' => site_setting('seo_og_image') !== '' ? (preg_match('~^https?://~i', site_setting('seo_og_image')) ? site_setting('seo_og_image') : BASE_URL . '/' . ltrim(site_setting('seo_og_image'), '/')) : 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
 ];

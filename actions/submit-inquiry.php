@@ -1,6 +1,9 @@
 <?php
 /**
- * Club Yatri - Action: Submit General / Pass Inquiry
+ * Club Yatri - Action: Submit General / Pass Inquiry, footer newsletter and enquiry pop-up.
+ *
+ * inquiry_type selects the source: newsletter | enquiry_popup | pass_enquiry (default).
+ * Works for normal POSTs and for fetch() (JSON response) without double-saving.
  */
 
 declare(strict_types=1);
@@ -8,17 +11,23 @@ declare(strict_types=1);
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/leads.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ' . url('index.php'));
     exit;
 }
 
-$csrf = $_POST['csrf_token'] ?? '';
-if (!verify_csrf_token($csrf)) {
-    set_flash_message('error', 'Security token mismatch. Please refresh and try again.');
-    header('Location: ' . url('index.php'));
-    exit;
+$type = trim((string)($_POST['inquiry_type'] ?? ''));
+$source = match ($type) {
+    'newsletter' => 'newsletter',
+    'enquiry_popup' => 'enquiry_popup',
+    default => 'pass_enquiry',
+};
+$back = lead_return_url('index.php');
+
+if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+    lead_finish(false, 'Security token mismatch. Please refresh and try again.', $back);
 }
 
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
@@ -27,33 +36,40 @@ $phone = trim($_POST['phone'] ?? '');
 $city = trim($_POST['city'] ?? '');
 $passTier = trim($_POST['pass_tier'] ?? '');
 $notes = trim($_POST['notes'] ?? '');
-$inquiryType = trim($_POST['inquiry_type'] ?? 'pass_inquiry');
 
 if (!$email) {
-    set_flash_message('error', 'Please provide a valid corporate or personal email address.');
-    header('Location: ' . url('index.php'));
-    exit;
+    lead_finish(false, 'Please provide a valid corporate or personal email address.', $back);
+}
+if ($source !== 'newsletter' && ($fullName === '' || $phone === '')) {
+    lead_finish(false, 'Please provide your name and phone number.', $back);
 }
 
-// Log inquiry safely to file in storage/
-$logEntry = [
-    'timestamp' => date('Y-m-d H:i:s'),
-    'ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
-    'type' => $inquiryType,
+$result = lead_capture([
+    'source' => $source,
+    'type' => $source === 'pass_enquiry' ? 'pass_inquiry' : $source,
+    'subject' => match ($source) {
+        'newsletter' => 'Newsletter subscription',
+        'enquiry_popup' => 'Pass allocation request',
+        default => $passTier !== '' ? 'Pass enquiry: ' . $passTier : 'Pass enquiry',
+    },
     'full_name' => $fullName,
     'email' => $email,
     'phone' => $phone,
     'city' => $city,
     'pass_tier' => $passTier,
-    'notes' => $notes
-];
+    'notes' => $notes,
+]);
 
-db_insert('INSERT INTO inquiries (type, full_name, email, phone, city, pass_tier, notes, ip_address) VALUES (?,?,?,?,?,?,?,?)',
-    [$inquiryType, $fullName, $email, $phone, $city, $passTier, $notes, $_SERVER['REMOTE_ADDR'] ?? null]);
+if (!$result['ok']) {
+    lead_finish(false, $result['error'] ?? 'We could not save your request. Please try again.', $back);
+}
 
-$logFile = __DIR__ . '/../storage/inquiries.log';
-file_put_contents($logFile, json_encode($logEntry) . PHP_EOL, FILE_APPEND | LOCK_EX);
+if (empty($result['spam']) && empty($result['duplicate'])) {
+    $logEntry = ['timestamp' => date('Y-m-d H:i:s'), 'ip' => lead_client_ip(), 'type' => $source, 'full_name' => $fullName,
+        'email' => $email, 'phone' => $phone, 'city' => $city, 'pass_tier' => $passTier, 'notes' => $notes];
+    @file_put_contents(__DIR__ . '/../storage/inquiries.log', json_encode($logEntry) . PHP_EOL, FILE_APPEND | LOCK_EX);
+}
 
-set_flash_message('success', 'Thank you! Your inquiry has been registered with priority. A Senior Lifestyle Concierge will contact you within 30 minutes.');
-header('Location: ' . url('index.php'));
-exit;
+lead_finish(true, $source === 'newsletter'
+    ? 'Welcome to the Club Yatri Journal! Your subscription has been recorded.'
+    : 'Thank you! Your inquiry has been registered with priority. A Senior Lifestyle Concierge will contact you within 30 minutes.', $back);

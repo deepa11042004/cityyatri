@@ -29,7 +29,11 @@ $confirmedCode = $_GET['confirmed'] ?? '';
 
 require_once __DIR__ . '/includes/hotels.php';
 $networkHotels = hotels_options();
+require_once __DIR__ . '/includes/destinations-db.php';
+$bookingDestinations = destinations_search(['q' => '', 'type' => '', 'page' => 1], 500);
+$prefillDestination = trim((string)($_GET['destination'] ?? ''));
 
+require_once __DIR__ . '/includes/leads.php';
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
@@ -61,6 +65,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
       <form action="<?php echo url('actions/submit-booking-request.php'); ?>" method="POST">
         <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+        <?php echo lead_honeypot(); ?>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
           <div class="form-group">
@@ -88,11 +93,14 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <div class="form-group">
             <label>Selected Destination / Resort *</label>
             <select name="destination" class="form-control" required>
-              <?php foreach ($resortsList as $resort): ?>
-                <option value="<?php echo e($resort['name']); ?>" <?php echo ($prefillResort === $resort['id'] || ($prefillResort === '' && !empty($_GET['destination']) && $_GET['destination'] === ($resort['destination_id'] ?? ''))) ? 'selected' : ''; ?>>
-                  <?php echo e($resort['name']); ?> (<?php echo e($resort['location']); ?>)
-                </option>
-              <?php endforeach; ?>
+              <option value="">Select a destination or hotel…</option>
+              <?php if ($bookingDestinations): ?>
+                <optgroup label="Destinations">
+                  <?php foreach ($bookingDestinations as $bd): ?>
+                    <option value="<?php echo e($bd['name']); ?>" <?php echo ($prefillDestination !== '' && ($prefillDestination === $bd['slug'] || strcasecmp($prefillDestination, $bd['name']) === 0)) ? 'selected' : ''; ?>><?php echo e($bd['name']); ?> (<?php echo e($bd['country']); ?>)</option>
+                  <?php endforeach; ?>
+                </optgroup>
+              <?php endif; ?>
               <?php if ($networkHotels): ?>
                 <optgroup label="Network Hotels">
                   <?php foreach ($networkHotels as $nh): ?>

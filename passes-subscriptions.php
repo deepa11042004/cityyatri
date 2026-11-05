@@ -72,12 +72,18 @@ include __DIR__ . '/includes/breadcrumbs.php';
         ['yellow', 'Yatri Yellow Pass', 'Peak Season'],
         ['red', 'Yatri Red Pass', 'Super Peak Season'],
     ];
+    if (content_has_rows('pass_seasons')) {
+        $collection = [];
+        foreach (content_pass_seasons() as $ps) {
+            $collection[] = [$ps['slug'], $ps['name'], $ps['season_label'], $ps['image_path'], $ps['image_alt']];
+        }
+    }
     ?>
     <div class="pass-collection-grid">
       <?php foreach ($collection as $c): ?>
         <article class="pc-card pc-img pc-<?php echo e($c[0]); ?>">
           <button type="button" class="pass-zoom" aria-label="View <?php echo e($c[1]); ?> full screen">
-            <img src="<?php echo e(url('images/passes/pc-' . $c[0] . '.jpg')); ?>" alt="<?php echo e($c[1] . ' - ' . $c[2]); ?>" loading="lazy">
+            <img src="<?php echo e(content_image_url($c[3] ?? ('images/passes/pc-' . $c[0] . '.jpg'))); ?>" alt="<?php echo e(($c[4] ?? '') !== '' ? $c[4] : $c[1] . ' - ' . $c[2]); ?>" loading="lazy">
           </button>
         </article>
       <?php endforeach; ?>

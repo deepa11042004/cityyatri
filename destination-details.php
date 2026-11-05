@@ -24,6 +24,7 @@ $destSource = destination_safe_source($destination['source_url'] ?? '');
 $destHotels = hotels_search(['q' => '', 'type' => '', 'category' => '', 'location' => $destination['name'], 'page' => 1], 6, 0);
 $destHotelsTotal = (int)$destination['hotels_count'];
 $destRelated = destinations_related($destination);
+$destGallery = destination_gallery((int)$destination['id']);
 
 $pageTitle = $destination['meta_title'] ?: ($destination['name'] . ' - Hotels & Travel Guide');
 $pageDescription = $destination['meta_description'] ?: hotel_excerpt($destination['description'] ?? '', 160);
@@ -97,6 +98,19 @@ include __DIR__ . '/includes/breadcrumbs.php';
     </div>
   </div>
 </section>
+
+<?php if ($destGallery): ?>
+<section class="section" style="padding-top: 10px; padding-bottom: 50px;">
+  <div class="container">
+    <h2 class="heading-serif" style="font-size: 1.6rem; margin-bottom: 20px;">Photo Gallery</h2>
+    <div class="itinerary-gallery">
+      <?php foreach ($destGallery as $i => $g): ?>
+        <figure><img src="<?php echo e(hotel_image_url($g['path'])); ?>" alt="<?php echo e($g['alt_text'] ?: $destination['name'] . ' photo ' . ($i + 1)); ?>" loading="lazy"></figure>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?php if ($destHotels): ?>
 <section class="section" style="background: var(--color-background-soft); padding-top: 60px; padding-bottom: 70px;">

@@ -1804,3 +1804,18 @@ img, video, svg, iframe { max-width: 100%; }
   .stack-table td { display: flex; justify-content: space-between; gap: 16px; padding: 7px 12px !important; text-align: right; border: 0; }
   .stack-table td::before { content: attr(data-label); font-weight: 800; color: var(--color-text-muted); text-align: left; }
 }
+
+/* Admin-managed content: pass benefits, text-only pass cards, room gallery */
+.pass-benefit-list { list-style: none; display: grid; gap: 12px; margin: 0; padding: 0; }
+.pass-benefit-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
+.pass-benefit-list .pb-dot { flex: 0 0 18px; height: 18px; margin-top: 2px; border-radius: 50%; background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.pass-benefit-list strong { color: var(--color-text); display: block; }
+.pass-benefit-list small { display: block; color: var(--text-secondary); font-size: 0.85rem; margin-top: 2px; }
+.pass-text-card { padding: 36px 32px; background: linear-gradient(135deg, #FFF3EF 0%, #F3F8FF 100%); }
+.pass-text-card h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; margin: 0 0 10px; color: var(--color-text); }
+.pass-text-card p { margin: 0; color: var(--color-text-muted); max-width: 70ch; line-height: 1.7; }
+.room-gallery { display: flex; flex-wrap: wrap; gap: 10px; margin: -8px 0 24px; }
+.room-gallery button { padding: 0; border: 2px solid transparent; border-radius: 12px; overflow: hidden; background: none; cursor: pointer; width: 84px; height: 62px; }
+.room-gallery button:hover, .room-gallery button:focus-visible { border-color: var(--color-primary); }
+.room-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pass-benefit-list .pb-icon { flex: 0 0 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: #FDE3E1; color: var(--color-primary-dark); font-size: 0.85rem; }

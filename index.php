@@ -169,8 +169,8 @@ include __DIR__ . '/includes/navbar.php';
     <div class="card-slider" id="resortExplorerGrid">
       <button type="button" class="slider-arrow slider-prev" aria-label="Previous resorts" disabled>&#8592;</button>
       <div class="slider-track" tabindex="0" aria-label="Featured resorts">
-      <?php foreach ($resortsList as $resort): ?>
-        <?php include __DIR__ . '/includes/resort-card.php'; ?>
+      <?php foreach (hotels_club_properties('', 9) as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
       <?php endforeach; ?>
       </div>
       <button type="button" class="slider-arrow slider-next" aria-label="Next resorts">&#8594;</button>
@@ -294,7 +294,16 @@ include __DIR__ . '/includes/navbar.php';
           ['Points Banking', 'Lifetime points banking enabled, allowing structured carryover for a limited validity period.'],
           ['Annual Compliance', 'Timely payment of the Annual Subscription & Concierge Fee (ACF) is mandatory to maintain active pass benefits and booking rights.'],
       ];
+      if (content_has_rows('pass_seasons')) {
+          $passCollection = [];
+          foreach (content_pass_seasons() as $ps) {
+              $passCollection[] = ['tone' => $ps['slug'], 'name' => $ps['name'], 'season' => $ps['season_label'], 'image' => $ps['image_path'], 'alt' => $ps['image_alt'], 'price' => $ps['price_display']];
+          }
+      }
+      $passTerms = content_pass_core_terms($passTerms);
+      $passChecks = content_pass_checklist(['100% Inflation-Free Stays', 'Fully Inheritable Family Asset', 'Exclusive Network Privileges']);
       ?>
+      <?php if ($passCollection || $passTerms): ?>
       <div class="pass-collection">
         <h4 class="pass-collection-title">Club Yatri — Exclusive Pass Collection</h4>
 
@@ -302,12 +311,13 @@ include __DIR__ . '/includes/navbar.php';
           <?php foreach ($passCollection as $i => $pc): ?>
             <article class="pc-card pc-img pc-<?php echo e($pc['tone']); ?>">
               <button type="button" class="pass-zoom" aria-label="View <?php echo e($pc['name']); ?> full screen">
-                <img src="<?php echo e(url('images/passes/pc-' . $pc['tone'] . '.jpg')); ?>" alt="<?php echo e($pc['name']); ?> - <?php echo e($pc['season']); ?>" loading="lazy">
+                <img src="<?php echo e(content_image_url($pc['image'] ?? ('images/passes/pc-' . $pc['tone'] . '.jpg'))); ?>" alt="<?php echo e(($pc['alt'] ?? '') !== '' ? $pc['alt'] : $pc['name'] . ' - ' . $pc['season']); ?>" loading="lazy">
               </button>
             </article>
           <?php endforeach; ?>
         </div>
 
+        <?php if ($passTerms): ?>
         <div class="pass-terms">
           <h4 class="pass-terms-title">Core Terms &amp; Conditions <span>(Applicable to All Passes)</span></h4>
           <ul>
@@ -316,13 +326,15 @@ include __DIR__ . '/includes/navbar.php';
             <?php endforeach; ?>
           </ul>
         </div>
+        <?php endif; ?>
 
+        <?php if ($passChecks): ?>
         <ul class="pass-checks">
-          <li>100% Inflation-Free Stays</li>
-          <li>Fully Inheritable Family Asset</li>
-          <li>Exclusive Network Privileges</li>
+          <?php foreach ($passChecks as $chk): ?><li><?php echo e($chk); ?></li><?php endforeach; ?>
         </ul>
+        <?php endif; ?>
       </div>
+      <?php endif; ?>
 
       <!-- CTAs -->
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">

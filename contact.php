@@ -13,6 +13,7 @@ require_once __DIR__ . '/includes/helpers.php';
 
 $breadcrumbTitle = 'Contact Us';
 
+require_once __DIR__ . '/includes/leads.php';
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
@@ -60,6 +61,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
             <div>
               <h3 style="font-size: 1.2rem; color: var(--color-text);">Direct Concierge Hotlines</h3>
               <div style="color: var(--gold-light); font-weight: 700;"><?php echo e(CONTACT_PHONE_TOLL_FREE); ?> (Toll-Free India)</div>
+              <?php if (CONTACT_PHONE_ALT !== ''): ?><div style="color: var(--gold-light); font-weight: 700;"><?php echo e(CONTACT_PHONE_ALT); ?></div><?php endif; ?>
             </div>
           </div>
           <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
@@ -90,6 +92,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
             <div>
               <h3 style="font-size: 1.2rem; color: var(--color-text);">Executive Corporate Offices</h3>
               <div style="color: var(--text-primary); font-size: 0.95rem;"><?php echo e(CONTACT_ADDRESS); ?></div>
+              <?php if (preg_match('~^https?://~i', CONTACT_MAP_URL)): ?><a href="<?php echo e(CONTACT_MAP_URL); ?>" target="_blank" rel="noopener" style="font-size: 0.9rem; font-weight: 600;">View on Google Maps &rarr;</a><?php endif; ?>
             </div>
           </div>
           <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
@@ -105,6 +108,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
         
         <form action="<?php echo url('actions/submit-callback.php'); ?>" method="POST">
           <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+          <input type="hidden" name="form_source" value="contact">
+          <input type="hidden" name="return_to" value="contact.php">
+          <?php echo lead_honeypot(); ?>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div class="form-group">
               <label>Your Name *</label>

@@ -12,7 +12,9 @@ $vtItems = [];
 foreach ($videoTestimonials as $v) {
     $yt = (string)($v['youtube'] ?? '');
     $mp4 = (string)($v['mp4'] ?? '');
+    $vm = (string)($v['vimeo'] ?? '');
     $ok = ($yt !== '' && preg_match('/^[A-Za-z0-9_-]{11}$/', $yt))
+        || ($vm !== '' && preg_match('/^\d{6,12}$/', $vm))
         || ($mp4 !== '' && preg_match('#^assets/[A-Za-z0-9_./-]+\.mp4$#', $mp4) && !str_contains($mp4, '..'));
     if (!empty($v['name']) && $ok) {
         $vtItems[] = $v;
@@ -36,7 +38,8 @@ if ($vtPlaceholder) {
       <?php
         $yt = (string)($v['youtube'] ?? '');
         $mp4 = (string)($v['mp4'] ?? '');
-        $poster = $yt !== '' ? 'https://i.ytimg.com/vi/' . $yt . '/hqdefault.jpg' : (!empty($v['poster']) ? url((string)$v['poster']) : '');
+        $vm = (string)($v['vimeo'] ?? '');
+        $poster = !empty($v['poster']) ? url((string)$v['poster']) : ($yt !== '' ? 'https://i.ytimg.com/vi/' . $yt . '/hqdefault.jpg' : '');
       ?>
       <article class="video-card<?php echo $vtPlaceholder ? ' is-placeholder' : ''; ?>">
         <div class="video-frame"<?php echo (!$vtPlaceholder && $poster !== '') ? ' style="background-image: url(\'' . e($poster) . '\');"' : ''; ?>>
@@ -47,7 +50,7 @@ if ($vtPlaceholder) {
             <span class="video-soon">Video coming soon</span>
           <?php else: ?>
             <button type="button" class="video-play"
-                    <?php echo $yt !== '' ? 'data-youtube="' . e($yt) . '"' : 'data-mp4="' . e(url($mp4)) . '"'; ?>
+                    <?php echo $yt !== '' ? 'data-youtube="' . e($yt) . '"' : ($vm !== '' ? 'data-vimeo="' . e($vm) . '"' : 'data-mp4="' . e(url($mp4)) . '"'); ?>
                     data-title="<?php echo e('Video testimonial from ' . $v['name']); ?>"
                     aria-label="Play video testimonial from <?php echo e($v['name']); ?>">
               <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -70,10 +73,17 @@ if ($vtPlaceholder) {
 </div>
 
 <script>
-document.querySelectorAll('#videoTestimonials .video-play[data-youtube], #videoTestimonials .video-play[data-mp4]').forEach(function (btn) {
+document.querySelectorAll('#videoTestimonials .video-play[data-youtube], #videoTestimonials .video-play[data-vimeo], #videoTestimonials .video-play[data-mp4]').forEach(function (btn) {
   btn.addEventListener('click', function () {
     var frame = btn.parentNode, title = btn.getAttribute('data-title') || 'Video testimonial', el;
-    if (btn.hasAttribute('data-youtube')) {
+    if (btn.hasAttribute('data-vimeo')) {
+      el = document.createElement('iframe');
+      el.src = 'https://player.vimeo.com/video/' + encodeURIComponent(btn.getAttribute('data-vimeo')) + '?autoplay=1&dnt=1';
+      el.title = title;
+      el.allow = 'autoplay; fullscreen; picture-in-picture';
+      el.allowFullscreen = true;
+      el.referrerPolicy = 'strict-origin-when-cross-origin';
+    } else if (btn.hasAttribute('data-youtube')) {
       el = document.createElement('iframe');
       el.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(btn.getAttribute('data-youtube')) + '?autoplay=1&rel=0';
       el.title = title;

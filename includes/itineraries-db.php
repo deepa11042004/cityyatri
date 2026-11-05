@@ -8,6 +8,29 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/hotels.php';
 
+/** True once the admin migration has added the itinerary columns/tables (keeps the site working before it runs). */
+function itineraries_admin_ready(): bool
+{
+    static $ready = null;
+    if ($ready === null) {
+        $ready = false;
+        try {
+            if ($pdo = db()) {
+                $cols = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.columns WHERE table_schema = DATABASE()
+                    AND ((table_name = 'itineraries' AND column_name IN ('display_order', 'exclusions', 'activities', 'important_info'))
+                      OR (table_name = 'itinerary_days' AND column_name = 'image_path')
+                      OR (table_name = 'itinerary_images' AND column_name = 'alt_text'))")->fetchColumn();
+                $tables = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()
+                    AND table_name IN ('itinerary_hotels', 'itinerary_destinations')")->fetchColumn();
+                $ready = $cols === 6 && $tables === 2;
+            }
+        } catch (PDOException $e) {
+            error_log('Admin column check failed: ' . $e->getMessage());
+        }
+    }
+    return $ready;
+}
+
 function itinerary_type_filter(): string
 {
     $type = strtoupper((string)($_GET['type'] ?? ''));
@@ -23,7 +46,7 @@ function itineraries_list(string $type = '', int $limit = 60): array
         $sql .= ' AND location_type = ?';
         $params[] = $type;
     }
-    return hotels_query($sql . ' ORDER BY featured DESC, title LIMIT ' . (int)$limit, $params);
+    return hotels_query($sql . ' ORDER BY featured DESC, ' . (itineraries_admin_ready() ? '(display_order = 0), display_order, ' : '') . 'title LIMIT ' . (int)$limit, $params);
 }
 
 function itineraries_count(string $type = ''): int
@@ -44,12 +67,45 @@ function itinerary_find(string $slug): ?array
 
 function itinerary_days(int $id): array
 {
-    return hotels_query('SELECT day_number, title, description FROM itinerary_days WHERE itinerary_id = ? ORDER BY day_number', [$id]);
+    return hotels_query('SELECT day_number, title, description' . (itineraries_admin_ready() ? ', image_path' : '') . ' FROM itinerary_days WHERE itinerary_id = ? ORDER BY day_number', [$id]);
 }
 
 function itinerary_images(int $id): array
 {
     return array_column(hotels_query('SELECT path FROM itinerary_images WHERE itinerary_id = ? ORDER BY sort_order', [$id]), 'path');
+}
+
+/** path => alt text for gallery photos that have one. */
+function itinerary_image_alts(int $id): array
+{
+    if (!itineraries_admin_ready()) {
+        return [];
+    }
+    $out = [];
+    foreach (hotels_query('SELECT path, alt_text FROM itinerary_images WHERE itinerary_id = ?', [$id]) as $r) {
+        if (!empty($r['alt_text'])) {
+            $out[$r['path']] = $r['alt_text'];
+        }
+    }
+    return $out;
+}
+
+/** Published hotels linked to an itinerary in the admin ("Where you will stay"). */
+function itinerary_hotels(int $id): array
+{
+    if (!itineraries_admin_ready()) {
+        return [];
+    }
+    return hotels_query('SELECT h.* FROM itinerary_hotels x JOIN hotels h ON h.id = x.hotel_id WHERE x.itinerary_id = ? AND h.is_published = 1 ORDER BY x.sort_order', [$id]);
+}
+
+/** Published destinations linked to an itinerary, main destination first. */
+function itinerary_destinations(int $id): array
+{
+    if (!itineraries_admin_ready()) {
+        return [];
+    }
+    return hotels_query('SELECT d.slug, d.name FROM itinerary_destinations x JOIN destinations d ON d.id = x.destination_id WHERE x.itinerary_id = ? AND d.is_published = 1 ORDER BY x.sort_order', [$id]);
 }
 
 function itineraries_related(array $it, int $limit = 3): array

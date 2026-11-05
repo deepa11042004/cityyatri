@@ -15,6 +15,7 @@ $breadcrumbTitle = 'VIP Callback Request';
 $parentTitle = 'Contact';
 $parentUrl = url('contact.php');
 
+require_once __DIR__ . '/includes/leads.php';
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 include __DIR__ . '/includes/breadcrumbs.php';
@@ -35,6 +36,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
 
       <form action="<?php echo url('actions/submit-callback.php'); ?>" method="POST">
         <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+        <input type="hidden" name="form_source" value="callback">
+        <input type="hidden" name="return_to" value="callback-request.php">
+        <?php echo lead_honeypot(); ?>
 
         <div class="form-group">
           <label>Your Full Name *</label>

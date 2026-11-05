@@ -27,9 +27,15 @@ $related = itineraries_related($it);
 $destination = !empty($it['destination_slug']) ? destination_find((string)$it['destination_slug']) : null;
 $heroImg = hotel_image_url($images[0] ?? ($it['hero_image'] ?? null));
 $gallery = array_slice($images, 1);
+$imageAlts = itinerary_image_alts((int)$it['id']);
+$exclusions = itinerary_list($it['exclusions'] ?? '');
+$activities = itinerary_list($it['activities'] ?? '');
+$importantInfo = itinerary_list($it['important_info'] ?? '');
+$itinHotels = itinerary_hotels((int)$it['id']);
+$itinDests = itinerary_destinations((int)$it['id']);
 
-$pageTitle = $it['title'] . ' - ' . itinerary_duration($it);
-$pageDescription = hotel_excerpt($it['summary'] ?? '', 160);
+$pageTitle = !empty($it['meta_title']) ? $it['meta_title'] : $it['title'] . ' - ' . itinerary_duration($it);
+$pageDescription = !empty($it['meta_description']) ? $it['meta_description'] : hotel_excerpt($it['summary'] ?? '', 160);
 $breadcrumbTitle = $it['title'];
 $parentTitle = 'Itineraries';
 $parentUrl = url('itinerary.php');
@@ -90,6 +96,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
                   <div class="itinerary-day-label">Day <?php echo (int)$d['day_number']; ?></div>
                   <h3><?php echo e($d['title']); ?></h3>
                   <p><?php echo e($d['description']); ?></p>
+                  <?php if (!empty($d['image_path'])): ?>
+                    <img src="<?php echo e(hotel_image_url($d['image_path'])); ?>" alt="<?php echo e($d['title']); ?>" loading="lazy" style="width: 100%; max-width: 520px; border-radius: 16px; margin-top: 12px;">
+                  <?php endif; ?>
                 </div>
               </li>
             <?php endforeach; ?>
@@ -100,6 +109,27 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <h2 class="heading-serif" style="font-size: 1.6rem; margin: 40px 0 16px;">What's Included</h2>
           <ul class="itinerary-inclusions">
             <?php foreach ($inclusions as $inc): ?><li><?php echo e($inc); ?></li><?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+
+        <?php if ($exclusions): ?>
+          <h2 class="heading-serif" style="font-size: 1.6rem; margin: 40px 0 16px;">What's Not Included</h2>
+          <ul class="itinerary-inclusions">
+            <?php foreach ($exclusions as $exc): ?><li><?php echo e($exc); ?></li><?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+
+        <?php if ($activities): ?>
+          <h2 class="heading-serif" style="font-size: 1.6rem; margin: 40px 0 16px;">Activities</h2>
+          <ul class="destination-highlights" style="grid-template-columns: 1fr;">
+            <?php foreach ($activities as $act): ?><li><?php echo e($act); ?></li><?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+
+        <?php if ($importantInfo): ?>
+          <h2 class="heading-serif" style="font-size: 1.6rem; margin: 40px 0 16px;">Important Information</h2>
+          <ul class="itinerary-inclusions">
+            <?php foreach ($importantInfo as $inf): ?><li><?php echo e($inf); ?></li><?php endforeach; ?>
           </ul>
         <?php endif; ?>
       </div>
@@ -114,6 +144,11 @@ include __DIR__ . '/includes/breadcrumbs.php';
           <a href="<?php echo e(url('booking-request.php?itinerary=' . urlencode($it['title']))); ?>" class="btn btn-outline-gold" style="width: 100%; justify-content: center; margin-top: 10px;">
             Reserve This Itinerary
           </a>
+          <?php if (count($itinDests) > 1): ?>
+            <p style="margin-top: 18px; font-size: 0.92rem; color: var(--color-text-muted);">Visits:
+              <?php foreach ($itinDests as $n => $idst): ?><?php echo $n ? ', ' : ''; ?><a href="<?php echo e(url('destination-details.php?slug=' . urlencode($idst['slug']))); ?>" style="font-weight: 600;"><?php echo e($idst['name']); ?></a><?php endforeach; ?>
+            </p>
+          <?php endif; ?>
           <?php if ($destination): ?>
             <p style="margin-top: 18px; font-size: 0.92rem;">
               <a href="<?php echo e(url('destination-details.php?slug=' . urlencode($destination['slug']))); ?>" style="font-weight: 600;">
@@ -130,13 +165,29 @@ include __DIR__ . '/includes/breadcrumbs.php';
   </div>
 </section>
 
+<?php if ($itinHotels): ?>
+<section class="section" style="background: var(--color-background-soft); padding-top: 50px; padding-bottom: 60px;">
+  <div class="container">
+    <div class="section-title-wrap" style="margin-bottom: 30px;">
+      <div class="sub-tag">Where You Will Stay</div>
+      <h2 class="section-title heading-serif">Hotels on This <span style="color: var(--color-primary);">Journey</span></h2>
+    </div>
+    <div class="grid-3 hotel-grid">
+      <?php foreach ($itinHotels as $hotel): ?>
+        <?php include __DIR__ . '/includes/hotel-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <?php if ($gallery): ?>
 <section class="section" style="padding-top: 10px; padding-bottom: 50px;">
   <div class="container">
     <h2 class="heading-serif" style="font-size: 1.6rem; margin-bottom: 20px;">Photo Gallery</h2>
     <div class="itinerary-gallery">
       <?php foreach ($gallery as $i => $img): ?>
-        <figure><img src="<?php echo e(hotel_image_url($img)); ?>" alt="<?php echo e($it['title'] . ' photo ' . ($i + 2)); ?>" loading="lazy" width="1600" height="1067"></figure>
+        <figure><img src="<?php echo e(hotel_image_url($img)); ?>" alt="<?php echo e($imageAlts[$img] ?? ($it['title'] . ' photo ' . ($i + 2))); ?>" loading="lazy" width="1600" height="1067"></figure>
       <?php endforeach; ?>
     </div>
   </div>

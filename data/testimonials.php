@@ -39,3 +39,10 @@ $testimonialsList = [
         'quote' => 'The heritage properties in Udaipur and South Goa provide a standard of seclusion and authentic palace hospitality that is impossible to match through standard online travel agencies. A lifetime investment our family cherishes.'
     ]
 ];
+
+// Built-in copy: the starting content loaded into the admin, and the fallback while the database has none
+$testimonialsListStatic = $testimonialsList;
+require_once __DIR__ . '/../includes/content-db.php';
+if (content_has_rows('testimonials', "type = 'text'")) {
+    $testimonialsList = content_testimonials();
+}
