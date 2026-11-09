@@ -352,3 +352,27 @@ document.querySelectorAll('[data-slider]').forEach(function (box) {
   window.addEventListener('resize', update);
   update();
 });
+
+/* 3D tilt + parallax on the seasonal pass images (mouse only) */
+(function () {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.pc-card.pc-img').forEach(function (card) {
+    var raf = 0, ev = null;
+    function paint() {
+      raf = 0;
+      var r = card.getBoundingClientRect();
+      var x = (ev.clientX - r.left) / r.width - 0.5, y = (ev.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty('--ry', (x * 16).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', (-y * 16).toFixed(2) + 'deg');
+      card.style.setProperty('--px', (-x * 16).toFixed(1) + 'px');
+      card.style.setProperty('--py', (-y * 16).toFixed(1) + 'px');
+    }
+    card.addEventListener('pointerenter', function () { card.classList.add('is-tilting'); });
+    card.addEventListener('pointermove', function (e) { ev = e; if (!raf) raf = requestAnimationFrame(paint); });
+    card.addEventListener('pointerleave', function () {
+      card.classList.remove('is-tilting');
+      ['--rx', '--ry', '--px', '--py'].forEach(function (p) { card.style.removeProperty(p); });
+    });
+  });
+})();
