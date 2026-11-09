@@ -39,7 +39,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       One Pass. <span style="color: var(--color-primary);">Years of Holidays</span>, Locked at Today's Price.
     </h2>
     <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75; margin-bottom: 14px;">
-      A Club Yatri pass is not a one-time booking. It is a long-term holiday plan for your family. Choose a 3, 5, 10 or 25-year pass, and enjoy 6 Nights / 7 Days every year at handpicked 3 to 5-star resorts, villas and cottages, without worrying about rising holiday tariffs.
+      A Club Yatri pass is not a one-time booking. It is a long-term holiday plan for your family. Choose a 3, 5, 10 or 25-year pass, and enjoy 6 Nights / 7 Days every year at handpicked luxury resorts, villas and cottages, without worrying about rising holiday tariffs.
     </p>
     <p style="color: var(--text-secondary); font-size: 1.08rem; line-height: 1.75;">
       Pick the tenure that fits how often you travel, compare the passes below, and speak to our concierge team whenever you are ready to book.

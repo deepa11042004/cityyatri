@@ -147,6 +147,9 @@ include __DIR__ . '/includes/breadcrumbs.php';
         <?php include __DIR__ . '/includes/destination-card.php'; ?>
       <?php endforeach; ?>
     </div>
+    <div class="hotel-directory-cta">
+      <a href="<?php echo e(url('hotel-directory.php')); ?>" class="btn btn-gold">See Hotel Directory &rarr;</a>
+    </div>
   </div>
 </section>
 <?php endif; ?>

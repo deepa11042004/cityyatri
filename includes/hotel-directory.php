@@ -124,5 +124,9 @@ $dirLink = function (int $page) use ($dirFilters, $dirSelf, $dirType): string {
         <?php endif; ?>
       </nav>
     <?php endif; ?>
+
+    <div class="hotel-directory-cta">
+      <a href="<?php echo e(url('hotel-directory.php')); ?>" class="btn btn-gold">See Hotel Directory &rarr;</a>
+    </div>
   </div>
 </section>

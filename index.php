@@ -366,7 +366,7 @@ include __DIR__ . '/includes/navbar.php';
       <div class="sub-tag">Today's Special Drop</div>
       <h2 class="section-title heading-serif">Today's <span style="color: var(--color-primary);">Privilege Pass – Once It's Gone, It's Gone!</span></h2>
       <p class="pass-pitch-title">Today's Decision, Tomorrow's Best Memories – Join Now!</p>
-      <p class="pass-pitch">Lock in your subscription today to unlock inflation-free 3- to 5-star stays, dedicated concierge care, and our absolute finest travel experiences for years to come.</p>
+      <p class="pass-pitch">Lock in your subscription today to unlock inflation-free luxury stays, dedicated concierge care, and our absolute finest travel experiences for years to come.</p>
     </div>
 
     <?php include __DIR__ . '/includes/pass-stack.php'; ?>

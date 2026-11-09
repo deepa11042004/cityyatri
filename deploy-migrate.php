@@ -114,6 +114,35 @@ try {
     ]);
 }
 
+// Worldwide hotel directory data (new_hotels): reload only when the CSV changed since the last import.
+$csvImport = null;
+try {
+    $csvFile = __DIR__ . '/database/stuba-hotel-directory.csv';
+    if (is_file($csvFile)) {
+        $csvSum = hash_file('sha256', $csvFile);
+        $csvName = 'data:stuba-hotel-directory.csv';
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (($done[$csvName] ?? null) !== $csvSum) {
+            require_once __DIR__ . '/database/new-hotels-import.php';
+            @set_time_limit(300);
+            $rows = new_hotels_import($pdo, $csvFile);
+            $pdo->prepare(
+                'INSERT INTO schema_migrations (filename, checksum) VALUES (?, ?)
+                 ON DUPLICATE KEY UPDATE checksum = VALUES(checksum), applied_at = CURRENT_TIMESTAMP'
+            )->execute([$csvName, $csvSum]);
+            $csvImport = ['file' => 'stuba-hotel-directory.csv', 'rows' => $rows];
+        }
+    }
+} catch (Throwable $e) {
+    error_log('Hotel directory import failed: ' . $e->getMessage());
+    migrate_respond(500, [
+        'ok' => false,
+        'error' => 'Hotel directory import failed',
+        'detail' => substr($e->getMessage(), 0, 300),
+        'applied' => $applied,
+    ]);
+}
+
 // Admin panel structure (idempotent). Optionally create the Super Admin from an
 // 'admin_seed' => ['name' => '', 'email' => '', 'password' => ''] entry in includes/db-config.php
 // (kept on the server only). Remove that entry again once the login works.
@@ -137,4 +166,4 @@ try {
     ]);
 }
 
-migrate_respond(200, ['ok' => true, 'applied' => $applied, 'skipped' => $skipped, 'admin' => $adminLog]);
+migrate_respond(200, ['ok' => true, 'applied' => $applied, 'skipped' => $skipped, 'hotel_directory' => $csvImport, 'admin' => $adminLog]);
