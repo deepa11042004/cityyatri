@@ -21,8 +21,9 @@ if ($destination === null) {
 $destHighlights = destination_highlights($destination['highlights'] ?? '');
 $destImg = hotel_image_url($destination['hero_image'] ?? null);
 $destSource = destination_safe_source($destination['source_url'] ?? '');
-$destHotels = hotels_search(['q' => '', 'type' => '', 'category' => '', 'location' => $destination['name'], 'page' => 1], 6, 0);
 $destHotelsTotal = (int)$destination['hotels_count'];
+// Show every hotel of the destination (capped at 60 so an unusually large destination stays fast; a link covers any extra)
+$destHotels = hotels_search(['q' => '', 'type' => '', 'category' => '', 'location' => $destination['name'], 'page' => 1], max(6, min($destHotelsTotal, 60)), 0);
 $destRelated = destinations_related($destination);
 $destGallery = destination_gallery((int)$destination['id']);
 
