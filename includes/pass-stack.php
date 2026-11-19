@@ -21,7 +21,7 @@ if (content_has_rows('passes')) {
     <?php if ($i > 0): ?><div class="pass-gap" aria-hidden="true"></div><?php endif; ?>
     <div class="pass-anchor" aria-hidden="true"></div>
     <article class="pass-card pass-card-img tone-<?php echo $i + 1; ?>" style="--i: <?php echo $i; ?>;">
-      <?php $passImg = $p['image'] === null ? 'images/passes/pass-' . (int)$p['years'] . '-year.jpg' : (string)$p['image']; ?>
+      <?php $passImg = $p['image'] === null ? 'images/passes/pass-' . (int)$p['years'] . '-year.png' : (string)$p['image']; ?>
       <?php if ($passImg !== ''): ?>
       <button type="button" class="pass-zoom" aria-label="View <?php echo e($p['title']); ?> full screen">
         <img class="pass-banner" src="<?php echo e(content_image_url($passImg)); ?>" alt="<?php echo e(($p['alt'] ?? '') !== '' ? $p['alt'] : $p['title']); ?>"<?php echo $i > 0 ? ' loading="lazy"' : ''; ?>>

@@ -449,7 +449,7 @@ function admin_seed_content(PDO $pdo): array
                            banking_years, resorts_access, dining_discount, concierge, image_path, featured, display_order, is_published)
                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)')
                 ->execute([$slug, $p['title'], $p['short_title'], $p['badge'], $years, $p['tenure'], $p['description'], $p['annual_nights'], $p['points_annual'],
-                    (string)$p['banking_years'], $p['resorts_access'], $p['dining_discount'], $p['concierge'], 'images/passes/pass-' . $years . '-year.jpg',
+                    (string)$p['banking_years'], $p['resorts_access'], $p['dining_discount'], $p['concierge'], 'images/passes/pass-' . $years . '-year.png',
                     $p['featured'] ? 1 : 0, $i]);
             $pid = (int)$pdo->lastInsertId();
             foreach ($p['highlight_features'] as $n => $feat) {

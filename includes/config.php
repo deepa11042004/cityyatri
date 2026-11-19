@@ -57,7 +57,7 @@ define('COLOR_BG_WARM', '#FFF6E5');   // Warm Ivory Accent
 
 // 5. Assets Paths
 define('ASSETS_CSS_PATH', BASE_PATH . '/assets/css/style.css');
-define('ASSETS_CUSTOM_CSS_PATH', BASE_PATH . '/assets/css/custom.css');
+define('ASSETS_CUSTOM_CSS_PATH', BASE_PATH . '/assets/css/custom.css?v=' . (file_exists(__DIR__ . '/../assets/css/custom.css') ? (string)filemtime(__DIR__ . '/../assets/css/custom.css') : '1'));
 define('ASSETS_JS_PATH', BASE_PATH . '/assets/js/main.js');
 define('ASSETS_CUSTOM_JS_PATH', BASE_PATH . '/assets/js/custom.js');
 define('ASSETS_IMAGES_PATH', BASE_PATH . '/assets/images');

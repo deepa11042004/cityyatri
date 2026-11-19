@@ -1555,21 +1555,43 @@ h1, h2, h3, h4, h5, h6, .heading-serif, .heading-display, .section-title { font-
 p { font-family: var(--font-para); }
 
 /* Pass cards as banner images with the enquiry button underneath */
-.pass-stack { --stack-top: 104px; --peek: 36px; --stack-w: min(1200px, calc(100vw - 48px), calc((100vh - 230px) * 1.79)); }
-.pass-card.pass-card-img { padding: 0; overflow: hidden; border-radius: 28px; }
-.pass-banner { display: block; width: 100%; height: auto; }
-.pass-banner-bar { display: flex; justify-content: center; padding: 12px 16px 14px; background: #FFFFFF; }
-.pass-banner-bar .pass-cta { width: auto; min-width: 260px; }
+.pass-stack {
+  --stack-top: 84px;
+  --peek: 34px;
+  --stack-w: min(540px, calc(100vw - 32px), calc((100vh - 120px) * 0.67));
+}
+.pass-card.pass-card-img {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(255, 179, 0, 0.45);
+  box-shadow: 0 18px 52px rgba(60, 20, 10, 0.16);
+}
+.pass-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.pass-banner-bar {
+  display: flex;
+  justify-content: center;
+  padding: 14px 20px 18px;
+  background: #FFFFFF;
+}
+.pass-banner-bar .pass-cta {
+  width: 100%;
+  max-width: 360px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 13px 28px;
+}
 @media (max-width: 900px), (max-height: 420px) {
-  .pass-card.pass-card-img { padding: 0; border-radius: 20px; }
+  .pass-stack { --stack-top: 76px; --peek: 26px; --stack-w: min(480px, calc(100vw - 28px)); }
+  .pass-card.pass-card-img { border-radius: 20px; }
   .pass-banner-bar .pass-cta { width: 100%; min-width: 0; }
 }
-
-
-/* Pass banner cards: slightly larger, square corners */
-.pass-stack { --stack-w: min(1320px, calc(100vw - 32px), calc((100vh - 200px) * 1.9)); }
-.pass-card.pass-card-img { border-radius: 0; }
-@media (max-width: 900px), (max-height: 420px) { .pass-card.pass-card-img { border-radius: 0; } }
 
 /* Click a pass banner to view it full screen */
 .pass-zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }

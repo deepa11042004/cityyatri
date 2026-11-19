@@ -1,0 +1,21 @@
+# Club Yatri - web root hardening.
+# Nothing on the website requests these folders or files by URL; they are only read from disk by the PHP code.
+
+Options -Indexes
+
+# Internal folders: form logs (customer details), data files, SQL and PHP includes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(storage|data|database|includes)(/|$) - [F,L]
+</IfModule>
+
+# Deployment leftovers, notes and log/SQL/CSV/ini files
+<FilesMatch "^(\.ftp.*|\.git.*|.*\.(log|sql|csv|md|ini|bak|yml))$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
