@@ -1399,96 +1399,775 @@ button.video-play:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4p
 @media (prefers-reduced-motion: reduce) { .itinerary-legacy-img img { transition: none; } }
 
 /* ==========================================================================
-   Subscription pass cards: scroll-linked stack (homepage)
-   Wide cards pin under the navbar, shrink as you scroll, and the next card slides up over them.
+   Club Yatri - 3D Rotating & Flipping Pass Showcase (Vaulta 3D Interactive)
+   First card drops down and starts rotating. As user scrolls cursor, active card
+   flips in 3D perspective to next card and starts rotating continuously.
    ========================================================================== */
-.pass-stack {
-  --stack-top: 118px; --peek: 58px;
-  --stack-w: min(1360px, calc(100vw - 48px));
-  position: relative; display: block;
-  width: var(--stack-w);
-  margin-inline: calc((100% - var(--stack-w)) / 2);     /* breaks out of the container, centred */
+.pass-showcase-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
 }
-.pass-anchor { height: 0; }
-.pass-gap { height: clamp(260px, 62vh, 680px); }         /* scroll distance before the next card arrives (a spacer, not a margin: margins would release the sticky cards early) */
-.pass-tail { height: clamp(140px, 36vh, 380px); }        /* the last card stays pinned for this much scrolling before the stack leaves */
-.pass-card {
+
+.pass-showcase-track {
+  position: relative;
+  min-height: 280vh; /* Smooth scroll track driving 3D card flips */
+}
+
+.pass-showcase-stage {
+  position: -webkit-sticky;
   position: sticky;
-  top: calc(var(--stack-top) + var(--i) * var(--peek));
-  padding: 20px 36px 36px;
-  border-radius: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 -12px 40px rgba(60, 20, 10, 0.12), 0 22px 60px rgba(60, 20, 10, 0.14);
-  transform-origin: 50% 0;
+  top: 86px;
+  height: calc(100vh - 96px);
+  min-height: 680px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 20px;
+  box-sizing: border-box;
+  overflow: visible;
+  z-index: 5;
+}
+
+/* --- Top Stepper / Tab Navigator --- */
+.pass-stage-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(234, 34, 36, 0.16);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(234, 34, 36, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 6px;
+  z-index: 25;
+}
+
+.pass-stage-tab {
+  appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #555555;
+  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pass-stage-tab .tab-year-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: inherit;
+  transition: all 0.28s ease;
+}
+
+.pass-stage-tab:hover {
+  color: var(--color-primary);
+  background: rgba(234, 34, 36, 0.06);
+}
+
+.pass-stage-tab.is-active {
+  background: linear-gradient(135deg, #C8102E 0%, #EA2224 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(234, 34, 36, 0.35);
+}
+
+.pass-stage-tab.is-active .tab-year-pill {
+  background: #FFB300;
+  color: #1a1a1a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 3D Perspective Arena --- */
+.pass-3d-arena {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  perspective-origin: 50% 48%;
+  margin: 6px 0;
+}
+
+/* Nav Arrows */
+.pass-3d-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(234, 34, 36, 0.2);
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 25;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pass-arrow-prev { left: 18px; }
+.pass-arrow-next { right: 18px; }
+
+.pass-3d-arrow:hover {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 10px 24px rgba(234, 34, 36, 0.35);
+}
+
+/* --- 3D Stage & Card Units --- */
+.pass-3d-stage {
+  position: relative;
+  height: clamp(340px, 50vh, 520px);
+  aspect-ratio: 2 / 3;
+  width: auto;
+  max-width: 85vw;
+  transform-style: preserve-3d;
+  z-index: 10;
+  margin: 0 auto;
+}
+
+.pass-3d-card-unit {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0);
+}
+
+.pass-3d-card-unit.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* 3D Rotator Component */
+.pass-card-rotator-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
   will-change: transform;
-  color: var(--color-text);
-}
-.pass-card.tone-1 { background: linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%); }   /* #00FF87 to #60EFFF */
-.pass-card.tone-2 { background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%); }   /* #0061FF to #60EFFF */
-.pass-card.tone-3 { background: linear-gradient(120deg, #FFC3B8 0%, #FF9484 55%, #FF6B5E 130%); }
-.pass-card.tone-4 { background: linear-gradient(90deg, hsla(167, 68%, 73%, 1) 0%, hsla(178, 59%, 48%, 1) 100%); }   /* #8DE9D5 to #32C4C0 */
-.pass-card.is-featured { border: 2px solid #FFFFFF; }
-
-.pass-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; height: calc(var(--peek) - 20px); min-height: 38px; }
-.pass-count { padding: 5px 15px; border-radius: 999px; background: rgba(255, 255, 255, 0.9); color: var(--color-text); font-weight: 800; font-size: 0.92rem; }
-.pass-tag { padding: 5px 15px; border-radius: 999px; background: rgba(255, 255, 255, 0.6); color: var(--color-primary-dark); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; }
-.pass-title { font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 14px 0 8px; }
-.pass-intro { max-width: 820px; font-size: 1.04rem; line-height: 1.6; margin-bottom: 22px; }
-
-.pass-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: stretch; }
-.pass-tile { background: #FFFFFF; border-radius: 22px; padding: 22px 22px 24px; box-shadow: 0 6px 22px rgba(60, 20, 10, 0.1); min-width: 0; }
-.pass-label { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary-dark); line-height: 1.5; }
-.pass-value { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.01em; margin: 6px 0 4px; }
-.pass-note { font-size: 0.84rem; line-height: 1.55; color: rgba(34, 34, 34, 0.72); margin-top: 4px; }
-.pass-policy { list-style: none; display: grid; gap: 8px; margin: 10px 0 4px; font-size: 0.9rem; line-height: 1.5; }
-.pass-policy li { position: relative; padding-left: 16px; }
-.pass-policy li::before { content: ''; position: absolute; left: 0; top: 0.58em; width: 7px; height: 7px; border-radius: 50%; background: var(--color-primary); }
-.pass-tile-perks { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
-.pass-perks { list-style: none; display: grid; gap: 10px; font-size: 0.95rem; font-weight: 700; }
-.pass-perks li { position: relative; padding-left: 28px; line-height: 1.45; }
-.pass-perks li::before {
-  content: ''; position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%;
-  background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 12px no-repeat;
-}
-.pass-cta { display: inline-flex; justify-content: center; align-items: center; width: 100%; }
-
-/* Short screens (typical laptops, ~590-760px of visible page): a compact stack with the tiles in one row,
-   so a pinned card fits in the space under the navbar and the last card is fully visible */
-@media (max-height: 760px) and (min-width: 901px) {
-  .pass-stack { --stack-top: 96px; --peek: 40px; }
-  .pass-card { padding: 8px 22px 18px; border-radius: 24px; }
-  .pass-head { gap: 8px; min-height: 26px; height: calc(var(--peek) - 8px); }
-  .pass-count { font-size: 0.78rem; padding: 3px 11px; }
-  .pass-tag { font-size: 0.62rem; padding: 3px 11px; }
-  .pass-title { font-size: 1.35rem; margin: 2px 0 4px; }
-  .pass-intro { font-size: 0.84rem; line-height: 1.45; margin-bottom: 10px; }
-  .pass-tiles { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-  .pass-tile { padding: 11px 13px 13px; border-radius: 14px; }
-  .pass-label { font-size: 0.62rem; line-height: 1.4; }
-  .pass-value { font-size: 1.05rem; margin: 2px 0 1px; }
-  .pass-note { font-size: 0.7rem; line-height: 1.4; margin-top: 2px; }
-  .pass-policy { font-size: 0.74rem; gap: 4px; margin: 6px 0 2px; line-height: 1.4; }
-  .pass-policy li { padding-left: 12px; }
-  .pass-policy li::before { width: 5px; height: 5px; }
-  .pass-tile-perks { gap: 8px; }
-  .pass-perks { font-size: 0.78rem; gap: 5px; }
-  .pass-perks li { padding-left: 22px; line-height: 1.35; }
-  .pass-perks li::before { width: 15px; height: 15px; background-size: 10px; top: 0; }
-  .pass-cta { padding: 8px 14px; font-size: 0.82rem; }
-  .pass-gap { height: clamp(220px, 55vh, 520px); }
-  .pass-tail { height: clamp(100px, 30vh, 300px); }
 }
 
-/* Small screens: no pinning, cards simply stack in a column */
-@media (max-width: 900px), (max-height: 420px) {
-  .pass-stack { width: auto; margin-inline: 0; }
-  .pass-card { position: static; margin-bottom: 20px; padding: 18px 18px 22px; border-radius: 26px; transform: none !important; will-change: auto; }
-  .pass-head { height: auto; }
-  .pass-tiles { grid-template-columns: 1fr; }
-  .pass-tail, .pass-gap { display: none; }
+/* Continuous 3D Y-Axis Spin (like in video) */
+.pass-3d-card-unit.is-active.is-rotating .pass-card-rotator-3d {
+  animation: passSpin3D 10s linear infinite;
 }
+
+/* Hover slows down or pauses so user can inspect details */
+.pass-3d-arena:hover .pass-3d-card-unit.is-active.is-rotating .pass-card-rotator-3d {
+  animation-play-state: paused;
+}
+
+/* Double-sided 3D Card Faces */
+.pass-card-side {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pass-card-front {
+  background: transparent;
+  transform: rotateY(0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.32));
+}
+
+.pass-card-artwork {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.pass-card-glare {
+  position: absolute;
+  inset: 2px;
+  border-radius: 24px;
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.06) 28%,
+    transparent 50%,
+    rgba(255, 215, 0, 0.14) 72%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Luxury Metallic VIP Pass Back Face */
+.pass-card-back {
+  background: linear-gradient(135deg, #180004 0%, #36020a 40%, #150003 75%, #290207 100%);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #FFB300;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+  box-sizing: border-box;
+}
+
+.pass-back-content {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  color: #FFFFFF;
+}
+
+.pass-back-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 3px;
+}
+
+.pass-back-crest {
+  filter: drop-shadow(0 2px 6px rgba(255, 179, 0, 0.4));
+}
+
+.pass-back-brand {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.pass-back-tier-name {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #FFB300;
+  text-transform: uppercase;
+}
+
+.pass-back-magbar {
+  height: 40px;
+  margin: 10px -20px 8px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #2a2a2a 45%, #050505 100%);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.pass-back-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 6px 0;
+}
+
+.pass-back-chip-box {
+  width: 48px;
+  height: 38px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #d4a017 0%, #ffe066 50%, #997a00 100%);
+  border: 1px solid #ffe680;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 3px rgba(255,255,255,0.7), 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.pass-chip-text {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: #3b2800;
+  letter-spacing: 0.08em;
+}
+
+.pass-back-sig-panel {
+  flex: 1;
+  background: #fbf6ec;
+  border-radius: 4px;
+  padding: 4px 10px;
+  color: #222;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+}
+
+.sig-label {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #777;
+  letter-spacing: 0.06em;
+}
+
+.sig-script {
+  display: block;
+  font-family: 'Playfair Display', serif, cursive;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #0b1a30;
+  line-height: 1.2;
+}
+
+.pass-back-specs {
+  display: grid;
+  gap: 5px;
+  font-size: 0.72rem;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  border-left: 3px solid #FFB300;
+}
+
+.pass-back-specs span {
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.05em;
+}
+
+.pass-back-specs strong {
+  color: #FFB300;
+  margin-left: 6px;
+}
+
+.pass-back-bottom {
+  text-align: center;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.pass-back-code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFB300;
+}
+
+.pass-back-hotline {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 3px;
+}
+
+/* --- 3D Luxury Pedestal (Iridescent Rainbow Reflection Ring & Ground Shadow) --- */
+.pass-pedestal-platform {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(450px, 92vw);
+  height: 120px;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pedestal-surface-glow {
+  position: relative;
+  width: 100%;
+  height: 96px;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 45%, transparent 70%);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.22);
+}
+
+/* Iridescent Rainbow Ring (conic chromatic reflection as in reference video) */
+.pedestal-rainbow-ring {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  padding: 5px;
+  background: conic-gradient(
+    from 0deg,
+    #ff0055, #ff7700, #ffea00, #00ff88, #00e5ff, #7b00ff, #ff00c8, #ff0055
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #fff calc(100% - 6px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #fff calc(100% - 6px));
+  filter: blur(1.5px) drop-shadow(0 0 12px rgba(255, 120, 200, 0.4));
+  animation: rainbowSpin 12s linear infinite;
+}
+
+@keyframes rainbowSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pedestal-inner-glow {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(200, 16, 46, 0.18) 50%, transparent 80%);
+  filter: blur(8px);
+}
+
+.card-dynamic-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 40%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.28) 50%, transparent 80%);
+  filter: blur(8px);
+  animation: shadowBreathe 10s ease-in-out infinite;
+}
+
+@keyframes shadowBreathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.88; }
+  25% { transform: translate(-50%, -50%) scale(0.68, 0.95); opacity: 0.58; }
+  50% { transform: translate(-50%, -50%) scale(1); opacity: 0.88; }
+  75% { transform: translate(-50%, -50%) scale(0.68, 0.95); opacity: 0.58; }
+}
+
+.pedestal-metallic-rim {
+  position: absolute;
+  bottom: 12px;
+  width: 92%;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 215, 0, 0.55);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transform: rotateX(65deg);
+}
+
+.pedestal-base-shadow {
+  position: absolute;
+  bottom: 0px;
+  width: 96%;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45) 0%, transparent 75%);
+  filter: blur(10px);
+}
+
+/* --- ANIMATIONS: Drop Down, Flip In/Out, and 360 Spin --- */
+
+/* 1. First Card Entrance: Comes down from above and lands on pedestal */
+.pass-3d-card-unit.animate-come-down {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: passComeDown 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes passComeDown {
+  0% {
+    transform: translateY(-220px) scale(0.72) rotateX(24deg);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(14px) scale(1.02) rotateX(-5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* 2. Continuous 360 Spin */
+@keyframes passSpin3D {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 3. Forward Flip (scrolling down / next) */
+.pass-3d-card-unit.flip-out-forward {
+  opacity: 1;
+  visibility: visible;
+  animation: passFlipOutForward 0.72s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.pass-3d-card-unit.flip-in-forward {
+  opacity: 1;
+  visibility: visible;
+  animation: passFlipInForward 0.72s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes passFlipOutForward {
+  0% {
+    transform: rotateY(0deg) scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(90deg) scale(0.85) translateY(-25px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotateY(180deg) scale(0.65) translateY(-60px);
+    opacity: 0;
+  }
+}
+
+@keyframes passFlipInForward {
+  0% {
+    transform: rotateY(-180deg) scale(0.65) translateY(60px);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(-90deg) scale(0.88) translateY(18px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotateY(0deg) scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 4. Reverse Flip (scrolling up / prev) */
+.pass-3d-card-unit.flip-out-reverse {
+  opacity: 1;
+  visibility: visible;
+  animation: passFlipOutReverse 0.72s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.pass-3d-card-unit.flip-in-reverse {
+  opacity: 1;
+  visibility: visible;
+  animation: passFlipInReverse 0.72s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes passFlipOutReverse {
+  0% {
+    transform: rotateY(0deg) scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(-90deg) scale(0.85) translateY(25px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotateY(-180deg) scale(0.65) translateY(60px);
+    opacity: 0;
+  }
+}
+
+@keyframes passFlipInReverse {
+  0% {
+    transform: rotateY(180deg) scale(0.65) translateY(-60px);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(90deg) scale(0.88) translateY(-18px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotateY(0deg) scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Dynamic Footer Details & Action Bar --- */
+.pass-showcase-footer {
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+  margin-top: 6px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pass-footer-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(234, 34, 36, 0.1);
+  color: var(--color-primary-dark);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity 0.25s ease;
+}
+
+.pass-footer-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--color-ink);
+  margin: 0;
+  line-height: 1.25;
+  transition: opacity 0.25s ease;
+}
+
+.pass-footer-sub {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+  max-width: 600px;
+  transition: opacity 0.25s ease;
+}
+
+.pass-footer-cta-wrap {
+  margin-top: 6px;
+}
+
+.pass-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 36px;
+  border-radius: 999px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(255, 179, 0, 0.4);
+  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pass-footer-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(255, 179, 0, 0.55);
+}
+
+.pass-scroll-instruction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: rgba(34, 34, 34, 0.55);
+}
+
+.scroll-mouse-icon {
+  display: inline-block;
+  width: 14px;
+  height: 22px;
+  border: 2px solid rgba(34, 34, 34, 0.45);
+  border-radius: 9px;
+  position: relative;
+}
+
+.scroll-mouse-dot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 5px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  animation: mouseScroll 1.6s ease infinite;
+}
+
+@keyframes mouseScroll {
+  0% { top: 4px; opacity: 1; }
+  70% { top: 12px; opacity: 0; }
+  100% { top: 4px; opacity: 0; }
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-height: 760px) {
+  .pass-showcase-stage {
+    top: 68px;
+    height: calc(100vh - 72px);
+    min-height: 480px;
+    padding: 4px 10px 10px;
+  }
+  .pass-3d-stage {
+    height: clamp(280px, 44vh, 380px);
+    aspect-ratio: 2 / 3;
+    width: auto;
+  }
+  .pass-pedestal-platform {
+    height: 75px;
+    bottom: -10px;
+  }
+  .pass-footer-title {
+    font-size: 1.18rem;
+  }
+  .pass-footer-sub {
+    font-size: 0.8rem;
+  }
+  .pass-footer-btn {
+    padding: 8px 24px;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pass-stage-tabs {
+    max-width: 96vw;
+    overflow-x: auto;
+    padding: 4px 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pass-stage-tab {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .pass-3d-arrow {
+    width: 38px;
+    height: 38px;
+  }
+  .pass-arrow-prev { left: 4px; }
+  .pass-arrow-next { right: 4px; }
+  .pass-3d-stage {
+    height: clamp(280px, 48vh, 420px);
+    aspect-ratio: 2 / 3;
+    width: auto;
+    max-width: 82vw;
+  }
+  .pass-pedestal-platform {
+    width: min(340px, 92vw);
+    height: 80px;
+    bottom: -8px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pass-card { will-change: auto; }
+  .pass-3d-card-unit.is-active.is-rotating .pass-card-rotator-3d {
+    animation: none;
+  }
+  .pedestal-rainbow-ring {
+    animation: none;
+  }
+  .card-dynamic-shadow {
+    animation: none;
+  }
 }
 
 /* Footer on grey (#C2C2C2): darker text so red and grey copy stays readable */
