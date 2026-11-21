@@ -6,10 +6,10 @@
 require_once __DIR__ . '/content-db.php';
 
 $subscriptionPasses = [
-    ['image' => 'images/passes/pass-3-year.png', 'plan' => 'royal-bharat', 'years' => 3, 'title' => '3-Year Pass (Yatri Privilege Crown Asset)', 'badge' => 'Flagship Luxury Asset', 'subtitle' => '6 Nights / 7 Days / Year • Mid-List & Premium 3 to 5-Star Properties'],
+    ['image' => 'images/passes/pass-3-year.png', 'plan' => 'royal-bharat', 'years' => 3, 'title' => '3-Year Pass (Yatri Privilege Crown Asset)', 'badge' => 'Flagship Luxury Asset', 'subtitle' => '6 Nights / 7 Days / Year • Mid-List & Premium Luxury Properties'],
     ['image' => 'images/passes/pass-5-year.png', 'plan' => 'asian-signature', 'years' => 5, 'title' => '5-Year Pass (Yatri Privilege Crown Asset)', 'badge' => 'International & Domestic Asset', 'subtitle' => '6 Nights / 7 Days / Year • India, Asian Countries & Middle East Access'],
-    ['image' => 'images/passes/pass-10-year.png', 'plan' => 'imperial-world', 'years' => 10, 'title' => '10-Year Pass (Ultimate Global VIP Asset)', 'badge' => 'Ultimate Global VIP Asset', 'subtitle' => '6 Nights / 7 Days / Year • Premium 4 & 5-Star Luxury Properties Worldwide'],
-    ['image' => 'images/passes/pass-25-year.png', 'plan' => 'privilege-crown', 'years' => 25, 'title' => '25-Year Pass (Yatri Privilege Crown Asset)', 'badge' => 'Generational Family Deed', 'subtitle' => '150 Cumulative Nights • Inheritable Multi-Generational 5-Star Holiday Asset'],
+    ['image' => 'images/passes/pass-10-year.png', 'plan' => 'imperial-world', 'years' => 10, 'title' => '10-Year Pass (Ultimate Global VIP Asset)', 'badge' => 'Ultimate Global VIP Asset', 'subtitle' => '6 Nights / 7 Days / Year • Premium Luxury Properties Worldwide'],
+    ['image' => 'images/passes/pass-25-year.png', 'plan' => 'privilege-crown', 'years' => 25, 'title' => '25-Year Pass (Yatri Privilege Crown Asset)', 'badge' => 'Generational Family Deed', 'subtitle' => '150 Cumulative Nights • Inheritable Multi-Generational Holiday Asset'],
 ];
 
 if (content_has_rows('passes')) {
@@ -117,7 +117,7 @@ if (content_has_rows('passes')) {
                     <div class="pass-back-specs">
                       <div><span>TENURE:</span> <strong><?php echo (int)$p['years']; ?> YEARS</strong></div>
                       <div><span>ALLOTMENT:</span> <strong>6N / 7D ANNUALLY</strong></div>
-                      <div><span>NETWORK:</span> <strong>PREMIER 3 TO 5-STAR</strong></div>
+                      <div><span>ASF:</span> <strong>₹14,999</strong></div>
                     </div>
 
                     <div class="pass-back-bottom">

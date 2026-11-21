@@ -19,7 +19,7 @@ global $socialLinks;
             <div class="brand-name">CLUB <span>YATRI</span></div>
           </div>
           <p>
-            The hallmark of luxury vacation ownership in India. Delivering 25 years of guaranteed 5-star holidays, bespoke lifestyle concierge, and global exchange privileges with <?php echo e(LEGAL_ENTITY_NAME); ?>.
+            The hallmark of luxury vacation ownership in India. Delivering 25 years of guaranteed luxury holidays, bespoke lifestyle concierge, and global exchange privileges with <?php echo e(LEGAL_ENTITY_NAME); ?>.
           </p>
           <div style="color: var(--color-ink); font-weight: 700; font-size: 0.92rem; margin-bottom: 8px;">
             Toll-Free Concierge: <a href="tel:<?php echo e(CONTACT_PHONE_TEL); ?>" style="color: var(--color-primary-dark);"><?php echo e(CONTACT_PHONE_TOLL_FREE); ?></a>

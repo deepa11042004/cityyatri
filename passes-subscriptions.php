@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $pageTitle = 'Holiday Passes & Vacation Subscriptions';
-$pageDescription = 'Choose from Club Yatri 3-Year, 5-Year, 10-Year, and 25-Year vacation passes with guaranteed 5-star inventory and 4 seasonal studio categories.';
+$pageDescription = 'Choose from Club Yatri 3-Year, 5-Year, 10-Year, and 25-Year vacation passes with guaranteed luxury inventory and 4 seasonal studio categories.';
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
@@ -27,7 +27,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       Club Yatri <span class="gold-text">Holiday Passes</span>
     </h1>
     <p style="color: var(--text-secondary); max-width: 760px; margin: 0 auto; font-size: 1.1rem;">
-      Lock in five-star luxury vacations for 3 to 25 years. Benefit from guaranteed points pools, seasonal studio tiers, and zero holiday tariff inflation.
+      Lock in luxury vacations for 3 to 25 years. Benefit from guaranteed points pools, seasonal studio tiers, and zero holiday tariff inflation.
     </p>
   </div>
 </section>

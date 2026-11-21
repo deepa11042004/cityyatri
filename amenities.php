@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $pageTitle = 'Luxury Resort Amenities & Privileges';
-$pageDescription = 'Experience 5-star resort amenities with Club Yatri: private plunge pools, Ayurvedic wellness spas, private yacht charters, and 24/7 lifestyle butlers.';
+$pageDescription = 'Experience luxury resort amenities with Club Yatri: private plunge pools, Ayurvedic wellness spas, private yacht charters, and 24/7 lifestyle butlers.';
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';

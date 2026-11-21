@@ -31,7 +31,7 @@ include __DIR__ . '/includes/breadcrumbs.php';
       National Resort <span class="gold-text">Sanctuaries & Palaces</span>
     </h1>
     <p style="color: var(--text-secondary); max-width: 720px; margin: 0 auto; font-size: 1.1rem;">
-      From the serene white sands of South Goa to the royal marble havelis of Udaipur and snowbound chalets of Manali, explore India with guaranteed 5-star allocations.
+      From the serene white sands of South Goa to the royal marble havelis of Udaipur and snowbound chalets of Manali, explore India with guaranteed luxury allocations.
     </p>
   </div>
 </section>

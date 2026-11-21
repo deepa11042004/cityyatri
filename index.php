@@ -74,7 +74,7 @@ include __DIR__ . '/includes/navbar.php';
       <div class="sub-tag">THE ART OF CURATED VACATION OWNERSHIP</div>
 
       <p class="section-desc">
-        Lock in 25 years of guaranteed 5-star holidays across 200+ premier resorts in India and the world. 
+        Lock in 25 years of guaranteed luxury holidays across 200+ premier resorts in India and the world. 
         Completely shielded from hotel inflation, with 4-color seasonal studio flexibility and inheritable family asset rights with <?php echo e(LEGAL_ENTITY_NAME); ?>.
       </p>
     </div>
@@ -230,7 +230,7 @@ include __DIR__ . '/includes/navbar.php';
           <div class="flagship-badge-tag">★ FLAGSHIP LUXURY ASSET ★</div>
           <h3 class="flagship-title">25-Year Pass <span>(Yatri Privilege Crown Asset)</span></h3>
           <p style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.65; margin-bottom: 20px;">
-            A perpetual 25-year inheritable holiday deed ensuring multi-generational 5-star vacation security, presidential suite allocations, and unrestricted global exchange privileges.
+            A perpetual 25-year inheritable holiday deed ensuring multi-generational luxury vacation security, presidential suite allocations, and unrestricted global exchange privileges.
           </p>
         </div>
         <div style="text-align: right; background: #FFFFFF; padding: 22px 28px; border-radius: var(--radius-card); border: 1.5px solid var(--color-accent); box-shadow: var(--shadow-sm);">
@@ -511,7 +511,7 @@ include __DIR__ . '/includes/navbar.php';
           <div>
             <strong>Minimum 45 Days Prior Advance Booking Notice Mandatory</strong>
             <p>
-              To guarantee seamless five-star luxury room allocations and dedicated VIP butler preparation, all vacation pass booking requests must be lodged at least 45 calendar days prior to your intended check-in date.
+              To guarantee seamless luxury room allocations and dedicated VIP butler preparation, all vacation pass booking requests must be lodged at least 45 calendar days prior to your intended check-in date.
             </p>
           </div>
         </div>

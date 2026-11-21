@@ -127,7 +127,7 @@ foreach (['twitter' => 'social_twitter'] as $k => $sk) {   // optional extra net
 // 8. Default SEO Metadata
 $GLOBALS['defaultSeo'] = [
     'title' => site_setting('seo_title', 'Club Yatri | Luxury Vacation Ownership & Bespoke Timeshare Holidays'),
-    'description' => site_setting('seo_description', 'Guaranteed 5-star resort weeks, flexible internal & international holiday exchanges, and 24/7 dedicated lifestyle concierge services with Club Yatri Hotel and Resort Pvt Ltd.'),
+    'description' => site_setting('seo_description', 'Guaranteed luxury resort weeks, flexible internal & international holiday exchanges, and 24/7 dedicated lifestyle concierge services with Club Yatri Hotel and Resort Pvt Ltd.'),
     'keywords' => 'Club Yatri, vacation ownership, luxury timeshare, holiday club India, holiday passes, Goa luxury villas, Rajasthan palaces, timeshare subscription, holiday asset',
     'og_image' => site_setting('seo_og_image') !== '' ? (preg_match('~^https?://~i', site_setting('seo_og_image')) ? site_setting('seo_og_image') : BASE_URL . '/' . ltrim(site_setting('seo_og_image'), '/')) : 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
 ];

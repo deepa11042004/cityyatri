@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 $pageTitle = 'Luxury Destinations & Resort Hubs';
-$pageDescription = 'Explore Club Yatri vacation hubs across Goa, Udaipur, Manali, Jaipur, Thailand, Bali, and Dubai with guaranteed 5-star resort allocations.';
+$pageDescription = 'Explore Club Yatri vacation hubs across Goa, Udaipur, Manali, Jaipur, Thailand, Bali, and Dubai with guaranteed luxury resort allocations.';
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/helpers.php';
